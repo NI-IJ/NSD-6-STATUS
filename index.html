@@ -2,569 +2,123 @@
 <html lang="ko">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <meta name="theme-color" content="#050505" />
+  <title>NSD-6 STATUS CONTROL v0.4</title>
   <link rel="manifest" href="manifest.webmanifest" />
-  <title>NSD-6 Control Panel</title>
-  <style>
-    :root{
-      --bg:#030303;
-      --panel:#070707;
-      --panel2:#0c0c0d;
-      --panel3:#111113;
-      --line:#26262a;
-      --line2:#3a3a40;
-      --text:#f2f2f2;
-      --muted:#a9a9ad;
-      --dim:#6d6d73;
-      --red:#f00808;
-      --red2:#b00000;
-      --green:rgb(20,255,70);
-      --green-soft:rgba(20,255,70,.12);
-      --radius:16px;
-      --font: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
-      --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-    }
-    *{box-sizing:border-box}
-    html,body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);}
-    body{
-      min-height:100vh;
-      background:
-        radial-gradient(circle at 75% 15%,rgba(240,8,8,.08),transparent 28%),
-        linear-gradient(#030303,#030303);
-      letter-spacing:.01em;
-    }
-    button,input,select,textarea{font:inherit}
-    button{touch-action:manipulation}
-    .app{max-width:920px;margin:0 auto;padding:18px 18px 108px;}
-    .top{
-      display:flex;align-items:center;gap:18px;padding:6px 0 16px;border-bottom:1px solid rgba(240,8,8,.45);
-    }
-    .circle{
-      width:74px;height:74px;border:1px solid var(--line2);border-radius:50%;
-      display:flex;align-items:center;justify-content:center;background:#060606;position:relative;flex:0 0 auto;
-      box-shadow:inset 0 0 0 1px rgba(255,255,255,.02);
-    }
-    .circle:after{content:"";position:absolute;right:8px;top:8px;width:9px;height:9px;border-radius:50%;background:var(--red)}
-    .hamb{width:30px;height:20px;display:grid;gap:6px}
-    .hamb i{display:block;height:2px;background:#e9e9e9}
-    .title{flex:1;min-width:0}
-    h1{font-family:var(--font);font-size:clamp(24px,4vw,40px);line-height:1;margin:0 0 8px;letter-spacing:.025em;font-weight:800}
-    .subtitle{font-family:var(--font);font-size:16px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-    .xbtn{font-family:var(--font);font-size:38px;color:#fff;border-color:rgba(240,8,8,.8)}
-    .tabs{display:flex;gap:14px;overflow-x:auto;padding:24px 0 18px;scrollbar-width:none}
-    .tabs::-webkit-scrollbar{display:none}
-    .tab{
-      border:1px solid var(--line2);background:#070707;color:#fff;border-radius:999px;
-      padding:12px 20px;display:flex;align-items:center;gap:12px;white-space:nowrap;min-height:48px;
-      font-size:16px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.02);
-    }
-    .tab.active{background:linear-gradient(180deg,#ff1616,#b80000);border-color:#ff1f1f;box-shadow:0 0 22px rgba(240,8,8,.35)}
-    .ico{width:24px;height:24px;display:inline-flex;align-items:center;justify-content:center}
-    .page{display:none}
-    .page.active{display:block}
-    .card{
-      background:linear-gradient(180deg,rgba(12,12,13,.86),rgba(5,5,5,.96));
-      border:1px solid var(--line2);border-radius:var(--radius);padding:28px;position:relative;
-      box-shadow:0 20px 48px rgba(0,0,0,.35), inset 0 0 0 1px rgba(255,255,255,.015);
-      overflow:hidden;
-    }
-    .hero{min-height:460px}
-    .scan{
-      position:absolute;right:0;top:0;width:52%;height:310px;opacity:.72;pointer-events:none;
-      background:
-        radial-gradient(ellipse at 66% 35%, rgba(255,28,28,.5), transparent 7%),
-        radial-gradient(ellipse at 60% 38%, rgba(255,0,0,.18), transparent 35%),
-        repeating-linear-gradient(0deg, transparent 0 7px, rgba(240,8,8,.13) 8px, transparent 9px),
-        radial-gradient(ellipse at 70% 42%, transparent 0 19%, rgba(240,8,8,.34) 20%, transparent 37%),
-        radial-gradient(ellipse at 48% 45%, transparent 0 12%, rgba(240,8,8,.18) 13%, transparent 28%);
-      filter:contrast(1.25) saturate(1.2);
-      mix-blend-mode:screen;
-    }
-    .scan:before{
-      content:"10    09";position:absolute;left:42%;top:46px;color:var(--red);font-family:var(--font);font-size:22px;letter-spacing:.2em;
-    }
-    .scan:after{
-      content:"72°20'-41\A 91°70'-41";white-space:pre;position:absolute;right:45px;bottom:18px;color:var(--red);font-family:var(--font);font-size:17px;line-height:1.35;
-    }
-    .hero-head{display:flex;align-items:center;gap:28px;position:relative;z-index:1;margin:36px 0 42px}
-    .badge-e{
-      width:92px;height:92px;border-radius:50%;border:1px solid var(--line2);display:flex;align-items:center;justify-content:center;
-      color:var(--red);font-family:var(--font);font-size:40px;background:#050505;
-    }
-    .kicker{font-family:var(--font);color:var(--muted);font-size:17px;text-transform:uppercase;margin-bottom:8px}
-    .bigline{font-family:var(--font);font-size:28px;font-weight:800;letter-spacing:.06em}
-    .ready{display:inline-flex;align-items:center;gap:8px;margin-top:12px;border:1px solid rgba(20,255,70,.45);background:rgba(20,255,70,.08);color:var(--green);padding:7px 14px;border-radius:7px;font-family:var(--font);font-size:16px}
-    .dot{width:10px;height:10px;border-radius:50%;background:var(--green);display:inline-block}
-    .table{position:relative;z-index:1;border-top:1px solid var(--line2);margin-top:12px}
-    .row{display:grid;grid-template-columns:170px 1fr;gap:18px;border-bottom:1px solid rgba(58,58,64,.6);padding:15px 8px;font-size:16px}
-    .row .label{color:var(--muted)}
-    .row .value{font-family:var(--font)}
-    .green{color:var(--green)}
-    .intensity{display:flex;align-items:center;gap:7px}
-    .sq{width:18px;height:18px;background:#1d1d20;display:inline-block}
-    .sq.on{background:var(--red)}
-    .primary{
-      margin-top:30px;width:100%;min-height:64px;border:1px solid #ff1f1f;border-radius:12px;
-      background:linear-gradient(180deg,#f90909,#a70000);color:#fff;font-family:var(--font);font-size:22px;font-weight:800;
-      display:flex;align-items:center;justify-content:center;gap:28px;box-shadow:0 0 24px rgba(240,8,8,.24);letter-spacing:.04em;
-    }
-    .primary .arrow{margin-left:auto;margin-right:22px}
-    .primary .bolt{margin-left:22px}
-    .btnrow{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:20px}
-    .secondary{
-      min-height:76px;border:1px solid var(--line2);background:#060606;color:#f0f0f0;border-radius:12px;
-      display:flex;align-items:center;gap:22px;padding:0 28px;text-align:left;
-    }
-    .secondary .main{font-family:var(--font);font-size:17px;font-weight:800;letter-spacing:.04em}
-    .secondary .sub{color:var(--muted);font-size:16px;margin-top:5px}
-    .secondary svg{width:46px;height:46px;flex:0 0 auto}
-    .section{margin-top:22px}
-    .section-title{font-family:var(--font);color:var(--red);font-size:17px;font-weight:800;margin:0 0 18px;letter-spacing:.05em}
-    .status-head{display:flex;align-items:center;justify-content:space-between}
-    .date-small{color:var(--muted);font-family:var(--font);font-size:18px}
-    .metric-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px}
-    .metric{border:1px solid var(--line2);border-radius:12px;background:#070707;padding:22px 26px;display:flex;align-items:center;gap:18px;min-height:106px}
-    .metric .num{font-size:30px;font-weight:800}
-    .metric .cap{color:var(--muted);font-family:var(--font);font-size:16px;letter-spacing:.05em}
-    .metric svg{width:40px;height:40px}
-    .current{display:flex;align-items:center;gap:16px;margin-top:18px;font-family:var(--font);color:var(--muted)}
-    .preview-box{
-      border:1px solid var(--line2);border-radius:10px;background:#050505;padding:18px 22px;min-height:126px;
-      font-family:var(--font);font-size:18px;line-height:1.45;white-space:pre-wrap;overflow:auto;
-    }
-    .small-action{display:flex;justify-content:flex-end;margin-top:-44px;margin-bottom:12px}
-    .mini-btn{border:1px solid var(--line2);background:#060606;color:var(--muted);border-radius:8px;padding:8px 14px}
-    .bottom-actions{display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px;margin-top:18px}
-    .bottom-actions button{min-height:76px;border-radius:10px;border:1px solid var(--line2);background:#050505;color:#fff;font-family:var(--font);font-size:17px;font-weight:800}
-    .bottom-actions .generate{background:linear-gradient(180deg,#f90909,#a70000);border-color:#ff1f1f}
-    .footer{
-      display:flex;align-items:center;justify-content:space-between;color:var(--red);font-family:var(--font);font-size:14px;margin-top:14px;padding:0 2px
-    }
-    .sync{color:var(--green)}
-    textarea,input,select{
-      width:100%;border:1px solid var(--line2);background:#050505;color:#fff;border-radius:10px;padding:14px;font-family:var(--font);font-size:16px;outline:none;
-    }
-    textarea{min-height:260px;resize:vertical;line-height:1.45}
-    label{display:block;color:var(--muted);font-family:var(--font);font-size:14px;margin:12px 0 7px}
-    .formgrid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-    .list{display:grid;gap:12px}
-    .logitem{border:1px solid var(--line2);border-radius:12px;background:#070707;padding:16px}
-    .logitem h3{margin:0 0 8px;font-family:var(--font);font-size:18px}
-    .logitem pre{white-space:pre-wrap;color:#dcdcdc;font-family:var(--font);font-size:14px;max-height:140px;overflow:auto}
-    .toast{position:fixed;left:50%;bottom:34px;transform:translateX(-50%);background:#121214;border:1px solid var(--line2);color:#fff;border-radius:999px;padding:12px 18px;opacity:0;transition:.2s;z-index:20}
-    .toast.show{opacity:1}
-    .hide{display:none!important}
-    @media(max-width:700px){
-      .app{padding:10px 9px 76px}
-      .top{gap:9px;padding:4px 0 10px}
-      .circle{width:36px;height:36px}
-      .circle:after{width:6px;height:6px;right:5px;top:5px}
-      .hamb{width:18px;height:13px;gap:4px}
-      .xbtn{font-size:20px}
-      h1{font-size:18px;letter-spacing:.01em;margin-bottom:4px;white-space:nowrap}
-      .subtitle{font-size:9.5px}
-      .tabs{gap:6px;padding:12px 0 10px}
-      .tab{font-size:11px;padding:8px 9px;min-height:34px;gap:5px}
-      .card{padding:11px;border-radius:12px}
-      .hero{min-height:auto}
-      .scan{width:52%;height:148px;opacity:.55}
-      .scan:before{font-size:11px;top:24px}
-      .scan:after{font-size:9px;right:18px;bottom:10px}
-      .hero-head{gap:10px;margin:12px 0 16px}
-      .badge-e{width:48px;height:48px;font-size:22px}
-      .kicker{font-size:10px;margin-bottom:4px}
-      .bigline{font-size:15px;letter-spacing:.035em}
-      .ready{font-size:10px;padding:4px 8px;margin-top:7px}
-      .dot{width:6px;height:6px}
-      .row{grid-template-columns:72px 1fr;font-size:10.5px;padding:7px 0;gap:8px}
-      .sq{width:9px;height:9px}
-      .primary{font-size:12px;min-height:44px;margin-top:14px;gap:8px}
-      .primary .bolt{margin-left:8px}
-      .primary .arrow{margin-right:8px}
-      .btnrow,.bottom-actions,.metric-grid{gap:7px}
-      .secondary{min-height:50px;padding:0 8px;gap:7px;border-radius:9px}
-      .secondary .main{font-size:9.5px;letter-spacing:.025em}
-      .secondary .sub{font-size:8px;margin-top:2px}
-      .secondary svg{width:21px;height:21px}
-      .section{margin-top:12px}
-      .section-title{font-size:12px;margin-bottom:10px}
-      .date-small{font-size:10px}
-      .metric{padding:9px 7px;gap:7px;min-height:58px;border-radius:9px}
-      .metric .num{font-size:18px}
-      .metric .cap{font-size:8px}
-      .metric svg{width:20px;height:20px}
-      .current{font-size:8.5px;gap:6px;margin-top:10px}
-      .preview-box{font-size:10px;min-height:88px;padding:10px 12px}
-      .small-action{margin-top:-32px;margin-bottom:8px}
-      .mini-btn{font-size:9px;padding:5px 7px}
-      .bottom-actions button{font-size:10px;min-height:44px;border-radius:8px}
-      .formgrid{grid-template-columns:1fr}
-      textarea{font-size:11px;min-height:180px}
-      input,select{font-size:11px;padding:9px}
-      label{font-size:10px}
-      .footer{font-size:7.5px;margin-top:8px}
-    }
-  </style>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-<div class="app">
-  <header class="top">
-    <button class="circle" aria-label="menu"><span class="hamb"><i></i><i></i><i></i></span></button>
-    <div class="title">
-      <h1>NSD-6 Control Panel</h1>
-      <div class="subtitle">local log archive · rotation dashboard · runtime prompt generator</div>
-    </div>
-    <button class="circle xbtn" aria-label="close">×</button>
-  </header>
+  <div class="app-shell">
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">NSD-6 STATUS CONTROL</p>
+        <h1>Control Panel <span>v0.4</span></h1>
+      </div>
+      <button id="exportBtn" class="ghost-btn" type="button">Export</button>
+    </header>
 
-  <nav class="tabs" id="tabs">
-    <button class="tab active" data-page="dashboard">▦ Dashboard</button>
-    <button class="tab" data-page="plan">▣ Plan</button>
-    <button class="tab" data-page="save">▤ Save Log</button>
-    <button class="tab" data-page="history">↺ History</button>
-    <button class="tab" data-page="settings">⚙ Settings</button>
-  </nav>
-
-  <main>
-    <section id="dashboard" class="page active">
-      <div class="card hero">
-        <div class="scan"></div>
-
-        <div class="hero-head">
-          <div class="badge-e" id="dashExposure">E1</div>
+    <main>
+      <section class="hero-card">
+        <div class="hero-grid">
           <div>
-            <div class="kicker" id="dashSlot">PULL</div>
-            <div class="bigline" id="dashCategory">HORIZONTAL PULL</div>
-            <div class="ready"><span class="dot"></span>READY</div>
+            <p class="label">Current Slot</p>
+            <h2 id="currentSlotTitle">-</h2>
+            <p id="currentSlotMeta" class="meta">-</p>
           </div>
+          <div class="status-pill" id="slotPill">READY</div>
         </div>
-
-        <div class="table">
-          <div class="row"><div class="label">Movement</div><div class="value" id="dashMovement">-</div></div>
-          <div class="row"><div class="label">Rotation</div><div class="value" id="dashRotation">-</div></div>
-          <div class="row"><div class="label">Previous</div><div class="value" id="dashPrevious">-</div></div>
-          <div class="row"><div class="label">Focus</div><div class="value" id="dashFocus">Clean ROM, minimal time loss</div></div>
-          <div class="row"><div class="label">Intensity</div><div class="value intensity"><span class="sq on"></span><span class="sq on"></span><span class="sq on"></span><span class="sq on"></span><span class="sq on"></span><span class="sq"></span><span class="sq"></span><span class="sq"></span><span style="margin-left:18px">3 / 5</span></div></div>
-          <div class="row"><div class="label">Signal</div><div class="value green">Good</div></div>
-          <div class="row"><div class="label">Notes</div><div class="value">Maintain scapular control.</div></div>
+        <div class="progress-line">
+          <div id="progressFill"></div>
         </div>
-
-        <button class="primary" onclick="generatePrompt()"><span class="bolt">⚡</span><span>GENERATE RUNTIME PROMPT</span><span class="arrow">›</span></button>
-
-        <div class="btnrow">
-          <button class="secondary" onclick="advanceRotation()">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 11a8 8 0 0 0-14.5-4.7M4 5v5h5"/><path d="M4 13a8 8 0 0 0 14.5 4.7M20 19v-5h-5"/></svg>
-            <span><div class="main">ADVANCE ROTATION</div><div class="sub">Next session in queue</div></span>
-          </button>
-          <button class="secondary" onclick="markRest()">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="8"/><path d="M12 7v6l4 2"/></svg>
-            <span><div class="main">REST / DELAY</div><div class="sub">Pause rotation timer</div></span>
-          </button>
+        <div class="hero-actions">
+          <button id="prevSlotBtn" type="button">Prev</button>
+          <button id="nextSlotBtn" type="button">Next</button>
         </div>
-      </div>
+      </section>
 
-      <div class="card section">
-        <div class="status-head">
-          <h2 class="section-title">MONTH STATUS</h2>
-          <div class="date-small" id="monthLabel">MAY 2025 ▣</div>
+      <section class="panel">
+        <div class="panel-head">
+          <h3>8-Slot Rotation</h3>
+          <span id="rotationCounter">1 / 8</span>
         </div>
-        <div class="metric-grid">
-          <div class="metric">
-            <svg viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="1.6"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M8 3v4M16 3v4M4 10h16"/></svg>
-            <div><div class="num" id="mSessions">0</div><div class="cap">SESSIONS</div></div>
-          </div>
-          <div class="metric">
-            <svg viewBox="0 0 24 24" fill="none" stroke="#eee" stroke-width="1.6"><path d="M6 8h10v5a5 5 0 0 1-5 5h0a5 5 0 0 1-5-5V8Z"/><path d="M16 9h2a2 2 0 0 1 0 4h-2M8 3v3M12 3v3"/></svg>
-            <div><div class="num" id="mRests">0</div><div class="cap">RESTS</div></div>
-          </div>
-          <div class="metric" style="border-color:rgba(240,8,8,.55)">
-            <svg viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="1.6"><path d="M12 21a7 7 0 0 1-6-10.6c2.2-3.7 6-4.5 5-8.4 4 2 7 5.3 7 11a6 6 0 0 1-6 8Z"/></svg>
-            <div><div class="num" id="mStreak">0</div><div class="cap">STREAK</div></div>
-          </div>
+        <div id="rotationGrid" class="rotation-grid"></div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-head">
+          <h3>Movement Stack</h3>
+          <span id="movementMode">v0.4</span>
         </div>
-        <div class="current"><span class="green">╲╱</span><span>CURRENT BLOCK: <span class="green">NSD-6 ROTATION ACTIVE</span></span><span style="margin-left:auto" id="uptime">Uptime 0d 00h</span></div>
-      </div>
+        <div id="movementList" class="movement-list"></div>
+      </section>
 
-      <div class="card section">
-        <h2 class="section-title">RUNTIME PROMPT PREVIEW</h2>
-        <div class="small-action"><button class="mini-btn" onclick="switchPage('settings')">✎ EDIT TEMPLATE</button></div>
-        <div class="preview-box" id="promptPreview">Generate a runtime prompt first.</div>
-        <div class="bottom-actions">
-          <button class="generate" onclick="generatePrompt()">✣ GENERATE</button>
-          <button onclick="copyPrompt()">▣ COPY</button>
-          <button onclick="switchPage('save')">▣ SAVE LOG</button>
+      <section class="panel">
+        <div class="panel-head">
+          <h3>Previous Session Log</h3>
+          <span>local</span>
         </div>
-      </div>
-    </section>
+        <textarea id="previousLog" placeholder="이전 같은 라인 로그 또는 참고 로그를 붙여넣기"></textarea>
+      </section>
 
-    <section id="plan" class="page">
-      <div class="card">
-        <h2 class="section-title">RUNTIME PROMPT</h2>
-        <textarea id="runtimePrompt" placeholder="Generate Runtime Prompt"></textarea>
-        <div class="bottom-actions">
-          <button class="generate" onclick="generatePrompt()">GENERATE</button>
-          <button onclick="copyPrompt()">COPY</button>
-          <button onclick="switchPage('save')">SAVE LOG</button>
+      <section class="panel">
+        <div class="panel-head">
+          <h3>Today Plan</h3>
+          <span>prompt source</span>
         </div>
-      </div>
-    </section>
+        <textarea id="todayPlan" placeholder="오늘 세션 계획 / 수정 포인트 입력"></textarea>
+      </section>
 
-    <section id="save" class="page">
-      <div class="card">
-        <h2 class="section-title">SAVE FINAL LOG</h2>
-        <div class="formgrid">
-          <div><label>Date</label><input type="date" id="logDate"></div>
-          <div><label>Result</label><select id="result"><option>Completed</option><option>Repeat Same</option><option>Graduated</option><option>Transition</option><option>Rest / Delay</option></select></div>
+      <section class="panel">
+        <div class="panel-head">
+          <h3>Prompt Generator</h3>
+          <span>Kai runtime</span>
         </div>
-        <label>Final log text</label>
-        <textarea id="finalLog" placeholder="Paste Kai final log here"></textarea>
-        <div class="bottom-actions">
-          <button class="generate" onclick="saveFinalLog()">SAVE SESSION</button>
-          <button onclick="document.getElementById('finalLog').value=''">CLEAR</button>
-          <button onclick="exportData()">BACKUP</button>
+        <button id="generatePromptBtn" class="wide-btn" type="button">Generate Previous Session Log + Today Plan</button>
+        <textarea id="promptOutput" readonly placeholder="생성된 프롬프트가 여기에 표시됨"></textarea>
+        <button id="copyPromptBtn" class="wide-btn secondary" type="button">Copy Prompt</button>
+      </section>
+
+      <section class="panel">
+        <div class="panel-head">
+          <h3>Save Final Log</h3>
+          <span>history</span>
         </div>
-      </div>
-    </section>
+        <textarea id="finalLog" placeholder="Kai가 정리한 최종 로그를 붙여넣기"></textarea>
+        <button id="saveLogBtn" class="wide-btn" type="button">Save Session</button>
+      </section>
 
-    <section id="history" class="page">
-      <div class="card">
-        <h2 class="section-title">HISTORY</h2>
-        <div class="formgrid">
-          <div><label>Line filter</label><select id="filter" onchange="renderHistory()"><option value="all">All</option></select></div>
-          <div><label>Search</label><input id="search" oninput="renderHistory()" placeholder="FL Row, 5/25, Burpee"></div>
+      <section class="panel">
+        <div class="panel-head">
+          <h3>History</h3>
+          <span id="historyCount">0 logs</span>
         </div>
-        <div class="list" id="historyList"></div>
-      </div>
-    </section>
+        <div id="historyList" class="history-list"></div>
+      </section>
 
-    <section id="settings" class="page">
-      <div class="card">
-        <h2 class="section-title">SETTINGS</h2>
-        <label>Rotation index</label>
-        <input type="number" id="rotationIndex" min="0">
-        <label>Rotation JSON</label>
-        <textarea id="rotationJson"></textarea>
-        <button class="primary" onclick="saveRotation()">SAVE ROTATION</button>
-        <label>Lines JSON</label>
-        <textarea id="linesJson"></textarea>
-        <button class="primary" onclick="saveLines()">SAVE LINES</button>
-        <div class="bottom-actions">
-          <button onclick="exportData()">EXPORT</button>
-          <button onclick="document.getElementById('importFile').click()">IMPORT</button>
-          <button onclick="resetAll()">RESET</button>
+      <section class="panel">
+        <div class="panel-head">
+          <h3>Backup / Restore</h3>
+          <span>JSON</span>
         </div>
-        <input type="file" id="importFile" class="hide" accept="application/json" onchange="importData(event)">
-      </div>
-    </section>
-  </main>
+        <div class="backup-row">
+          <label class="file-label">
+            Import JSON
+            <input id="importFile" type="file" accept="application/json" />
+          </label>
+          <button id="clearBtn" class="danger-btn" type="button">Clear Local Data</button>
+        </div>
+      </section>
+    </main>
 
-  <footer class="footer">
-    <span>┋ NSD-6&nbsp;&nbsp; v0.3.0</span>
-    <span>LOG ARCHIVE SECURE</span>
-    <span class="sync">SYNC OK ■</span>
-  </footer>
-</div>
+    <nav class="bottom-nav">
+      <button data-jump="rotationGrid" type="button">Map</button>
+      <button data-jump="previousLog" type="button">Prompt</button>
+      <button data-jump="finalLog" type="button">Save Log</button>
+      <button data-jump="historyList" type="button">History</button>
+    </nav>
+  </div>
 
-<div id="toast" class="toast">Saved</div>
-
-<script>
-const DEFAULT = {
-  createdAt: Date.now(),
-  rotationIndex: 0,
-  rotation: [
-    {slot:"Push", lineKey:"pushVertical"},
-    {slot:"Pull", lineKey:"pullVertical"},
-    {slot:"Complex Push", lineKey:"complexPush"},
-    {slot:"Conditioning", lineKey:"conditioning"},
-    {slot:"Push", lineKey:"pushHorizontal"},
-    {slot:"Pull", lineKey:"pullHorizontal"},
-    {slot:"Complex Pull", lineKey:"complexPull"},
-    {slot:"Conditioning", lineKey:"conditioning"}
-  ],
-  lines: {
-    pushVertical:{category:"Vertical Push", exercise:"PHSPU", progress:"5.5 (5×5) [E1]", exposure:"E1", staticPosition:"Adv. PL 6s / Adv. L-sit 6s", mainTemplate:"PHSPU 5.5 (5×5) [E1]\\n:"},
-    pushHorizontal:{category:"Horizontal Push", exercise:"Str. PL PU", progress:"3.5 (3×5) [E2]", exposure:"E2", staticPosition:"Adv. PL 6s / Adv. L-sit 6s", mainTemplate:"Str. PL PU 3.5 (3×5) [E2]\\n:"},
-    pullVertical:{category:"Vertical Pull", exercise:"Hook-supported OAP Negative", progress:"3.5 (3×5) [E2]", exposure:"E2", staticPosition:"Adv. FL 6s / Adv. L-sit 6s", mainTemplate:"Hook-supported OAP Negative 3.5 (3×5) [E2]\\n:"},
-    pullHorizontal:{category:"Horizontal Pull", exercise:"FL Row", progress:"3.5 (3×5) [E2]", exposure:"E2", staticPosition:"Adv. FL 6s / Adv. L-sit 6s", mainTemplate:"FL Row 3.5 (3×5) [E2]\\n:"},
-    complexPush:{category:"Complex Push", exercise:"BAPL60", progress:"5.5 (5×5) [E1]", exposure:"E1", staticPosition:"Adv. PL 6s / Adv. L-sit 6s", mainTemplate:"BAPL60 5.5 (5×5) [E1]\\n:"},
-    complexPull:{category:"Complex Pull", exercise:"Str. 360 Pull", progress:"5.5 (5×5) [E2]", exposure:"E2", staticPosition:"Adv. FL 6s / Adv. L-sit 6s", mainTemplate:"Str. 360 Pull 5.5 (5×5) [E2]\\n:"},
-    conditioning:{category:"Conditioning", exercise:"Pistol / Burpee", progress:"Pistol transition + Burpee 40×3", exposure:"", staticPosition:"Adv. BL 6s / Adv. L-sit 6s", mainTemplate:"Pistol Assisted Ascent 3.5 [E1]\\n:\\n\\nBurpee 40×3\\n:"}
-  },
-  logs:[]
-};
-
-function clone(obj){ return JSON.parse(JSON.stringify(obj)); }
-function deepMerge(base, incoming){
-  const out = clone(base);
-  if(!incoming || typeof incoming !== "object") return out;
-  Object.keys(incoming).forEach(k=>{
-    if(incoming[k] && typeof incoming[k] === "object" && !Array.isArray(incoming[k]) && out[k] && typeof out[k] === "object" && !Array.isArray(out[k])){
-      out[k] = deepMerge(out[k], incoming[k]);
-    } else {
-      out[k] = incoming[k];
-    }
-  });
-  return out;
-}
-let state = load();
-
-function load(){
-  try{
-    const raw = localStorage.getItem("nsd6_v03") || localStorage.getItem("nsd6_v02");
-    return raw ? deepMerge(DEFAULT, JSON.parse(raw)) : clone(DEFAULT);
-  }catch(e){return clone(DEFAULT)}
-}
-function persist(){localStorage.setItem("nsd6_v03", JSON.stringify(state))}
-function todayISO(){const d=new Date();const z=new Date(d.getTime()-d.getTimezoneOffset()*60000);return z.toISOString().slice(0,10)}
-function week(d){return ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"][new Date(d+"T00:00:00").getDay()]}
-function titleDate(d){const x=new Date(d+"T00:00:00");return `${x.getMonth()+1}/${x.getDate()} ${week(d)}`}
-function nextMeta(){
-  const idx = ((state.rotationIndex % state.rotation.length) + state.rotation.length) % state.rotation.length;
-  const r = state.rotation[idx];
-  return {...r, ...(state.lines[r.lineKey]||{}) , rotIndex:idx};
-}
-function previousLog(meta){
-  return [...state.logs].reverse().find(l=>l.lineKey===meta.lineKey || l.exercise===meta.exercise);
-}
-function buildPlan(meta, d=todayISO()){
-  return `${titleDate(d)} — ${meta.slot}
-
-Session time: ~
-
-WU
-FR full body
-HSPU ×3
-Wall Extension 10×2
-Band Dislocate 10×2
-Static Position
-: ${meta.staticPosition || "___ / Adv. L-sit 6s"} — 
-L Pull-up 5×1
-
-MN
-${meta.mainTemplate || `${meta.exercise} ${meta.progress}\\n:`}
-
-CD
-HVR 10×1
-Wall Extension 10×1
-Band Dislocate
-: dorsal 6×1 —
-: overgrip 6×1 —
-Passive ROM 6
-
-Notes
-:`;
-}
-function generatePrompt(){
-  const meta=nextMeta();
-  const prev=previousLog(meta);
-  const prompt = `${prev ? prev.logText : `[No previous ${meta.exercise} log saved yet.]`}
-
-⸻
-
-${buildPlan(meta)}
-
-⸻`;
-  document.getElementById("runtimePrompt").value = prompt;
-  document.getElementById("promptPreview").textContent = prompt.split("\n").slice(0,9).join("\n");
-  switchPage("plan");
-  toast("Runtime prompt generated");
-}
-async function copyPrompt(){
-  let t=document.getElementById("runtimePrompt").value;
-  if(!t.trim()) generatePrompt();
-  t=document.getElementById("runtimePrompt").value;
-  try{await navigator.clipboard.writeText(t);toast("Copied")}catch(e){toast("Copy failed")}
-}
-function render(){
-  const meta=nextMeta();
-  document.getElementById("dashExposure").textContent = meta.exposure || "E";
-  document.getElementById("dashSlot").textContent = (meta.slot||"-").toUpperCase();
-  document.getElementById("dashCategory").textContent = (meta.category||"-").toUpperCase();
-  document.getElementById("dashMovement").textContent = `${meta.exercise||"-"} ${meta.progress||""}`.trim();
-  document.getElementById("dashRotation").textContent = `Session ${meta.rotIndex+1} / ${state.rotation.length}`;
-  const prev=previousLog(meta);
-  document.getElementById("dashPrevious").textContent = prev ? `${prev.exercise} ${prev.progress}` : "-";
-  const now=new Date();
-  document.getElementById("monthLabel").textContent = now.toLocaleString("en",{month:"short"}).toUpperCase()+" "+now.getFullYear()+" ▣";
-  const ym=todayISO().slice(0,7);
-  const month=state.logs.filter(l=>(l.date||"").startsWith(ym));
-  document.getElementById("mSessions").textContent=month.filter(l=>l.result!=="Rest / Delay").length;
-  document.getElementById("mRests").textContent=month.filter(l=>l.result==="Rest / Delay").length;
-  let streak=0; for(const l of [...state.logs].reverse()){if(l.result==="Rest / Delay")break; streak++}
-  document.getElementById("mStreak").textContent=streak;
-  const hours=Math.floor((Date.now()-(state.createdAt||Date.now()))/3600000);
-  document.getElementById("uptime").textContent=`Uptime ${Math.floor(hours/24)}d ${String(hours%24).padStart(2,"0")}h`;
-  document.getElementById("logDate").value ||= todayISO();
-  fillFilters();
-  fillSettings();
-  renderHistory();
-}
-function saveFinalLog(){
-  const meta=nextMeta();
-  const txt=document.getElementById("finalLog").value.trim();
-  const result=document.getElementById("result").value;
-  if(!txt && result!=="Rest / Delay"){toast("Paste final log first");return}
-  const date=document.getElementById("logDate").value || todayISO();
-  state.logs.push({
-    id:String(Date.now())+Math.random().toString(16).slice(2),
-    date, result, slot:meta.slot, lineKey:meta.lineKey, category:meta.category,
-    exercise:meta.exercise, progress:meta.progress,
-    logText: txt || `${titleDate(date)} — Rest / Delay\n\n${meta.slot} delayed.`
-  });
-  if(result!=="Repeat Same") state.rotationIndex=(state.rotationIndex+1)%state.rotation.length;
-  persist(); document.getElementById("finalLog").value=""; render(); toast("Session saved");
-}
-function advanceRotation(){state.rotationIndex=(state.rotationIndex+1)%state.rotation.length;persist();render();toast("Rotation advanced")}
-function markRest(){
-  const meta=nextMeta(), date=todayISO();
-  state.logs.push({id:String(Date.now()),date,result:"Rest / Delay",slot:meta.slot,lineKey:meta.lineKey,category:meta.category,exercise:meta.exercise,progress:meta.progress,logText:`${titleDate(date)} — Rest / Delay\n\n${meta.slot} / ${meta.exercise} delayed.`});
-  persist();render();toast("Rest / Delay saved");
-}
-function fillFilters(){
-  const f=document.getElementById("filter"); const old=f.value || "all";
-  f.innerHTML='<option value="all">All</option>'+Object.entries(state.lines).map(([k,v])=>`<option value="${k}">${v.category} — ${v.exercise}</option>`).join("");
-  f.value=old;
-}
-function renderHistory(){
-  const list=document.getElementById("historyList"); if(!list)return;
-  const f=document.getElementById("filter")?.value || "all";
-  const q=(document.getElementById("search")?.value||"").toLowerCase();
-  const logs=[...state.logs].reverse().filter(l=>(f==="all"||l.lineKey===f) && JSON.stringify(l).toLowerCase().includes(q));
-  list.innerHTML=logs.length?"":"<div class='logitem'>No logs yet.</div>";
-  logs.slice(0,60).forEach(l=>{
-    const div=document.createElement("div"); div.className="logitem";
-    div.innerHTML=`<h3>${esc(l.date)} · ${esc(l.exercise)} · ${esc(l.result)}</h3><div class="muted">${esc(l.category)} · ${esc(l.progress)}</div><pre>${esc((l.logText||"").split("\n").slice(0,8).join("\n"))}</pre><div class="btnrow"><button class="secondary" onclick="copyLog('${l.id}')"><span><div class="main">COPY</div></span></button><button class="secondary" onclick="deleteLog('${l.id}')"><span><div class="main">DELETE</div></span></button></div>`;
-    list.appendChild(div);
-  })
-}
-async function copyLog(id){const l=state.logs.find(x=>x.id===id); if(!l)return; await navigator.clipboard.writeText(l.logText); toast("Log copied")}
-function deleteLog(id){if(confirm("Delete this log?")){state.logs=state.logs.filter(x=>x.id!==id);persist();render();toast("Deleted")}}
-function fillSettings(){
-  document.getElementById("rotationIndex").value=state.rotationIndex;
-  document.getElementById("rotationJson").value=JSON.stringify(state.rotation,null,2);
-  document.getElementById("linesJson").value=JSON.stringify(state.lines,null,2);
-}
-function saveRotation(){try{state.rotationIndex=Number(document.getElementById("rotationIndex").value)||0;state.rotation=JSON.parse(document.getElementById("rotationJson").value);persist();render();toast("Rotation saved")}catch(e){toast("Invalid JSON")}}
-function saveLines(){try{state.lines=JSON.parse(document.getElementById("linesJson").value);persist();render();toast("Lines saved")}catch(e){toast("Invalid JSON")}}
-function exportData(){
-  const blob=new Blob([JSON.stringify(state,null,2)],{type:"application/json"});
-  const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download=`nsd6_backup_${todayISO()}.json`;a.click();URL.revokeObjectURL(a.href);
-}
-function importData(e){
-  const file=e.target.files[0]; if(!file)return;
-  const r=new FileReader(); r.onload=()=>{try{state=deepMerge(DEFAULT, JSON.parse(r.result));persist();render();toast("Imported")}catch(err){toast("Import failed")}}; r.readAsText(file);
-}
-function resetAll(){if(confirm("Reset app data? Export backup first.")){state=clone(DEFAULT);persist();render();toast("Reset")}}
-function switchPage(id){
-  document.querySelectorAll(".page").forEach(p=>p.classList.toggle("active",p.id===id));
-  document.querySelectorAll(".tab").forEach(t=>t.classList.toggle("active",t.dataset.page===id));
-}
-document.getElementById("tabs").addEventListener("click",e=>{const b=e.target.closest(".tab"); if(b)switchPage(b.dataset.page)});
-function esc(s){return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[c]))}
-function toast(msg){const t=document.getElementById("toast");t.textContent=msg;t.classList.add("show");setTimeout(()=>t.classList.remove("show"),1400)}
-if("serviceWorker" in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js").catch(()=>{}))}
-render();
-</script>
+  <script src="app.js"></script>
 </body>
 </html>

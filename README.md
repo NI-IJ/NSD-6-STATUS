@@ -1,18 +1,37 @@
-# NSD-6 Control Panel v0.3
+# NSD-6 STATUS CONTROL v0.4
 
-Compact mobile PWA prototype.
+## v0.4 patch focus
 
-## Changes
-- Mobile typography and spacing reduced
-- Safer state loading without structuredClone dependency
-- Reads old v0.2 local data if available, saves to v0.3 key
-- Same core functions: Generate Runtime Prompt, Save Log, History, Rotation, Export/Import
+- 8-slot rotation updated:
+  1. Push - Horizontal
+  2. Pull - Vertical
+  3. Complex Push
+  4. Conditioning
+  5. Push - Vertical
+  6. Pull - Horizontal
+  7. Complex Pull
+  8. Conditioning
 
-## Update GitHub Pages
-Upload and replace:
+- Pull movement title corrected to `OAP Negative`.
+- Conditioning starts from `Negative + A. Pistol 3.3 (3x3) [E1]`.
+- `Burpee 40x3` is fixed in Conditioning.
+- Storage key changed to `nsd6_v04`.
+- Reads old `nsd6_v03` / `nsd6_v02` local data if present.
+- Service worker cache name changed to `nsd6-status-v04`.
+
+## Deploy
+
+Upload these files to the GitHub Pages repo root:
+
 - index.html
+- styles.css
+- app.js
 - manifest.webmanifest
 - sw.js
-- README.md
+- icon.svg
 
-If the old UI remains, hard-refresh or wait for cache/service worker update.
+After deployment, open:
+
+https://ni-ij.github.io/NSD-6-STATUS/?v=4
+
+If mobile keeps showing the old version, remove the home screen icon once, open with `?v=4`, then add to home screen again.
