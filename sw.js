@@ -1,35 +1,20 @@
-const CACHE_NAME = "nsd6-status-v04";
-const ASSETS = [
-  "./",
-  "./index.html?v=4",
-  "./styles.css",
-  "./app.js",
-  "./manifest.webmanifest",
-  "./icon.svg"
-];
+const CACHE = "nsd6-v041";
+const ASSETS = ["./", "./index.html?v=4.1", "./manifest.webmanifest", "./sw.js"];
 
-self.addEventListener("install", event => {
+self.addEventListener("install", e => {
   self.skipWaiting();
-  event.waitUntil(caches.open(CACHE_NAME).then(cache => cache.addAll(ASSETS)));
+  e.waitUntil(caches.open(CACHE).then(c => c.addAll(ASSETS)));
 });
 
-self.addEventListener("activate", event => {
-  event.waitUntil(
-    caches.keys().then(keys =>
-      Promise.all(keys.filter(key => key !== CACHE_NAME).map(key => caches.delete(key)))
-    ).then(() => self.clients.claim())
-  );
+self.addEventListener("activate", e => {
+  e.waitUntil(caches.keys().then(keys => Promise.all(keys.filter(k => k !== CACHE).map(k => caches.delete(k)))).then(() => self.clients.claim()));
 });
 
-self.addEventListener("fetch", event => {
-  if (event.request.method !== "GET") return;
-  event.respondWith(
-    fetch(event.request)
-      .then(response => {
-        const clone = response.clone();
-        caches.open(CACHE_NAME).then(cache => cache.put(event.request, clone));
-        return response;
-      })
-      .catch(() => caches.match(event.request).then(cached => cached || caches.match("./index.html?v=4")))
-  );
+self.addEventListener("fetch", e => {
+  if (e.request.method !== "GET") return;
+  e.respondWith(fetch(e.request).then(r => {
+    const copy = r.clone();
+    caches.open(CACHE).then(c => c.put(e.request, copy));
+    return r;
+  }).catch(() => caches.match(e.request).then(c => c || caches.match("./index.html?v=4.1"))));
 });

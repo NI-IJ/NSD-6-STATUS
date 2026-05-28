@@ -1,17 +1,10 @@
 {
-  "name": "NSD-6 STATUS CONTROL",
+  "name": "NSD-6 Control Panel",
   "short_name": "NSD-6",
-  "start_url": "./index.html?v=4",
+  "start_url": "./index.html?v=4.1",
+  "scope": "./",
   "display": "standalone",
-  "background_color": "#050505",
+  "background_color": "#030303",
   "theme_color": "#050505",
-  "description": "NSD-6 local control panel and log clerk.",
-  "icons": [
-    {
-      "src": "icon.svg",
-      "sizes": "any",
-      "type": "image/svg+xml",
-      "purpose": "any maskable"
-    }
-  ]
+  "description": "NSD-6 local log archive, rotation dashboard, runtime prompt generator."
 }
