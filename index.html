@@ -21,7 +21,7 @@
       --red2:#b00000;
       --green:rgb(20,255,70);
       --green-soft:rgba(20,255,70,.12);
-      --radius:18px;
+      --radius:16px;
       --font: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
       --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
     }
@@ -36,7 +36,7 @@
     }
     button,input,select,textarea{font:inherit}
     button{touch-action:manipulation}
-    .app{max-width:1040px;margin:0 auto;padding:18px 18px 108px;}
+    .app{max-width:920px;margin:0 auto;padding:18px 18px 108px;}
     .top{
       display:flex;align-items:center;gap:18px;padding:6px 0 16px;border-bottom:1px solid rgba(240,8,8,.45);
     }
@@ -49,15 +49,15 @@
     .hamb{width:30px;height:20px;display:grid;gap:6px}
     .hamb i{display:block;height:2px;background:#e9e9e9}
     .title{flex:1;min-width:0}
-    h1{font-family:var(--font);font-size:clamp(30px,5vw,48px);line-height:1;margin:0 0 8px;letter-spacing:.025em;font-weight:800}
+    h1{font-family:var(--font);font-size:clamp(24px,4vw,40px);line-height:1;margin:0 0 8px;letter-spacing:.025em;font-weight:800}
     .subtitle{font-family:var(--font);font-size:16px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
     .xbtn{font-family:var(--font);font-size:38px;color:#fff;border-color:rgba(240,8,8,.8)}
     .tabs{display:flex;gap:14px;overflow-x:auto;padding:24px 0 18px;scrollbar-width:none}
     .tabs::-webkit-scrollbar{display:none}
     .tab{
       border:1px solid var(--line2);background:#070707;color:#fff;border-radius:999px;
-      padding:15px 26px;display:flex;align-items:center;gap:12px;white-space:nowrap;min-height:58px;
-      font-size:20px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.02);
+      padding:12px 20px;display:flex;align-items:center;gap:12px;white-space:nowrap;min-height:48px;
+      font-size:16px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.02);
     }
     .tab.active{background:linear-gradient(180deg,#ff1616,#b80000);border-color:#ff1f1f;box-shadow:0 0 22px rgba(240,8,8,.35)}
     .ico{width:24px;height:24px;display:inline-flex;align-items:center;justify-content:center}
@@ -69,7 +69,7 @@
       box-shadow:0 20px 48px rgba(0,0,0,.35), inset 0 0 0 1px rgba(255,255,255,.015);
       overflow:hidden;
     }
-    .hero{min-height:520px}
+    .hero{min-height:460px}
     .scan{
       position:absolute;right:0;top:0;width:52%;height:310px;opacity:.72;pointer-events:none;
       background:
@@ -89,15 +89,15 @@
     }
     .hero-head{display:flex;align-items:center;gap:28px;position:relative;z-index:1;margin:36px 0 42px}
     .badge-e{
-      width:112px;height:112px;border-radius:50%;border:1px solid var(--line2);display:flex;align-items:center;justify-content:center;
-      color:var(--red);font-family:var(--font);font-size:48px;background:#050505;
+      width:92px;height:92px;border-radius:50%;border:1px solid var(--line2);display:flex;align-items:center;justify-content:center;
+      color:var(--red);font-family:var(--font);font-size:40px;background:#050505;
     }
     .kicker{font-family:var(--font);color:var(--muted);font-size:17px;text-transform:uppercase;margin-bottom:8px}
-    .bigline{font-family:var(--font);font-size:34px;font-weight:800;letter-spacing:.06em}
+    .bigline{font-family:var(--font);font-size:28px;font-weight:800;letter-spacing:.06em}
     .ready{display:inline-flex;align-items:center;gap:8px;margin-top:12px;border:1px solid rgba(20,255,70,.45);background:rgba(20,255,70,.08);color:var(--green);padding:7px 14px;border-radius:7px;font-family:var(--font);font-size:16px}
     .dot{width:10px;height:10px;border-radius:50%;background:var(--green);display:inline-block}
     .table{position:relative;z-index:1;border-top:1px solid var(--line2);margin-top:12px}
-    .row{display:grid;grid-template-columns:220px 1fr;gap:18px;border-bottom:1px solid rgba(58,58,64,.6);padding:15px 8px;font-size:20px}
+    .row{display:grid;grid-template-columns:170px 1fr;gap:18px;border-bottom:1px solid rgba(58,58,64,.6);padding:15px 8px;font-size:16px}
     .row .label{color:var(--muted)}
     .row .value{font-family:var(--font)}
     .green{color:var(--green)}
@@ -105,27 +105,27 @@
     .sq{width:18px;height:18px;background:#1d1d20;display:inline-block}
     .sq.on{background:var(--red)}
     .primary{
-      margin-top:30px;width:100%;min-height:78px;border:1px solid #ff1f1f;border-radius:12px;
-      background:linear-gradient(180deg,#f90909,#a70000);color:#fff;font-family:var(--font);font-size:27px;font-weight:800;
+      margin-top:30px;width:100%;min-height:64px;border:1px solid #ff1f1f;border-radius:12px;
+      background:linear-gradient(180deg,#f90909,#a70000);color:#fff;font-family:var(--font);font-size:22px;font-weight:800;
       display:flex;align-items:center;justify-content:center;gap:28px;box-shadow:0 0 24px rgba(240,8,8,.24);letter-spacing:.04em;
     }
     .primary .arrow{margin-left:auto;margin-right:22px}
     .primary .bolt{margin-left:22px}
     .btnrow{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:20px}
     .secondary{
-      min-height:92px;border:1px solid var(--line2);background:#060606;color:#f0f0f0;border-radius:12px;
+      min-height:76px;border:1px solid var(--line2);background:#060606;color:#f0f0f0;border-radius:12px;
       display:flex;align-items:center;gap:22px;padding:0 28px;text-align:left;
     }
-    .secondary .main{font-family:var(--font);font-size:21px;font-weight:800;letter-spacing:.04em}
+    .secondary .main{font-family:var(--font);font-size:17px;font-weight:800;letter-spacing:.04em}
     .secondary .sub{color:var(--muted);font-size:16px;margin-top:5px}
     .secondary svg{width:46px;height:46px;flex:0 0 auto}
     .section{margin-top:22px}
-    .section-title{font-family:var(--font);color:var(--red);font-size:21px;font-weight:800;margin:0 0 18px;letter-spacing:.05em}
+    .section-title{font-family:var(--font);color:var(--red);font-size:17px;font-weight:800;margin:0 0 18px;letter-spacing:.05em}
     .status-head{display:flex;align-items:center;justify-content:space-between}
     .date-small{color:var(--muted);font-family:var(--font);font-size:18px}
     .metric-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px}
     .metric{border:1px solid var(--line2);border-radius:12px;background:#070707;padding:22px 26px;display:flex;align-items:center;gap:18px;min-height:106px}
-    .metric .num{font-size:37px;font-weight:800}
+    .metric .num{font-size:30px;font-weight:800}
     .metric .cap{color:var(--muted);font-family:var(--font);font-size:16px;letter-spacing:.05em}
     .metric svg{width:40px;height:40px}
     .current{display:flex;align-items:center;gap:16px;margin-top:18px;font-family:var(--font);color:var(--muted)}
@@ -136,7 +136,7 @@
     .small-action{display:flex;justify-content:flex-end;margin-top:-44px;margin-bottom:12px}
     .mini-btn{border:1px solid var(--line2);background:#060606;color:var(--muted);border-radius:8px;padding:8px 14px}
     .bottom-actions{display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px;margin-top:18px}
-    .bottom-actions button{min-height:76px;border-radius:10px;border:1px solid var(--line2);background:#050505;color:#fff;font-family:var(--font);font-size:21px;font-weight:800}
+    .bottom-actions button{min-height:76px;border-radius:10px;border:1px solid var(--line2);background:#050505;color:#fff;font-family:var(--font);font-size:17px;font-weight:800}
     .bottom-actions .generate{background:linear-gradient(180deg,#f90909,#a70000);border-color:#ff1f1f}
     .footer{
       display:flex;align-items:center;justify-content:space-between;color:var(--red);font-family:var(--font);font-size:14px;margin-top:14px;padding:0 2px
@@ -156,34 +156,54 @@
     .toast.show{opacity:1}
     .hide{display:none!important}
     @media(max-width:700px){
-      .app{padding:14px 12px 98px}
-      .circle{width:54px;height:54px}
-      .xbtn{font-size:30px}
-      h1{font-size:26px}
-      .subtitle{font-size:12px}
-      .tab{font-size:15px;padding:11px 14px;min-height:44px}
-      .card{padding:16px;border-radius:14px}
+      .app{padding:10px 9px 76px}
+      .top{gap:9px;padding:4px 0 10px}
+      .circle{width:36px;height:36px}
+      .circle:after{width:6px;height:6px;right:5px;top:5px}
+      .hamb{width:18px;height:13px;gap:4px}
+      .xbtn{font-size:20px}
+      h1{font-size:18px;letter-spacing:.01em;margin-bottom:4px;white-space:nowrap}
+      .subtitle{font-size:9.5px}
+      .tabs{gap:6px;padding:12px 0 10px}
+      .tab{font-size:11px;padding:8px 9px;min-height:34px;gap:5px}
+      .card{padding:11px;border-radius:12px}
       .hero{min-height:auto}
-      .scan{width:56%;height:230px;opacity:.6}
-      .hero-head{gap:16px;margin:24px 0 30px}
-      .badge-e{width:76px;height:76px;font-size:34px}
-      .bigline{font-size:22px}
-      .row{grid-template-columns:95px 1fr;font-size:14px;padding:11px 0}
-      .sq{width:13px;height:13px}
-      .primary{font-size:17px;min-height:62px}
-      .btnrow,.bottom-actions,.metric-grid{gap:10px}
-      .secondary{min-height:72px;padding:0 12px;gap:10px}
-      .secondary .main{font-size:14px}
-      .secondary .sub{font-size:11px}
-      .secondary svg{width:30px;height:30px}
-      .metric{padding:14px 10px;gap:10px;min-height:78px}
-      .metric .num{font-size:25px}
-      .metric .cap{font-size:11px}
-      .metric svg{width:28px;height:28px}
-      .preview-box{font-size:13px}
-      .bottom-actions button{font-size:14px;min-height:58px}
+      .scan{width:52%;height:148px;opacity:.55}
+      .scan:before{font-size:11px;top:24px}
+      .scan:after{font-size:9px;right:18px;bottom:10px}
+      .hero-head{gap:10px;margin:12px 0 16px}
+      .badge-e{width:48px;height:48px;font-size:22px}
+      .kicker{font-size:10px;margin-bottom:4px}
+      .bigline{font-size:15px;letter-spacing:.035em}
+      .ready{font-size:10px;padding:4px 8px;margin-top:7px}
+      .dot{width:6px;height:6px}
+      .row{grid-template-columns:72px 1fr;font-size:10.5px;padding:7px 0;gap:8px}
+      .sq{width:9px;height:9px}
+      .primary{font-size:12px;min-height:44px;margin-top:14px;gap:8px}
+      .primary .bolt{margin-left:8px}
+      .primary .arrow{margin-right:8px}
+      .btnrow,.bottom-actions,.metric-grid{gap:7px}
+      .secondary{min-height:50px;padding:0 8px;gap:7px;border-radius:9px}
+      .secondary .main{font-size:9.5px;letter-spacing:.025em}
+      .secondary .sub{font-size:8px;margin-top:2px}
+      .secondary svg{width:21px;height:21px}
+      .section{margin-top:12px}
+      .section-title{font-size:12px;margin-bottom:10px}
+      .date-small{font-size:10px}
+      .metric{padding:9px 7px;gap:7px;min-height:58px;border-radius:9px}
+      .metric .num{font-size:18px}
+      .metric .cap{font-size:8px}
+      .metric svg{width:20px;height:20px}
+      .current{font-size:8.5px;gap:6px;margin-top:10px}
+      .preview-box{font-size:10px;min-height:88px;padding:10px 12px}
+      .small-action{margin-top:-32px;margin-bottom:8px}
+      .mini-btn{font-size:9px;padding:5px 7px}
+      .bottom-actions button{font-size:10px;min-height:44px;border-radius:8px}
       .formgrid{grid-template-columns:1fr}
-      .footer{font-size:10px}
+      textarea{font-size:11px;min-height:180px}
+      input,select{font-size:11px;padding:9px}
+      label{font-size:10px}
+      .footer{font-size:7.5px;margin-top:8px}
     }
   </style>
 </head>
@@ -340,7 +360,7 @@
   </main>
 
   <footer class="footer">
-    <span>┋ NSD-6&nbsp;&nbsp; v0.2.0</span>
+    <span>┋ NSD-6&nbsp;&nbsp; v0.3.0</span>
     <span>LOG ARCHIVE SECURE</span>
     <span class="sync">SYNC OK ■</span>
   </footer>
@@ -374,15 +394,28 @@ const DEFAULT = {
   logs:[]
 };
 
+function clone(obj){ return JSON.parse(JSON.stringify(obj)); }
+function deepMerge(base, incoming){
+  const out = clone(base);
+  if(!incoming || typeof incoming !== "object") return out;
+  Object.keys(incoming).forEach(k=>{
+    if(incoming[k] && typeof incoming[k] === "object" && !Array.isArray(incoming[k]) && out[k] && typeof out[k] === "object" && !Array.isArray(out[k])){
+      out[k] = deepMerge(out[k], incoming[k]);
+    } else {
+      out[k] = incoming[k];
+    }
+  });
+  return out;
+}
 let state = load();
 
 function load(){
   try{
-    const raw = localStorage.getItem("nsd6_v02");
-    return raw ? {...structuredClone(DEFAULT), ...JSON.parse(raw)} : structuredClone(DEFAULT);
-  }catch(e){return structuredClone(DEFAULT)}
+    const raw = localStorage.getItem("nsd6_v03") || localStorage.getItem("nsd6_v02");
+    return raw ? deepMerge(DEFAULT, JSON.parse(raw)) : clone(DEFAULT);
+  }catch(e){return clone(DEFAULT)}
 }
-function persist(){localStorage.setItem("nsd6_v02", JSON.stringify(state))}
+function persist(){localStorage.setItem("nsd6_v03", JSON.stringify(state))}
 function todayISO(){const d=new Date();const z=new Date(d.getTime()-d.getTimezoneOffset()*60000);return z.toISOString().slice(0,10)}
 function week(d){return ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"][new Date(d+"T00:00:00").getDay()]}
 function titleDate(d){const x=new Date(d+"T00:00:00");return `${x.getMonth()+1}/${x.getDate()} ${week(d)}`}
@@ -520,9 +553,9 @@ function exportData(){
 }
 function importData(e){
   const file=e.target.files[0]; if(!file)return;
-  const r=new FileReader(); r.onload=()=>{try{state={...structuredClone(DEFAULT),...JSON.parse(r.result)};persist();render();toast("Imported")}catch(err){toast("Import failed")}}; r.readAsText(file);
+  const r=new FileReader(); r.onload=()=>{try{state=deepMerge(DEFAULT, JSON.parse(r.result));persist();render();toast("Imported")}catch(err){toast("Import failed")}}; r.readAsText(file);
 }
-function resetAll(){if(confirm("Reset app data? Export backup first.")){state=structuredClone(DEFAULT);persist();render();toast("Reset")}}
+function resetAll(){if(confirm("Reset app data? Export backup first.")){state=clone(DEFAULT);persist();render();toast("Reset")}}
 function switchPage(id){
   document.querySelectorAll(".page").forEach(p=>p.classList.toggle("active",p.id===id));
   document.querySelectorAll(".tab").forEach(t=>t.classList.toggle("active",t.dataset.page===id));

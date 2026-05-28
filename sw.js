@@ -1,4 +1,4 @@
-const CACHE_NAME = "nsd6-control-panel-v02";
+const CACHE_NAME = "nsd6-control-panel-v03";
 const ASSETS = ["./", "./index.html", "./manifest.webmanifest", "./sw.js"];
 
 self.addEventListener("install", event => {

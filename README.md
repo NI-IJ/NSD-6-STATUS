@@ -1,21 +1,18 @@
-# NSD-6 Control Panel v0.2
+# NSD-6 Control Panel v0.3
 
-Personal PWA prototype.
+Compact mobile PWA prototype.
 
-## Files
+## Changes
+- Mobile typography and spacing reduced
+- Safer state loading without structuredClone dependency
+- Reads old v0.2 local data if available, saves to v0.3 key
+- Same core functions: Generate Runtime Prompt, Save Log, History, Rotation, Export/Import
+
+## Update GitHub Pages
+Upload and replace:
 - index.html
 - manifest.webmanifest
 - sw.js
+- README.md
 
-## Use
-Open `index.html` for quick desktop testing.
-
-For iPhone app-like use:
-1. Upload the files to GitHub Pages / Netlify / Vercel.
-2. Open the URL in Safari.
-3. Share → Add to Home Screen.
-
-## Notes
-- Data is stored locally in browser storage.
-- Use Export backup before replacing files.
-- Current exercise titles/progressions are placeholders and should be edited in Settings.
+If the old UI remains, hard-refresh or wait for cache/service worker update.
