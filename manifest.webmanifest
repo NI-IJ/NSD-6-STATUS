@@ -1,0 +1,10 @@
+{
+  "name": "NSD-6 Control Panel",
+  "short_name": "NSD-6",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#030303",
+  "theme_color": "#050505",
+  "description": "NSD-6 local log archive, rotation dashboard, and runtime prompt generator.",
+  "icons": []
+}
