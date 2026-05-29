@@ -42,8 +42,9 @@ Patch note: BASE.png replaced with updated source image and adjustable ovBuild o
 Patch note: BASE.png regenerated from uploaded PSD source; ovBuild overlay retained.
 
 
-## v4.12 safe
-- May 1–28 log archive embedded safely using base64 JSON payload.
+## v4.12 hotfix1
+- Rebuilt from verified v4.11 baseline.
+- May log archive is stored in a non-executable JSON block to avoid JS breakage.
 - Corrected 2026-05-19 to Completed Push / Str. PL PU 3.3 (3×3) [E1].
 - Rest / Delay count is 4.
-- Previous, Month Status, Streak, History sort use date-based logic.
+- Legacy localStorage auto-load disabled for this package to prevent old broken state overriding seed data.
