@@ -179,3 +179,8 @@ Patch note: BASE.png regenerated from uploaded PSD source; ovBuild overlay retai
 - Fixed 8-slot indicator output order.
 - indMove1~8 now map to fixed slotIndex 0~7 positions.
 - Current slot changes color only; text positions no longer rotate from selected slot.
+
+## V4.14.4 WHITE
+- Applied uploaded index(5).html.
+- Replaced BASE.png from BASE-SETUP__WHITE.psd.
+- No logic/layout reshaping beyond version/storage bump.
