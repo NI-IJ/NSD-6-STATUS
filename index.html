@@ -46,19 +46,19 @@ button{cursor:pointer;-webkit-tap-highlight-color:transparent}
 .preview{position:absolute;font-family:var(--font-mono);font-size:calc(13px * var(--scale));line-height:1.32;white-space:pre-wrap;overflow:hidden;color:#e9e9e9;pointer-events:none}
 
 /* 941 × 1640 pixel coordinate overlay. Tune these numbers directly if needed. */
-#ovExposure{left:calc(100px * var(--scale));top:calc(309px * var(--scale));width:calc(70px * var(--scale));font-size:calc(39px * var(--scale));color:var(--red);text-align:center}
+#ovExposure{left:calc(96.5px * var(--scale));top:calc(314px * var(--scale));width:calc(70px * var(--scale));font-size:calc(39px * var(--scale));color:var(--red);text-align:center}
 #ovSlot{left:calc(191px * var(--scale));top:calc(290px * var(--scale));width:calc(100px * var(--scale));font-size:calc(15px * var(--scale));color:var(--muted)}
 #ovCategory{left:calc(191px * var(--scale));top:calc(315px * var(--scale));width:calc(340px * var(--scale));font-size:calc(22px * var(--scale));color:var(--text)}
 
-#ovMovement{left:calc(252px * var(--scale));top:calc(486px * var(--scale));width:calc(360px * var(--scale));font-size:calc(18px * var(--scale));color:var(--text)}
-#ovRotation{left:calc(250px * var(--scale));top:calc(551px * var(--scale));width:calc(260px * var(--scale));font-size:calc(17px * var(--scale));color:var(--text)}
-#ovPrevious{left:calc(252px * var(--scale));top:calc(615px * var(--scale));width:calc(360px * var(--scale));font-size:calc(17px * var(--scale));color:var(--text)}
-#ovLastSaved{left:calc(252px * var(--scale));top:calc(677px * var(--scale));width:calc(360px * var(--scale));font-size:calc(17px * var(--scale));color:var(--text)}
+#ovMovement{left:calc(252px * var(--scale));top:calc(491px * var(--scale));width:calc(360px * var(--scale));font-size:calc(18px * var(--scale));color:var(--text)}
+#ovRotation{left:calc(250px * var(--scale));top:calc(553px * var(--scale));width:calc(260px * var(--scale));font-size:calc(17px * var(--scale));color:var(--text)}
+#ovPrevious{left:calc(252px * var(--scale));top:calc(617px * var(--scale));width:calc(360px * var(--scale));font-size:calc(17px * var(--scale));color:var(--text)}
+#ovLastSaved{left:calc(252px * var(--scale));top:calc(679px * var(--scale));width:calc(360px * var(--scale));font-size:calc(17px * var(--scale));color:var(--text)}
 
-#ovMonth{left:calc(780px * var(--scale));top:calc(1075px * var(--scale));width:calc(96px * var(--scale));font-size:calc(14px * var(--scale));color:var(--text);text-align:right}
-#ovSessions{left:calc(181px * var(--scale));top:calc(1128px * var(--scale));width:calc(54px * var(--scale));font-size:calc(35px * var(--scale));color:var(--text);text-align:center}
-#ovRests{left:calc(458px * var(--scale));top:calc(1128px * var(--scale));width:calc(54px * var(--scale));font-size:calc(35px * var(--scale));color:var(--text);text-align:center}
-#ovStreak{left:calc(727px * var(--scale));top:calc(1128px * var(--scale));width:calc(54px * var(--scale));font-size:calc(35px * var(--scale));color:var(--text);text-align:center}
+#ovMonth{left:calc(757px * var(--scale));top:calc(1068px * var(--scale));width:calc(96px * var(--scale));font-size:calc(14px * var(--scale));color:var(--text);text-align:right}
+#ovSessions{left:calc(170px * var(--scale));top:calc(1130px * var(--scale));width:calc(54px * var(--scale));font-size:calc(35px * var(--scale));color:var(--text);text-align:center}
+#ovRests{left:calc(460px * var(--scale));top:calc(1130px * var(--scale));width:calc(54px * var(--scale));font-size:calc(35px * var(--scale));color:var(--text);text-align:center}
+#ovStreak{left:calc(727px * var(--scale));top:calc(1130px * var(--scale));width:calc(54px * var(--scale));font-size:calc(35px * var(--scale));color:var(--text);text-align:center}
 
 #ovPreview{left:calc(84px * var(--scale));top:calc(1376px * var(--scale));width:calc(760px * var(--scale));height:calc(78px * var(--scale))}
 
@@ -273,7 +273,7 @@ function render(){
   text("ovSlot",(meta.slot||"-").toUpperCase());
   text("ovCategory",(meta.category||"-").toUpperCase());
   text("ovMovement", `${meta.exercise || "-"} ${meta.progress || ""}`.trim());
-  text("ovRotation", `Session ${meta.rotIndex + 1} / ${state.rotation.length}`);
+  text("ovRotation", `SESSION ${meta.rotIndex + 1} / ${state.rotation.length}`);
   text("ovPrevious", prev ? `${prev.exercise} ${prev.progress}` : "-");
   text("ovLastSaved", formatLastSaved(lastSaved()));
 
