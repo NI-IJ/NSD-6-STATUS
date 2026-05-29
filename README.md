@@ -36,8 +36,7 @@ Open:
 https://ni-ij.github.io/NSD-6-STATUS/?v=4.10
 
 
-## v4.10 RE build text patch
-- Added dynamic overlay: ovBuild.
-- Build text is rendered by JS as `v4.10 RE`.
-- Static overlay placeholder values were emptied to prevent overlap.
-- Adjust build position in CSS: `#ovBuild`.
+Patch note: BASE.png replaced with updated source image and adjustable ovBuild overlay added for build info.
+
+
+Patch note: BASE.png regenerated from uploaded PSD source; ovBuild overlay retained.

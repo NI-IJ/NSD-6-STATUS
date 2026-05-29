@@ -46,11 +46,11 @@ button{cursor:pointer;-webkit-tap-highlight-color:transparent}
 .preview{position:absolute;font-family:var(--font-mono);font-size:calc(13px * var(--scale));line-height:1.32;white-space:pre-wrap;overflow:hidden;color:#e9e9e9;pointer-events:none}
 
 /* 941 × 1640 pixel coordinate overlay. Tune these numbers directly if needed. */
-#ovExposure{left:calc(96.5px * var(--scale));top:calc(314px * var(--scale));width:calc(70px * var(--scale));font-size:calc(39px * var(--scale));color:var(--red);text-align:center}
+#ovExposure{left:calc(96.5px * var(--scale));top:calc(314px * var(--scale));width:calc(70px * var(--scale));font-size:calc(39px * var(--scale));color:#ff0000;text-align:center}
 #ovSlot{left:calc(191px * var(--scale));top:calc(290px * var(--scale));width:calc(100px * var(--scale));font-size:calc(15px * var(--scale));color:var(--muted)}
 #ovCategory{left:calc(191px * var(--scale));top:calc(315px * var(--scale));width:calc(340px * var(--scale));font-size:calc(22px * var(--scale));color:var(--text)}
 
-#ovMovement{left:calc(252px * var(--scale));top:calc(491px * var(--scale));width:calc(360px * var(--scale));font-size:calc(18px * var(--scale));color:var(--text)}
+#ovMovement{left:calc(249px * var(--scale));top:calc(491px * var(--scale));width:calc(360px * var(--scale));font-size:calc(18px * var(--scale));color:var(--text)}
 #ovRotation{left:calc(250px * var(--scale));top:calc(553px * var(--scale));width:calc(260px * var(--scale));font-size:calc(17px * var(--scale));color:var(--text)}
 #ovPrevious{left:calc(252px * var(--scale));top:calc(617px * var(--scale));width:calc(360px * var(--scale));font-size:calc(17px * var(--scale));color:var(--text)}
 #ovLastSaved{left:calc(252px * var(--scale));top:calc(679px * var(--scale));width:calc(360px * var(--scale));font-size:calc(17px * var(--scale));color:var(--text)}
@@ -61,7 +61,7 @@ button{cursor:pointer;-webkit-tap-highlight-color:transparent}
 #ovStreak{left:calc(727px * var(--scale));top:calc(1130px * var(--scale));width:calc(54px * var(--scale));font-size:calc(35px * var(--scale));color:var(--text);text-align:center}
 
 #ovPreview{left:calc(84px * var(--scale));top:calc(1376px * var(--scale));width:calc(760px * var(--scale));height:calc(78px * var(--scale))}
-#ovBuild{left:calc(45px * var(--scale));top:calc(1592px * var(--scale));width:calc(180px * var(--scale));font-size:calc(13px * var(--scale));color:var(--red);text-align:left}
+#ovBuild{left:calc(105px * var(--scale));top:calc(1597px * var(--scale));width:calc(170px * var(--scale));font-size:calc(13px * var(--scale));color:#ff0000;text-align:left}
 
 /* Hotspots */
 #hsDash{left:6.8%;top:8.75%;width:13.7%;height:3.1%}
@@ -101,21 +101,21 @@ textarea{min-height:220px;resize:vertical;line-height:1.45}
 <div class="stage" id="stage">
   <img src="BASE.png" class="skin" alt="NSD-6 STATUS CONTROL" />
   <div class="layer">
-    <div id="ovExposure" class="txt"></div>
-    <div id="ovSlot" class="txt"></div>
-    <div id="ovCategory" class="txt"></div>
+    <div id="ovExposure" class="txt">E1</div>
+    <div id="ovSlot" class="txt">PULL</div>
+    <div id="ovCategory" class="txt">HORIZONTAL PULL</div>
 
-    <div id="ovMovement" class="txt"></div>
-    <div id="ovRotation" class="txt"></div>
-    <div id="ovPrevious" class="txt"></div>
-    <div id="ovLastSaved" class="txt"></div>
+    <div id="ovMovement" class="txt">-</div>
+    <div id="ovRotation" class="txt">-</div>
+    <div id="ovPrevious" class="txt">-</div>
+    <div id="ovLastSaved" class="txt">-</div>
 
-    <div id="ovMonth" class="txt"></div>
-    <div id="ovSessions" class="txt"></div>
-    <div id="ovRests" class="txt"></div>
-    <div id="ovStreak" class="txt"></div>
-    <div id="ovPreview" class="preview"></div>
-    <div id="ovBuild" class="txt"></div>
+    <div id="ovMonth" class="txt">MAY 2026</div>
+    <div id="ovSessions" class="txt">0</div>
+    <div id="ovRests" class="txt">0</div>
+    <div id="ovStreak" class="txt">0</div>
+    <div id="ovPreview" class="preview">Generate a runtime prompt first.</div>
+    <div id="ovBuild" class="txt">V4.11</div>
 
     <button id="hsDash" class="hotspot" onclick="closePanels()">Dash</button>
     <button id="hsPlan" class="hotspot" onclick="openPanel('planPanel')">Plan</button>
@@ -288,11 +288,11 @@ function render(){
   let streak=0;
   for(const l of [...state.logs].reverse()){if(l.result==="Rest / Delay") break; streak++;}
   text("ovStreak", streak);
-  text("ovBuild", "v4.10 RE");
+  text("ovBuild", "V4.11");
   document.getElementById("logDate").value ||= todayISO();
   fillFilters(); fillSettings(); renderHistory();
 }
-function text(id,v){const el=document.getElementById(id); if(el) el.textContent=v}
+function text(id,v){document.getElementById(id).textContent=v}
 function generatePrompt(){const meta=nextMeta(); const prev=previousLog(meta); const prompt=`${prev ? prev.logText : `[No previous ${meta.exercise} log saved yet.]`}
 
 ⸻
