@@ -1,12 +1,12 @@
 {
   "name": "NSD-6 STATUS CONTROL",
   "short_name": "NSD-6",
-  "start_url": "./?v=4.12-fix0519",
+  "start_url": "./?v=4.12-safe",
   "scope": "./",
   "display": "standalone",
   "background_color": "#000000",
   "theme_color": "#000000",
-  "description": "NSD-6 local log archive, rotation dashboard, runtime prompt generator. v4.12 May log archive.",
+  "description": "NSD-6 local log archive, rotation dashboard, runtime prompt generator.",
   "icons": [
     {
       "src": "BASE.png",
