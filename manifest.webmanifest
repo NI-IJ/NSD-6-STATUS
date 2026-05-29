@@ -6,7 +6,7 @@
   "display": "standalone",
   "background_color": "#000000",
   "theme_color": "#000000",
-  "description": "NSD-6 local log archive, rotation dashboard, runtime prompt generator.",
+  "description": "NSD-6 STATUS CONTROL v4.12.12",
   "icons": [
     {
       "src": "BASE.png",
