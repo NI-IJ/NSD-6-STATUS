@@ -133,3 +133,10 @@ Patch note: BASE.png regenerated from uploaded PSD source; ovBuild overlay retai
 - Fixed top gray slot title display to force COMPLEX / NEURO RESET where applicable.
 - Kept detailed category below: Complex Push/Pull and Conditioning.
 - Excluded OAP Pull Range Check from Vertical Pull main parsing; 5/20 Pull uses OAP Negative metadata.
+
+## v4.12.13 icon
+- Uses user-provided 512 icon artwork as PWA icon.
+- Added icon-512.png and icon-192.png.
+- Added apple-touch-icon / PNG favicon links to index.html.
+- Updated manifest.webmanifest icons.
+- Keeps v4.12.13 fixed index behavior.
