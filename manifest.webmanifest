@@ -1,7 +1,7 @@
 {
   "name": "NSD-6 STATUS CONTROL",
   "short_name": "NSD-6",
-  "start_url": "./?v=4.12-hotfix1",
+  "start_url": "./",
   "scope": "./",
   "display": "standalone",
   "background_color": "#000000",

@@ -48,3 +48,8 @@ Patch note: BASE.png regenerated from uploaded PSD source; ovBuild overlay retai
 - Corrected 2026-05-19 to Completed Push / Str. PL PU 3.3 (3×3) [E1].
 - Rest / Delay count is 4.
 - Legacy localStorage auto-load disabled for this package to prevent old broken state overriding seed data.
+
+
+## v4.12 hotfix2
+- Fixed JS syntax errors from leftover patch fragments and raw newline escape in renderHistory.
+- Main script passes node --check.

@@ -224,8 +224,7 @@ function sortedLogs(){return [...state.logs].sort((a,b)=>logTime(a).localeCompar
 function workoutLogs(){return sortedLogs().filter(l=>l.result!=="Rest / Delay")}
 function previousLog(meta){return [...workoutLogs()].reverse().find(l=>l.lineKey===meta.lineKey);}
 function lastSaved(){return [...sortedLogs()].reverse().find(l=>l.result !== "Rest / Delay") || sortedLogs().at(-1) || null;}
-function formatLastSaved(log){if(!log) return "-"; return `${log.date} · ${log.exercise || log.slot || "Session"}`;} · ${log.exercise || log.slot || "Session"}`;
-}
+function formatLastSaved(log){if(!log) return "-"; return `${log.date} · ${log.exercise || log.slot || "Session"}`;}
 function buildPlan(meta,d=todayISO()){return `${titleDate(d)} — ${meta.slot}
 
 Session time: ~
@@ -299,9 +298,22 @@ function markRest(){const meta=nextMeta(); const date=todayISO(); state.logs.pus
 function openPanel(id){document.querySelectorAll(".panel").forEach(p=>p.classList.remove("active")); document.getElementById(id).classList.add("active");}
 function closePanels(){document.querySelectorAll(".panel").forEach(p=>p.classList.remove("active"));}
 function fillFilters(){const f=document.getElementById("filter"); if(!f) return; const old=f.value||"all"; f.innerHTML='<option value="all">All</option>'+Object.entries(state.lines).map(([k,v])=>`<option value="${k}">${v.category} — ${v.exercise}</option>`).join(""); f.value=old;}
-function renderHistory(){const list=document.getElementById("historyList"); if(!list) return; const f=document.getElementById("filter")?.value||"all"; const q=(document.getElementById("search")?.value||"").toLowerCase(); const logs=[...sortedLogs()].reverse().filter(l=>(f==="all"||l.lineKey===f)&&JSON.stringify(l).toLowerCase().includes(q)); list.innerHTML = logs.length ? "" : '<div class="logitem">No logs yet.</div>'; logs.slice(0,120).forEach(l=>{const div=document.createElement("div"); div.className="logitem"; div.innerHTML=`<h3>${esc(l.date)} · ${esc(l.exercise)} · ${esc(l.result)}</h3><div class="muted">${esc(l.category||"")} · ${esc(l.progress||"")}</div><pre>${esc((l.logText||"").split("
-").slice(0,20).join("
-"))}</pre><div class="actions"><button onclick="copyLog('${l.id}')">COPY</button><button onclick="deleteLog('${l.id}')">DELETE</button><button onclick="reuseLog('${l.id}')">USE AS PREV</button></div>`; list.appendChild(div);});}
+function renderHistory(){
+  const list=document.getElementById("historyList");
+  if(!list) return;
+  const f=document.getElementById("filter")?.value||"all";
+  const q=(document.getElementById("search")?.value||"").toLowerCase();
+  const nl=String.fromCharCode(10);
+  const logs=[...sortedLogs()].reverse().filter(l=>(f==="all"||l.lineKey===f)&&JSON.stringify(l).toLowerCase().includes(q));
+  list.innerHTML = logs.length ? "" : '<div class="logitem">No logs yet.</div>';
+  logs.slice(0,120).forEach(l=>{
+    const div=document.createElement("div");
+    div.className="logitem";
+    const preview=String(l.logText||"").split(nl).slice(0,20).join(nl);
+    div.innerHTML=`<h3>${esc(l.date)} · ${esc(l.exercise)} · ${esc(l.result)}</h3><div class="muted">${esc(l.category||"")} · ${esc(l.progress||"")}</div><pre>${esc(preview)}</pre><div class="actions"><button onclick="copyLog('${l.id}')">COPY</button><button onclick="deleteLog('${l.id}')">DELETE</button><button onclick="reuseLog('${l.id}')">USE AS PREV</button></div>`;
+    list.appendChild(div);
+  });
+}
 async function copyLog(id){const l=state.logs.find(x=>x.id===id); if(!l) return; await navigator.clipboard.writeText(l.logText); toast("Log copied");}
 function reuseLog(id){const l=state.logs.find(x=>x.id===id); if(!l) return; document.getElementById("runtimePrompt").value=`${l.logText}
 
