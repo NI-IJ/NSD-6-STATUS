@@ -1,7 +1,7 @@
-const CACHE = "nsd6-v043";
+const CACHE = "nsd6-v044";
 const ASSETS = [
   "./",
-  "./index.html?v=4.3",
+  "./index.html?v=4.4",
   "./BASE.png",
   "./manifest.webmanifest",
   "./sw.js"
@@ -29,6 +29,6 @@ self.addEventListener("fetch", event => {
         caches.open(CACHE).then(cache => cache.put(event.request, clone));
         return response;
       })
-      .catch(() => caches.match(event.request).then(cached => cached || caches.match("./index.html?v=4.3")))
+      .catch(() => caches.match(event.request).then(cached => cached || caches.match("./index.html?v=4.4")))
   );
 });
