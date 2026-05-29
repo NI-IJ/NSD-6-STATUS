@@ -140,3 +140,42 @@ Patch note: BASE.png regenerated from uploaded PSD source; ovBuild overlay retai
 - Added apple-touch-icon / PNG favicon links to index.html.
 - Updated manifest.webmanifest icons.
 - Keeps v4.12.13 fixed index behavior.
+
+
+## v4.13 indicator setup
+- Replaced BASE.png with uploaded BASE-SETUP New Type PSD composite.
+- Added 8-slot-ref.png from uploaded 8-SLOT REF PSD for visual reference.
+- Removed dashboard prompt preview and inserted 8-slot indicator board overlay in the same area.
+- Added renderIndicator() based on projectedWheel(); current slot glows red, next slot green, remaining slots dim.
+- Existing main overlay top coordinates were intentionally not adjusted.
+
+## v4.13R indicator ref
+- Removed bottom Generate / Copy / Save hotspots.
+- Reworked 8-slot indicator to text-symbol style only: no buttons, no cards, no arbitrary background image.
+- Indicator state uses only size/color/brightness: active red, next green, remaining dim.
+- Existing dynamic overlay top coordinates remain untouched.
+
+## v4.13R2 indicator ref-position
+- Indicator now uses the same text placement structure as the uploaded 8-SLOT REF:
+  label row, PU-PL-CX__NR flow row, and two movement rows.
+- No custom cards/buttons/backgrounds were added.
+- Bottom three hotspots remain removed.
+
+## v4.13R5 static guide fix
+- Rebuilt BASE.png from exact PSD: BASE-SETUP__8SLOT.psd using imagemagick.
+- Keeps separators/arrows/underscores in BASE image and overlays only dynamic text.
+
+## V4.14.1
+- Hotfix: seedData JSON is embedded without re.sub backslash interpretation, preventing JSON.parse startup failure.
+- Integrated 2026-05-30 JSON backup.
+- Static Position restored as line-specific static / Adv. L-sit 6s.
+
+## V4.14.2
+- Locked 8-slot lower indicator layout to the user's final index(4).html coordinates.
+- Only active colors/text content change dynamically.
+- Keeps V4.14.1 JSON integration and static position logic.
+
+## V4.14.3
+- Fixed 8-slot indicator output order.
+- indMove1~8 now map to fixed slotIndex 0~7 positions.
+- Current slot changes color only; text positions no longer rotate from selected slot.
