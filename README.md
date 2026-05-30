@@ -184,3 +184,25 @@ Patch note: BASE.png regenerated from uploaded PSD source; ovBuild overlay retai
 - Applied uploaded index(5).html.
 - Replaced BASE.png from BASE-SETUP__WHITE.psd.
 - No logic/layout reshaping beyond version/storage bump.
+
+## V4.14.5
+- Applied test static BASE from uploaded PSD.
+- Version bumped from V4.14.4 to V4.14.5.
+- No logic changes beyond version/storage/cache update.
+
+## V4.14.5 FINAL
+- Applied uploaded final index(6).html.
+- Replaced BASE.png from uploaded BASE-SETUP__8SLOT(1).psd.
+- Removed unused 8-slot-ref.png.
+- Kept version/storage line at V4.14.5 / nsd6_v04145.
+
+## V4.14.5 FINAL BASEFIX
+- Kept final index unchanged.
+- Replaced BASE.png from corrected uploaded PSD only.
+
+## V4.14.5 RELEASE
+- Applied final uploaded index(7).html.
+- Replaced BASE.png from final uploaded PSD.
+- Integrated final exported JSON backup into seedData.
+- Removed unused 8-slot-ref.png.
+- Kept app version/storage at V4.14.5 / nsd6_v04145.
