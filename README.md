@@ -206,3 +206,50 @@ Patch note: BASE.png regenerated from uploaded PSD source; ovBuild overlay retai
 - Integrated final exported JSON backup into seedData.
 - Removed unused 8-slot-ref.png.
 - Kept app version/storage at V4.14.5 / nsd6_v04145.
+
+## V4.14.5 OAPFIX
+- Integrated latest exported JSON.
+- Added OAP bilateral display formatter:
+  a.b -> (Ra / La) ×ceil(b/2) [E#].
+- Keeps version/storage at V4.14.5 / nsd6_v04145.
+- No BASE/PSD changes.
+
+## V4.14.5 OAPFIX STORAGEFIX
+- Storage key changed to nsd6_v04145_oapfix so embedded latest JSON is used instead of older localStorage.
+- Visible build remains V4.14.5.
+- OAP display formatter retained.
+
+## V4.14.5 OAPFIX PROGFIX
+- Updated current pullVertical seed state after OAP Negative 3.5 E2 completion.
+- Next state: OAP Negative 5.5 E1.
+- Changed storage key to nsd6_v04145_oapfix_progfix.
+- saveFinalLog now updates state.lines[lineKey] to the next projected progression after Completed.
+- OAP display formatter retained.
+
+## V4.14.5 OAPFIX WHEELPATCH
+- Fixed 8-slot projected wheel parsing for OAP bilateral notation.
+- OAP log line like 3.5 (R3 / L3) ×3 [E2] now normalizes internally to 3.5 (3×5) [E2] before next77Progress.
+- Current pullVertical seed remains OAP Negative 5.5 E1.
+- Storage key changed to nsd6_v04145_oapfix_wheelpatch.
+
+## V4.14.5 DIVIDERFIX
+- Prompt generation now removes trailing divider bars from previous log and plan blocks.
+- Generated prompt now has only one divider bar at the very end.
+- Plan block does not get a leading divider.
+- Storage key changed to nsd6_v04145_dividerfix.
+
+## V4.14.5 DIVIDERFIX2
+- Runtime Prompt divider structure corrected:
+  Previous log
+  ⸻
+  Today plan
+  ⸻
+- Existing leading/trailing duplicated dividers are trimmed before composing to prevent double bars.
+- Storage key changed to nsd6_v04145_dividerfix2.
+
+## V4.14.6 RELEASE
+- Applied uploaded index(8).html.
+- Bumped visible build to V4.14.6.
+- Changed storage key to nsd6_v04146.
+- Changed service worker cache to nsd6-v04146-release.
+- BASE/assets preserved from previous stable package.
