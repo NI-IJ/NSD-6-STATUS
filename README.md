@@ -253,3 +253,41 @@ Patch note: BASE.png regenerated from uploaded PSD source; ovBuild overlay retai
 - Changed storage key to nsd6_v04146.
 - Changed service worker cache to nsd6-v04146-release.
 - BASE/assets preserved from previous stable package.
+
+## V4.14.6 recordpatch
+- Visible build / code name unchanged.
+- Embedded uploaded backup JSON as seed data.
+- Applied RECORD-style flat box graphics: square, no borders, rgba(0,0,0,.60).
+- Root page scroll suppressed; inner panel/history/log scrollbars kept red.
+- Result option added: Monthly Summary.
+- Monthly Summary does not advance rotation and does not affect session/rest/streak counts.
+- Settings/Data actions changed to EXPORT JSON / COPY RECORD / CLOSE.
+- Added month selector for COPY RECORD.
+- COPY RECORD builds an NSS-77TR RECORD-compatible monthly text block for pasting into RECORD app.
+
+## V4.14.6 opacityfix
+- Visible build / code name unchanged.
+- Fixed RECORD-style opacity by changing the large .panel background from rgba(0,0,0,.92) to rgba(0,0,0,.60).
+- Added final opacity override for panel/card/input/button/log UI.
+
+## V4.14.6 backdropfix
+- Visible build / code name unchanged.
+- Removed whole-screen blur/dim/backdrop feel behind panels.
+- Panels remain rgba(0,0,0,.60).
+- BASE/background stays visually sharp like RECORD.
+
+## V4.14.6 redfix
+- Visible build / code name unchanged.
+- Forced red UI text/buttons/section labels to #ff0000.
+- Removed opacity/filter effects from button/text UI.
+- Panel/background opacity remains rgba(0,0,0,.60).
+
+## V4.15.0 RELEASE
+- Visible build updated to V4.15.0.
+- Storage key updated to nsd6_v4150.
+- Cache updated to nsd6-status-v4150.
+- Includes RECORD-style flat panel graphics.
+- Includes root scroll suppression with inner red scrollbars.
+- Includes Monthly Summary result.
+- Includes EXPORT JSON / COPY RECORD / CLOSE data actions.
+- Includes red saturation fix.
