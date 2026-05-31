@@ -328,3 +328,11 @@ Patch note: BASE.png regenerated from uploaded PSD source; ovBuild overlay retai
 - COPY RECORD daily log order changed to newest -> oldest.
 - Rest / Delay entries remain included.
 - Monthly Summary remains placed above daily logs.
+
+## V4.15.0 copy-summary-fix
+- Visible build / storage / cache unchanged.
+- COPY RECORD no longer creates an empty Monthly Summary title/block when no Monthly Summary log exists.
+- If Monthly Summary exists, it remains placed above daily logs.
+- If Monthly Summary text already includes its title, title is not duplicated.
+- Daily log order remains newest -> oldest.
+- Rest / Delay entries remain included.

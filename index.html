@@ -1216,21 +1216,23 @@ function buildRecordMonth(ym){
       if(d!==0) return d;
       return String(b.id||"").localeCompare(String(a.id||""));
     });
+
   const summaryText=summaries.length
-    ? summaries.map(l=>normalizeMonthlySummaryText(l.logText,ym)).join("\n\n")
-    : `NSS-77TR — Monthly Core Summary [${ym}]\n\n`;
+    ? summaries.map(l=>normalizeMonthlySummaryText(l.logText,ym)).filter(Boolean).join("\n\n")
+    : "";
+
   const dailyText=daily.map(l=>stripOuterDividers(l.logText)).filter(Boolean).join("\n\n⸻\n\n");
-  return `NSS-77TR RECORD
 
-⸻
+  const parts=["NSS-77TR RECORD"];
+  if(summaryText){
+    parts.push("⸻", summaryText);
+  }
+  if(dailyText){
+    parts.push("⸻", dailyText);
+  }
+  parts.push("⸻");
 
-${summaryText}
-
-⸻
-
-${dailyText}
-
-⸻`;
+  return parts.join("\n\n");
 }
 async function copyRecordMonth(){
   const ym=document.getElementById("recordMonth")?.value || todayISO().slice(0,7);
