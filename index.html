@@ -438,6 +438,83 @@ h3,
   }
 }
 
+
+/* V4.15.0 DATA tab minimal panel fix */
+#settingsPanel{
+  overflow-y:auto !important;
+  overflow-x:hidden !important;
+  -webkit-overflow-scrolling:touch !important;
+  touch-action:pan-y !important;
+}
+#settingsPanel .card{
+  background:rgba(0,0,0,.60) !important;
+  border:0 !important;
+  border-radius:0 !important;
+  box-shadow:none !important;
+}
+#settingsPanel h2{
+  color:#ff0000 !important;
+  opacity:1 !important;
+  filter:none !important;
+}
+#settingsPanel select{
+  display:block !important;
+  width:100% !important;
+  margin:10px 0 14px !important;
+  color:#e8e8e8 !important;
+  background:rgba(0,0,0,.60) !important;
+  border:0 !important;
+  border-radius:0 !important;
+  padding:10px !important;
+}
+#settingsPanel button{
+  background:rgba(0,0,0,.60) !important;
+  border:0 !important;
+  border-radius:0 !important;
+  box-shadow:none !important;
+}
+#settingsPanel .actions{
+  display:flex !important;
+  gap:8px !important;
+  flex-wrap:wrap !important;
+}
+#settingsPanel .actions button{
+  flex:1 1 auto !important;
+}
+
+
+/* V4.15.0 DATA tab fix2 runtime compatibility */
+.compat-settings{
+  display:none !important;
+}
+#settingsPanel #recordMonth{
+  display:block !important;
+  visibility:visible !important;
+  opacity:1 !important;
+  width:100% !important;
+  min-height:36px !important;
+  margin:10px 0 14px !important;
+  color:#e8e8e8 !important;
+  background:rgba(0,0,0,.60) !important;
+  border:0 !important;
+  border-radius:0 !important;
+  padding:10px !important;
+}
+
+
+/* V4.15.0 DATA final button color order */
+#settingsPanel .actions button{
+  color:#e8e8e8 !important;
+  opacity:1 !important;
+  filter:none !important;
+}
+
+#settingsPanel .actions button.redbtn{
+  color:#ff0000 !important;
+  opacity:1 !important;
+  filter:none !important;
+}
+
 </style>
 </head>
 <body>
@@ -530,19 +607,16 @@ h3,
 </section>
 <section id="settingsPanel" class="panel">
   <div class="card">
-    <h2 class="panel-title">SETTINGS</h2>
-    <label>Rotation index</label>
-    <input type="number" id="rotationIndex" min="0">
-    <label>Rotation JSON</label>
-    <textarea id="rotationJson"></textarea>
-    <button class="panel-btn redbtn" onclick="saveRotation()">SAVE ROTATION</button>
-    <label>Lines JSON</label>
-    <textarea id="linesJson"></textarea>
-    <button class="panel-btn redbtn" onclick="saveLines()">SAVE LINES</button>
+    <div class="compat-settings" aria-hidden="true" style="display:none">
+      <input type="number" id="rotationIndex" min="0">
+      <textarea id="rotationJson"></textarea>
+      <textarea id="linesJson"></textarea>
+    </div>
+    <h2>DATA</h2>
     <select id="recordMonth"></select>
     <div class="actions">
-      <button onclick="exportData()">EXPORT JSON</button>
-      <button class="redbtn" onclick="copyRecordMonth()">COPY RECORD</button>
+      <button class="redbtn" onclick="exportData()">EXPORT JSON</button>
+      <button onclick="copyRecordMonth()">COPY RECORD</button>
       <button onclick="closePanels()">CLOSE</button>
     </div>
   </div>
@@ -1096,7 +1170,14 @@ ${buildPlan(nextMeta())}
   toast("Loaded");
 }
 function deleteLog(id){if(!confirm("Delete this log?")) return; state.logs=state.logs.filter(x=>x.id!==id); persist(); render(); toast("Deleted");}
-function fillSettings(){document.getElementById("rotationIndex").value=state.rotationIndex; document.getElementById("rotationJson").value=JSON.stringify(state.rotation,null,2); document.getElementById("linesJson").value=JSON.stringify(state.lines,null,2);}
+function fillSettings(){
+  const rotationIndex=document.getElementById("rotationIndex");
+  const rotationJson=document.getElementById("rotationJson");
+  const linesJson=document.getElementById("linesJson");
+  if(rotationIndex) rotationIndex.value=state.rotationIndex;
+  if(rotationJson) rotationJson.value=JSON.stringify(state.rotation,null,2);
+  if(linesJson) linesJson.value=JSON.stringify(state.lines,null,2);
+}
 function saveRotation(){try{state.rotationIndex=Number(document.getElementById("rotationIndex").value)||0; state.rotation=JSON.parse(document.getElementById("rotationJson").value); persist(); render(); toast("Rotation saved");}catch(e){toast("Invalid JSON")}}
 function saveLines(){try{state.lines=JSON.parse(document.getElementById("linesJson").value); persist(); render(); toast("Lines saved");}catch(e){toast("Invalid JSON")}}
 function fillRecordMonths(){

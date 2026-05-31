@@ -297,3 +297,27 @@ Patch note: BASE.png regenerated from uploaded PSD source; ovBuild overlay retai
 - Fixed mobile SETTINGS panel vertical scrolling.
 - Restored touch pan-y and momentum scroll for active panels.
 - Root page scroll suppression remains; inner panel scroll remains active.
+
+## V4.15.0 data-tab-fix
+- Rebuilt from known-good mobile-scrollfix base.
+- Visible build / storage / cache unchanged.
+- Replaced BASE.png from uploaded DATA PSD.
+- Changed visible SET/SETTINGS presentation to DATA without touching function/id names.
+- Settings panel content safely simplified to month selector + EXPORT JSON / COPY RECORD / CLOSE.
+- Fixed previous DOM break that removed slot text and hid month selector.
+- PSD conversion: ImageMagick
+- BASE size: 941 × 1900
+
+## V4.15.0 data-tab-fix2
+- Visible build / storage / cache unchanged.
+- Fixed runtime error caused by removing internal settings fields.
+- Kept hidden compatibility fields for rotationIndex / rotationJson / linesJson.
+- Made fillSettings() null-safe.
+- DATA panel remains visually minimal: month selector + EXPORT JSON / COPY RECORD / CLOSE.
+- Slot text and month selector rendering restored.
+
+## V4.15.0 data-tab-final
+- Visible build / storage / cache unchanged.
+- DATA panel button color order finalized.
+- EXPORT JSON is red.
+- COPY RECORD is white.
