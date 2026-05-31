@@ -343,3 +343,11 @@ Patch note: BASE.png regenerated from uploaded PSD source; ovBuild overlay retai
   `5/31 Sun - Complex Push` -> `5/31 Sun — Complex Push`.
 - COPY RECORD also normalizes daily title hyphen to em dash during export.
 - No manual re-entry or import required.
+
+
+## Preview icon fix 4.15.0-preview-icon-fix
+- Added explicit favicon / apple-touch-icon / og:image / twitter:image tags.
+- Manifest icons fixed to icon-192.png and icon-512.png.
+- Theme color fixed to black.
+- Service worker cache name bumped where available.
+- Core app logic unchanged.
