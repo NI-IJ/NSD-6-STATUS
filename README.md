@@ -321,3 +321,10 @@ Patch note: BASE.png regenerated from uploaded PSD source; ovBuild overlay retai
 - DATA panel button color order finalized.
 - EXPORT JSON is red.
 - COPY RECORD is white.
+
+## V4.15.0 copy-order-fix
+- Visible build / storage / cache unchanged.
+- Embedded uploaded STATUS JSON backup as seed data.
+- COPY RECORD daily log order changed to newest -> oldest.
+- Rest / Delay entries remain included.
+- Monthly Summary remains placed above daily logs.
