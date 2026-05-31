@@ -350,3 +350,12 @@ Patch note: BASE.png regenerated from uploaded PSD source; ovBuild overlay retai
 - Replaced STATUS icon-192.png and icon-512.png with uploaded STATUS HEAD image.
 - Core app logic unchanged.
 - Manifest icon paths preserved/fixed to icon-192.png and icon-512.png.
+
+## V4.15.1 seed-streak-fix
+- Based on v4.15.0 head-icon-patch baseline.
+- Embedded latest STATUS JSON backup as seed data.
+- Storage key bumped to `nsd6_v4151_seed_streak_fix`.
+- May Monthly Summary is included in seed data.
+- Month counters still reset by current calendar month.
+- Streak is now calculated across all logs, independent from month reset.
+- STATUS HEAD icon assets preserved.
