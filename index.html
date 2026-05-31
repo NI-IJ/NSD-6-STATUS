@@ -391,6 +391,53 @@ h3,
   filter:none !important;
 }
 
+
+/* V4.15.0 mobile panel scroll fix */
+#settingsPanel,
+#historyPanel,
+#logPanel,
+.panel.active{
+  overflow-y:auto !important;
+  overflow-x:hidden !important;
+  -webkit-overflow-scrolling:touch !important;
+  overscroll-behavior:contain !important;
+  touch-action:pan-y !important;
+}
+
+#settingsPanel .card,
+#historyPanel .card,
+#logPanel .card{
+  max-height:none !important;
+}
+
+#settingsPanel{
+  max-height:72vh !important;
+  padding-bottom:18px !important;
+}
+
+@media (max-width:700px){
+  #settingsPanel,
+  #historyPanel,
+  #logPanel,
+  .panel.active{
+    overflow-y:auto !important;
+    overflow-x:hidden !important;
+    -webkit-overflow-scrolling:touch !important;
+    overscroll-behavior:contain !important;
+    touch-action:pan-y !important;
+  }
+
+  #settingsPanel{
+    max-height:72vh !important;
+    height:auto !important;
+    padding-bottom:22px !important;
+  }
+
+  #settingsPanel .actions{
+    margin-bottom:18px !important;
+  }
+}
+
 </style>
 </head>
 <body>

@@ -291,3 +291,9 @@ Patch note: BASE.png regenerated from uploaded PSD source; ovBuild overlay retai
 - Includes Monthly Summary result.
 - Includes EXPORT JSON / COPY RECORD / CLOSE data actions.
 - Includes red saturation fix.
+
+## V4.15.0 mobile-scrollfix
+- Visible build / storage / cache unchanged.
+- Fixed mobile SETTINGS panel vertical scrolling.
+- Restored touch pan-y and momentum scroll for active panels.
+- Root page scroll suppression remains; inner panel scroll remains active.
