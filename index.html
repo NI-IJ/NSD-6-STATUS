@@ -633,6 +633,25 @@ function deepMerge(base, incoming){const out=clone(base); if(!incoming||typeof i
 function applyDefaults(state){const out=deepMerge(DEFAULT,state||{}); out.rotation=clone(DEFAULT.rotation); Object.keys(DEFAULT.lines).forEach(key=>{out.lines[key]={...(out.lines[key]||{}),...DEFAULT.lines[key]}}); if(!Number.isInteger(out.rotationIndex)) out.rotationIndex=0; out.rotationIndex=((out.rotationIndex%out.rotation.length)+out.rotation.length)%out.rotation.length; if(!Number.isInteger(out.selectedSlotIndex)) out.selectedSlotIndex=out.rotationIndex; out.selectedSlotIndex=((out.selectedSlotIndex%out.rotation.length)+out.rotation.length)%out.rotation.length; return out;}
 function load(){try{const raw=localStorage.getItem(STORAGE_KEY)||LEGACY_KEYS.map(k=>localStorage.getItem(k)).find(Boolean); return raw?applyDefaults(JSON.parse(raw)):clone(DEFAULT)}catch(e){return clone(DEFAULT)}}
 let state = load();
+function applyOneTimeLogFixes(){
+  let changed=false;
+  if(Array.isArray(state.logs)){
+    state.logs.forEach(l=>{
+      if(l && l.date==="2026-05-31" && typeof l.logText==="string"){
+        const fixed=l.logText.replace(/^5\/31 Sun\s+-\s+Complex Push/m,"5/31 Sun — Complex Push");
+        if(fixed!==l.logText){
+          l.logText=fixed;
+          changed=true;
+        }
+      }
+    });
+  }
+  if(changed){
+    try{persist();}catch(e){try{saveState();}catch(e2){}}
+  }
+}
+applyOneTimeLogFixes();
+
 function persist(){localStorage.setItem(STORAGE_KEY, JSON.stringify(state))}
 function updateScale(){const stage=document.getElementById("stage"); const scale=stage.getBoundingClientRect().width/941; document.documentElement.style.setProperty("--scale", scale.toFixed(6));}
 window.addEventListener("resize", updateScale);
@@ -1206,6 +1225,11 @@ function normalizeMonthlySummaryText(raw,ym){
   }
   return s.trim();
 }
+
+function normalizeDailyTitleDashForRecord(s){
+  return String(s||"").replace(/^(\d{1,2}\/\d{1,2}\s+[A-Za-z]{3})\s+-\s+/gm,"$1 — ");
+}
+
 function buildRecordMonth(ym){
   const logs=sortedLogs().filter(l=>(l.date||"").startsWith(ym));
   const summaries=logs.filter(l=>l.result==="Monthly Summary");
@@ -1221,7 +1245,7 @@ function buildRecordMonth(ym){
     ? summaries.map(l=>normalizeMonthlySummaryText(l.logText,ym)).filter(Boolean).join("\n\n")
     : "";
 
-  const dailyText=daily.map(l=>stripOuterDividers(l.logText)).filter(Boolean).join("\n\n⸻\n\n");
+  const dailyText=daily.map(l=>normalizeDailyTitleDashForRecord(stripOuterDividers(l.logText))).filter(Boolean).join("\n\n⸻\n\n");
 
   const parts=["NSS-77TR RECORD"];
   if(summaryText){

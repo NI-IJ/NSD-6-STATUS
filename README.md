@@ -336,3 +336,10 @@ Patch note: BASE.png regenerated from uploaded PSD source; ovBuild overlay retai
 - If Monthly Summary text already includes its title, title is not duplicated.
 - Daily log order remains newest -> oldest.
 - Rest / Delay entries remain included.
+
+## V4.15.0 531-title-migration
+- Visible build / storage / cache unchanged.
+- Added one-time localStorage migration for 2026-05-31 log title:
+  `5/31 Sun - Complex Push` -> `5/31 Sun — Complex Push`.
+- COPY RECORD also normalizes daily title hyphen to em dash during export.
+- No manual re-entry or import required.
