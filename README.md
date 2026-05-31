@@ -344,10 +344,9 @@ Patch note: BASE.png regenerated from uploaded PSD source; ovBuild overlay retai
 - COPY RECORD also normalizes daily title hyphen to em dash during export.
 - No manual re-entry or import required.
 
-
-## Preview icon fix 4.15.0-preview-icon-fix
-- Added explicit favicon / apple-touch-icon / og:image / twitter:image tags.
-- Manifest icons fixed to icon-192.png and icon-512.png.
-- Theme color fixed to black.
-- Service worker cache name bumped where available.
+## v4.15.0 head-icon-patch
+- Based on v4.15.0 531-title-migration baseline.
+- Discards the previous preview-icon-fix branch.
+- Replaced STATUS icon-192.png and icon-512.png with uploaded STATUS HEAD image.
 - Core app logic unchanged.
+- Manifest icon paths preserved/fixed to icon-192.png and icon-512.png.
