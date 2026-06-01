@@ -542,6 +542,72 @@ h3,
   }
 }
 
+
+/* Panel/list scroll fix: keeps modals usable on desktop and constrained viewports */
+.panel.active,
+.modal.active,
+.overlay.active,
+.drawer.active {
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  -webkit-overflow-scrolling: touch !important;
+  overscroll-behavior: contain !important;
+}
+
+#planPanel,
+#logPanel,
+#historyPanel,
+#dataPanel,
+#settingsPanel {
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  -webkit-overflow-scrolling: touch !important;
+}
+
+#planPanel .card,
+#logPanel .card,
+#historyPanel .card,
+#dataPanel .card,
+#settingsPanel .card {
+  max-height: none !important;
+}
+
+#historyList,
+#logList,
+#dataList,
+.historyList,
+.logList,
+.dataList,
+.list,
+.scrollList {
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  -webkit-overflow-scrolling: touch !important;
+  overscroll-behavior: contain !important;
+}
+
+#runtimePrompt,
+#runtimePromptView,
+#finalLog,
+textarea {
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  -webkit-overflow-scrolling: touch !important;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  #planPanel,
+  #logPanel,
+  #historyPanel,
+  #dataPanel,
+  #settingsPanel,
+  .panel.active,
+  .modal.active {
+    max-height: 100vh !important;
+    overflow-y: auto !important;
+  }
+}
+
 </style>
 </head>
 <body>
