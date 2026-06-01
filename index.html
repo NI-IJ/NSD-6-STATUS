@@ -802,6 +802,13 @@ function advancePlanItem(item){
   out.exposure=exposureFromProgress(out.progress);
   out.mainTemplate=`${out.exercise} ${out.progress}
 :`;
+  if(out.lineKey==="conditioning"){
+    out.mainTemplate=`${out.exercise} ${out.progress}
+:
+
+Burpee 40x3
+:`;
+  }
   return out;
 }
 
@@ -908,8 +915,15 @@ function displayMainTemplate(meta){
     return `${meta.exercise} ${displayProgress(meta)}
 :`;
   }
-  return meta.mainTemplate || `${meta.exercise} ${meta.progress}
+  let main=meta.mainTemplate || `${meta.exercise} ${meta.progress}
 :`;
+  if(meta && meta.lineKey==="conditioning" && !/Burpee\s*40x3/i.test(main)){
+    main=String(main).replace(/\s*$/,"") + `
+
+Burpee 40x3
+:`;
+  }
+  return main;
 }
 
 function currentMovement(meta){
