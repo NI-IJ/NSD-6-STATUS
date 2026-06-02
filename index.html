@@ -648,6 +648,35 @@ textarea {
   width:100% !important;
 }
 
+
+/* Sync UI visibility/error patch */
+.syncActions button,
+.syncActions .redbtn{
+  color:#ffffff !important;
+  background:rgba(0,0,0,.78) !important;
+  border:1px solid rgba(255,0,0,.72) !important;
+  text-shadow:0 0 6px rgba(255,0,0,.8) !important;
+  opacity:1 !important;
+  filter:none !important;
+}
+
+.syncActions .redbtn{
+  background:#ff0000 !important;
+  color:#ffffff !important;
+  border-color:#ff0000 !important;
+  text-shadow:none !important;
+}
+
+.syncKey{
+  color:#ffffff !important;
+  caret-color:#ff0000 !important;
+}
+
+.syncLabel{
+  color:#ff0000 !important;
+  text-shadow:0 0 6px rgba(255,0,0,.55) !important;
+}
+
 </style>
 </head>
 <body>
@@ -1482,7 +1511,7 @@ async function loadStatusCloud(){
     toast("Loaded");
   }catch(err){
     console.error(err);
-    toast("Load failed");
+    toast("Load failed · "+String(err.message||err).slice(0,42));
   }
 }
 async function saveStatusCloud(){
@@ -1496,7 +1525,7 @@ async function saveStatusCloud(){
     toast("Saved cloud");
   }catch(err){
     console.error(err);
-    toast("Save failed");
+    toast("Save failed · "+String(err.message||err).slice(0,42));
   }
 }
 
