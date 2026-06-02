@@ -677,6 +677,95 @@ textarea {
   text-shadow:0 0 6px rgba(255,0,0,.55) !important;
 }
 
+
+/* AUTO SYNC final panel */
+.syncAutoBtn{
+  width:100% !important;
+  color:#ffffff !important;
+  background:rgba(0,0,0,.78) !important;
+  border:1px solid rgba(20,255,70,.72) !important;
+  text-shadow:0 0 7px rgba(20,255,70,.75) !important;
+  opacity:1 !important;
+  filter:none !important;
+}
+
+.syncAutoBtn.on{
+  background:rgba(20,255,70,.16) !important;
+  border-color:rgb(20,255,70) !important;
+  color:rgb(20,255,70) !important;
+}
+
+.syncHint{
+  margin-top:8px !important;
+  font-size:11px !important;
+  color:rgba(232,232,232,.62) !important;
+  letter-spacing:.04em !important;
+}
+
+
+/* AUTO SYNC final inline mode */
+.syncBox{
+  margin-top:12px !important;
+  padding:10px !important;
+  border:1px solid rgba(255,0,0,.34) !important;
+  background:rgba(0,0,0,.42) !important;
+}
+
+.syncRow{
+  display:grid !important;
+  grid-template-columns:auto 1fr auto !important;
+  gap:10px !important;
+  align-items:center !important;
+  margin-bottom:0 !important;
+}
+
+.syncLabel{
+  color:#ffffff !important;
+  text-shadow:none !important;
+  filter:none !important;
+  font-size:12px !important;
+  letter-spacing:.12em !important;
+}
+
+.syncKey{
+  width:100% !important;
+  min-width:0 !important;
+  box-sizing:border-box !important;
+  background:rgba(0,0,0,.72) !important;
+  border:1px solid rgba(255,255,255,.22) !important;
+  color:#ffffff !important;
+  caret-color:#ffffff !important;
+  padding:9px 10px !important;
+  font-family:inherit !important;
+  font-size:13px !important;
+  text-shadow:none !important;
+  filter:none !important;
+  box-shadow:none !important;
+}
+
+.syncAutoText{
+  white-space:nowrap !important;
+  color:#ffffff !important;
+  text-shadow:none !important;
+  filter:none !important;
+  box-shadow:none !important;
+  font-size:12px !important;
+  letter-spacing:.14em !important;
+}
+
+.syncAutoText.ok{
+  color:rgb(20,255,70) !important;
+  text-shadow:none !important;
+  filter:none !important;
+  box-shadow:none !important;
+}
+
+.syncActions,
+.syncHint,
+.syncAutoBtn{
+  display:none !important;
+}
+
 </style>
 </head>
 <body>
@@ -784,11 +873,8 @@ textarea {
     <div class="syncBox">
       <div class="syncRow">
         <span class="syncLabel">SYNC KEY</span>
-        <input id="statusSyncKey" class="syncKey" type="password" autocomplete="off" placeholder="key" oninput="saveStatusSyncKey()" />
-      </div>
-      <div class="syncActions">
-        <button onclick="loadStatusCloud()">LOAD</button>
-        <button class="redbtn" onclick="saveStatusCloud()">SAVE</button>
+        <input id="statusSyncKey" class="syncKey" type="password" autocomplete="off" placeholder="key" oninput="saveStatusSyncKey(); scheduleStatusAuthLoad();" />
+        <span id="statusAutoSyncText" class="syncAutoText">AUTO SYNC</span>
       </div>
     </div>
   </div>
@@ -848,7 +934,7 @@ async function initState(){
   state=await loadExternalState();
 }
 
-function persist(){localStorage.setItem(STORAGE_KEY, JSON.stringify(state))}
+function persist(){localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); scheduleStatusAutoSave();}
 function updateScale(){const stage=document.getElementById("stage"); const scale=stage.getBoundingClientRect().width/941; document.documentElement.style.setProperty("--scale", scale.toFixed(6));}
 window.addEventListener("resize", updateScale);
 window.addEventListener("orientationchange", updateScale);
@@ -1496,42 +1582,69 @@ function getStatusSyncKey(){
   if(key) localStorage.setItem(SYNC_KEY_STORAGE,key);
   return key;
 }
-async function loadStatusCloud(){
+
+const SYNC_AUTO_STORAGE="nsd6_auto_sync";
+let statusAuthLoadTimer=null;
+let statusSyncHydrating=false;
+let statusAutoSaveTimer=null;
+function isStatusAutoSyncOn(){return !!getStatusSyncKey();}
+function setStatusAutoSyncUI(ok=false){
+  const el=document.getElementById("statusAutoSyncText");
+  if(!el) return;
+  el.classList.toggle("ok", !!ok);
+}
+function scheduleStatusAuthLoad(){
+  clearTimeout(statusAuthLoadTimer);
+  statusAuthLoadTimer=setTimeout(()=>{ if(getStatusSyncKey()) loadStatusCloud(true); else setStatusAutoSyncUI(false); }, 700);
+}
+
+function scheduleStatusAutoSave(){
+  if(statusSyncHydrating || !isStatusAutoSyncOn()) return;
+  const key=getStatusSyncKey();
+  if(!key) return;
+  clearTimeout(statusAutoSaveTimer);
+  statusAutoSaveTimer=setTimeout(()=>saveStatusCloud(true), 900);
+}
+
+async function loadStatusCloud(silent=false){
   const key=getStatusSyncKey();
   if(!key){toast("SYNC KEY missing");return;}
   try{
-    toast("Loading...");
+    if(!silent) toast("Loading...");
     const res=await fetch(SYNC_API_URL+"?target=status",{method:"GET",headers:{"X-Sync-Key":key}});
     const json=await res.json();
     if(!res.ok || !json.ok) throw new Error(json.error||("HTTP "+res.status));
+    statusSyncHydrating=true;
     state=applyDefaults(json.data);
     persist();
+    statusSyncHydrating=false;
     render();
     initStatusSyncKey();
-    toast("Loaded");
+    setStatusAutoSyncUI(true);
+    toast(silent ? "Auto synced" : "Loaded");
   }catch(err){
     console.error(err);
-    toast("Load failed · "+String(err.message||err).slice(0,42));
+    setStatusAutoSyncUI(false); toast("Load failed · "+String(err.message||err).slice(0,42));
   }
 }
-async function saveStatusCloud(){
+async function saveStatusCloud(silent=false){
   const key=getStatusSyncKey();
   if(!key){toast("SYNC KEY missing");return;}
   try{
-    toast("Saving...");
+    if(!silent) toast("Saving...");
     const res=await fetch(SYNC_API_URL+"?target=status",{method:"POST",headers:{"Content-Type":"application/json","X-Sync-Key":key},body:JSON.stringify({target:"status",data:state})});
     const json=await res.json();
     if(!res.ok || !json.ok) throw new Error(json.error||("HTTP "+res.status));
-    toast("Saved cloud");
+    setStatusAutoSyncUI(true); toast(silent ? "Auto synced" : "Saved cloud");
   }catch(err){
     console.error(err);
-    toast("Save failed · "+String(err.message||err).slice(0,42));
+    setStatusAutoSyncUI(false); toast("Save failed · "+String(err.message||err).slice(0,42));
   }
 }
 
 function toast(msg){const t=document.getElementById("toast"); t.textContent=msg; t.classList.add("show"); setTimeout(()=>t.classList.remove("show"), 1400);}
 if("serviceWorker" in navigator){window.addEventListener("load", ()=>navigator.serviceWorker.register("./sw.js").catch(()=>{}));}
-initState().then(()=>{ applyOneTimeLogFixes(); updateScale(); render(); initStatusSyncKey(); });
+initState().then(async()=>{ applyOneTimeLogFixes(); updateScale(); render(); initStatusSyncKey(); setStatusAutoSyncUI(false); if(getStatusSyncKey()) await loadStatusCloud(true); });
 </script>
 </body>
 </html>
