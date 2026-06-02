@@ -1,6 +1,6 @@
 {
-  "rotationIndex": 6,
-  "selectedSlotIndex": 6,
+  "rotationIndex": 7,
+  "selectedSlotIndex": 7,
   "rotation": [
     {
       "slot": "Push",
@@ -478,6 +478,17 @@
       "exercise": "FL Row",
       "progress": "3.5 (3×5) [E2]",
       "logText": "TEST - CHECK"
+    },
+    {
+      "id": "17804204104474bed29afa77998",
+      "date": "2026-06-03",
+      "result": "Completed",
+      "slot": "Complex Pull",
+      "lineKey": "complexPull",
+      "category": "Complex Pull",
+      "exercise": "Str. 360 Pull",
+      "progress": "5.5 (5×5) [E2]",
+      "logText": "TEST-2"
     }
   ]
 }
