@@ -776,7 +776,8 @@ textarea {
 }
 
 
-/* FINAL opacity 40% pass */
+
+/* FINAL opacity 40% pass - hotspot safe */
 .card,
 .panel .card,
 .view .card,
@@ -788,10 +789,6 @@ textarea {
 #logPanel .card,
 #historyPanel .card,
 .syncBox,
-input,
-textarea,
-select,
-.syncKey,
 .list,
 .item,
 .stat,
@@ -802,14 +799,11 @@ select,
   background:rgba(0,0,0,.40) !important;
 }
 
-button,
-.redbtn,
-.syncActions button{
+input:not([type="button"]):not([type="submit"]):not([type="file"]),
+textarea,
+select,
+.syncKey{
   background:rgba(0,0,0,.40) !important;
-}
-
-.redbtn{
-  background:rgba(255,0,0,.40) !important;
 }
 
 .syncAutoText.ok{
