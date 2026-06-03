@@ -897,6 +897,21 @@ select,
   box-shadow:none !important;
 }
 
+
+/* dashboard sync image indicator */
+.syncIndicatorImg{
+  position:absolute;
+  z-index:4;
+  width:calc(76px * var(--scale));
+  height:auto;
+  pointer-events:none;
+  user-select:none;
+}
+#statusDashSyncIndicator{
+  left:calc(194px * var(--scale));
+  top:calc(776px * var(--scale));
+}
+
 </style>
 </head>
 <body>
@@ -931,6 +946,7 @@ select,
       <span id="indMove8" class="indMove"></span>
     </div>
     <div id="ovBuild" class="txt">V4.15.2</div>
+    <img id="statusDashSyncIndicator" class="syncIndicatorImg" src="SYNC_INDICATOR_RED.png" alt="SYNC" />
 
     <button id="hsDash" class="hotspot" onclick="closePanels()">Dash</button>
     <button id="hsPlan" class="hotspot" onclick="openPanel('planPanel')">Plan</button>
@@ -1722,9 +1738,11 @@ let statusSyncHydrating=false;
 let statusAutoSaveTimer=null;
 function isStatusAutoSyncOn(){return !!getStatusSyncKey();}
 function setStatusAutoSyncUI(ok=false){
+  const on=!!ok;
   const el=document.getElementById("statusAutoSyncText");
-  if(!el) return;
-  el.classList.toggle("ok", !!ok);
+  if(el) el.classList.toggle("ok", on);
+  const img=document.getElementById("statusDashSyncIndicator");
+  if(img) img.src=on ? "SYNC_INDICATOR_GREEN.png" : "SYNC_INDICATOR_RED.png";
 }
 function scheduleStatusAuthCheck(){
   clearTimeout(statusAuthLoadTimer);
