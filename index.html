@@ -813,6 +813,21 @@ select,
   box-shadow:none !important;
 }
 
+
+/* AUTO SYNC auth indicator fix */
+.syncAutoText{
+  color:#ff0000 !important;
+  text-shadow:none !important;
+  filter:none !important;
+  box-shadow:none !important;
+}
+.syncAutoText.ok{
+  color:rgb(25,255,0) !important;
+  text-shadow:none !important;
+  filter:none !important;
+  box-shadow:none !important;
+}
+
 </style>
 </head>
 <body>
@@ -920,7 +935,7 @@ select,
     <div class="syncBox">
       <div class="syncRow">
         <span class="syncLabel">SYNC KEY</span>
-        <input id="statusSyncKey" class="syncKey" type="password" autocomplete="off" placeholder="key" oninput="saveStatusSyncKey(); scheduleStatusAuthLoad();" />
+        <input id="statusSyncKey" class="syncKey" type="password" autocomplete="off" placeholder="key" oninput="saveStatusSyncKey(); scheduleStatusAuthCheck();" />
         <span id="statusAutoSyncText" class="syncAutoText">AUTO SYNC</span>
       </div>
     </div>
@@ -1621,13 +1636,15 @@ function initStatusSyncKey(){
 }
 function saveStatusSyncKey(){
   const el=document.getElementById("statusSyncKey");
-  if(el) localStorage.setItem(SYNC_KEY_STORAGE, el.value.trim());
+  if(!el) return;
+  const value=el.value.trim();
+  if(value) localStorage.setItem(SYNC_KEY_STORAGE, value);
+  else localStorage.removeItem(SYNC_KEY_STORAGE);
 }
 function getStatusSyncKey(){
   const el=document.getElementById("statusSyncKey");
-  const key=(el&&el.value.trim()) || localStorage.getItem(SYNC_KEY_STORAGE) || "";
-  if(key) localStorage.setItem(SYNC_KEY_STORAGE,key);
-  return key;
+  if(el) return el.value.trim();
+  return localStorage.getItem(SYNC_KEY_STORAGE) || "";
 }
 
 const SYNC_AUTO_STORAGE="nsd6_auto_sync";
@@ -1640,10 +1657,29 @@ function setStatusAutoSyncUI(ok=false){
   if(!el) return;
   el.classList.toggle("ok", !!ok);
 }
-function scheduleStatusAuthLoad(){
+function scheduleStatusAuthCheck(){
   clearTimeout(statusAuthLoadTimer);
-  statusAuthLoadTimer=setTimeout(()=>{ if(getStatusSyncKey()) loadStatusCloud(true); else setStatusAutoSyncUI(false); }, 700);
+  const key=getStatusSyncKey();
+  if(!key){ setStatusAutoSyncUI(false); return; }
+  statusAuthLoadTimer=setTimeout(()=>checkStatusAuth(true), 700);
 }
+async function checkStatusAuth(silent=false){
+  const key=getStatusSyncKey();
+  if(!key){ setStatusAutoSyncUI(false); return false; }
+  try{
+    const res=await fetch(SYNC_API_URL+"?auth=1",{method:"GET",headers:{"X-Sync-Key":key}});
+    const json=await res.json();
+    if(!res.ok || !json.ok) throw new Error(json.error||("HTTP "+res.status));
+    setStatusAutoSyncUI(true);
+    return true;
+  }catch(err){
+    console.error(err);
+    setStatusAutoSyncUI(false);
+    if(!silent) toast("Auth failed");
+    return false;
+  }
+}
+
 
 function scheduleStatusAutoSave(){
   if(statusSyncHydrating || !isStatusAutoSyncOn()) return;
@@ -1665,8 +1701,7 @@ async function loadStatusCloud(silent=false){
     statusSyncHydrating=false;
     render();
     initStatusSyncKey();
-    setStatusAutoSyncUI(true);
-    toast(silent ? "Auto synced" : "Loaded");
+    toast(silent ? "Auto loaded" : "Loaded");
   }catch(err){
     console.error(err);
     setStatusAutoSyncUI(false); toast("Load failed · "+String(err.message||err).slice(0,42));
@@ -1680,7 +1715,7 @@ async function saveStatusCloud(silent=false){
     const res=await fetch(SYNC_API_URL+"?target=status",{method:"POST",headers:{"Content-Type":"application/json","X-Sync-Key":key},body:JSON.stringify({target:"status",data:state})});
     const json=await res.json();
     if(!res.ok || !json.ok) throw new Error(json.error||("HTTP "+res.status));
-    setStatusAutoSyncUI(true); toast(silent ? "Auto synced" : "Saved cloud");
+    setStatusAutoSyncUI(true); setStatusAutoSyncUI(true); toast(silent ? "Auto synced" : "Saved cloud");
   }catch(err){
     console.error(err);
     setStatusAutoSyncUI(false); toast("Save failed · "+String(err.message||err).slice(0,42));
@@ -1689,7 +1724,7 @@ async function saveStatusCloud(silent=false){
 
 function toast(msg){const t=document.getElementById("toast"); t.textContent=msg; t.classList.add("show"); setTimeout(()=>t.classList.remove("show"), 1400);}
 if("serviceWorker" in navigator){window.addEventListener("load", ()=>navigator.serviceWorker.register("./sw.js").catch(()=>{}));}
-initState().then(async()=>{ applyOneTimeLogFixes(); updateScale(); render(); initStatusSyncKey(); setStatusAutoSyncUI(false); await loadStatusCloud(true); });
+initState().then(async()=>{ applyOneTimeLogFixes(); updateScale(); render(); initStatusSyncKey(); setStatusAutoSyncUI(false); await loadStatusCloud(true); if(getStatusSyncKey()) await checkStatusAuth(true); });
 </script>
 </body>
 </html>
