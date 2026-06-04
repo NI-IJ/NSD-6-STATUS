@@ -1,6 +1,6 @@
 {
-  "rotationIndex": 6,
-  "selectedSlotIndex": 6,
+  "rotationIndex": 4,
+  "selectedSlotIndex": 4,
   "rotation": [
     {
       "slot": "Push",
@@ -489,6 +489,17 @@
       "exercise": "Str. 360 Pull",
       "progress": "5.5 (5×5) [E2]",
       "logText": "6/4 Thu — Complex Pull\n\nSession time: ~54m\n\nWU\nFR full body\nHSPU ×3\n: performed as 2 / 1 split\n: 2nd rep entered a notably deep ROM\n: pressing back up felt close to a 45° decline-push-up-like complex push pattern\n: this created a relatively high single push-load exposure during warm-up\n: dropped after the 2nd rep, then completed the 3rd rep normally\nWall Extension 10×2\n: normal\nBand Dislocate 10×2\n: unusual residual sensation appeared near the biceps area rather than the shoulder\nStatic Position\n: Adv. FL 6s / Adv. L-sit 6s\n: no notable issue\n: Adv. FL had slight load sensation, likely after yesterday’s FL Row\nL Pull-up 5×1\n: normal to slight load sensation\n\nMN\nStr. 360 Pull 5.5 (5×5) [E2]\nS1\n: felt slightly hard\n: form did not feel very satisfying\n: overall pattern felt similar to the previous exposure\n: foot position was already consciously manageable\n: foot contact / catching could be avoided through leg-spread timing adjustment\nS2\n: accumulated load appeared in the later reps\n: forearm load also became stronger\nS3\n: rotation speed was increased, roughly around 2× faster than before\n: previous sets may have been rotating too slowly\n: forearm load was noticeably reduced with the faster pass-through rhythm\nS4\n: rotation speed was slightly slower than S3\n: accumulated load was moderate\n: pass-through rhythm still remained manageable\nS5\n: proceeded with the lumbar / pelvis line somewhat folded\n: this appeared on both the front-lever and back-lever sides\n: the line did not open fully\n: full volume was recovered\n\nCD\nHVR 10×1\n: abdominal load appeared in the later reps\nWall Extension 10×1\n: normal\nBand Dislocate\n: dorsal 6×1 — slightly stiff / sore\n: overgrip 6×1 — same\nPassive ROM 6\n: no notable issue\n\nNotes\n: session completed Str. 360 Pull 5.5 E2 in ~54m\n: full 5×5 volume was recovered\n: overall form satisfaction was not high, especially during the back-lever-side rotation\n: foot catching / door-handle contact was consciously manageable through leg-spread timing adjustment\n: back-lever-side form remained partly setup-limited due to doorway space constraints\n: S1–S2 felt slightly too slow and carried more forearm load\n: increasing rotation speed in S3 reduced forearm load noticeably\n: S4 settled into a more moderate controlled pass-through rhythm\n: today confirmed that Str. 360 Pull should prioritize continuous controlled pass-through rather than slow stop-point holding\n: late-set fatigue appeared as lumbar / pelvis folding on both front- and back-lever sides\n: next exposure should use an S3–S4-level controlled pass-through speed while reducing late lumbar / pelvis folding within the available doorway space\n\n⸻"
+    },
+    {
+      "id": "1780582050225aa024e1ee8444",
+      "date": "2026-06-04",
+      "result": "Completed",
+      "slot": "Conditioning",
+      "lineKey": "conditioning",
+      "category": "Conditioning",
+      "exercise": "Negative + A. Pistol",
+      "progress": "5.5 (5×5) [E1]",
+      "logText": "TEST"
     }
   ]
 }
