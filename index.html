@@ -1079,6 +1079,7 @@ async function initState(){
     console.warn("Local state load failed:", err);
   }
   state=await loadExternalState();
+  repairRotationFromLatestLog();
 }
 
 function persist(){localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); scheduleStatusAutoSave();}
@@ -1255,10 +1256,49 @@ function wheelEntryForSlot(slotIndex){
   // Build from current wheel start, then find the absolute slot in the future sequence.
   return projectedWheel().find(e=>e.slotIndex===slotIndex) || projectedWheel()[0];
 }
+
+function repairRotationFromLatestLog(){
+  if(!Array.isArray(state.rotation)) return;
+  const logs=typeof sortedLogs==="function" ? sortedLogs().filter(l=>l && l.result!=="Monthly Summary") : [];
+  const latest=[...logs].reverse().find(l=>l && l.result);
+  if(!latest) return;
+
+  // Rest / Delay means the rotation should not advance.
+  if(latest.result==="Rest / Delay"){
+    if(Number.isInteger(state.rotationIndex)) state.selectedSlotIndex=state.rotationIndex;
+    return;
+  }
+
+  if(latest.result!=="Completed") {
+    if(Number.isInteger(state.rotationIndex)) state.selectedSlotIndex=state.rotationIndex;
+    return;
+  }
+
+  let completedIndex=-1;
+  if(Number.isInteger(latest.slotIndex)) completedIndex=latest.slotIndex;
+  if(completedIndex<0 && latest.lineKey){
+    completedIndex=state.rotation.findIndex(r=>r && r.lineKey===latest.lineKey);
+  }
+  if(completedIndex<0 && latest.category){
+    const cat=String(latest.category||"").toLowerCase();
+    completedIndex=state.rotation.findIndex(r=>String(r?.slot||"").toLowerCase()===cat || String(r?.lineKey||"").toLowerCase()===cat);
+  }
+
+  if(completedIndex>=0){
+    const nextIndex=(completedIndex+1)%state.rotation.length;
+    state.rotationIndex=nextIndex;
+    state.selectedSlotIndex=nextIndex;
+  }else if(Number.isInteger(state.rotationIndex)){
+    state.selectedSlotIndex=state.rotationIndex;
+  }
+}
+
 function currentWheelEntry(){
+  repairRotationFromLatestLog();
   const idx=Number.isInteger(state.rotationIndex) ? state.rotationIndex : 0;
   return wheelEntryForSlot(idx);
 }
+
 
 
 function nextMeta(){
@@ -1390,6 +1430,7 @@ function selectSlot(slotIndex){
 
 
 
+
 function shortType(lineKey){
   if(lineKey==="complexPush" || lineKey==="complexPull") return "CX";
   if(lineKey==="conditioning") return "NR";
@@ -1431,6 +1472,7 @@ function setTypeActive(type){
   });
 }
 function renderIndicator(){
+  repairRotationFromLatestLog();
   const wheel=typeof projectedWheel==="function" ? projectedWheel() : [];
   const bySlot=new Map();
   wheel.forEach(entry=>{
@@ -1453,6 +1495,7 @@ function renderIndicator(){
 }
 
 function render(){
+  repairRotationFromLatestLog();
   const meta=nextMeta();
   const prev=previousLog(meta);
   text("ovExposure",meta.exposure||"E");
