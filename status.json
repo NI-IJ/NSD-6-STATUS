@@ -1,6 +1,6 @@
 {
-  "rotationIndex": 2,
-  "selectedSlotIndex": 2,
+  "rotationIndex": 3,
+  "selectedSlotIndex": 3,
   "rotation": [
     {
       "slot": "Push",
@@ -533,6 +533,17 @@
       "exercise": "BAPL60",
       "progress": "5.5 (5×5) [E2]",
       "logText": "6/8 Mon — Rest / Delay\n\nComplex Push / BAPL60 5.5 (5×5) [E2] delayed."
+    },
+    {
+      "id": "178100942410388fc3caa81b7a",
+      "date": "2026-06-09",
+      "result": "Completed",
+      "slot": "Complex Push",
+      "lineKey": "complexPush",
+      "category": "Complex Push",
+      "exercise": "BAPL60",
+      "progress": "5.5 (5×5) [E2]",
+      "logText": "6/9 Tue — Complex Push\n\nSession time: ~53m\n\nWU\nFR full body\nHSPU ×5\n: performed as 1 / 4 split\n: except for the first rep, the remaining 4 reps were very shallow and finished quickly\n: HSPU did not attach well today\nWall Extension 10×2\n: ROM reduced\n: 2nd set showed slight improvement\nBand Dislocate 10×2\n: shoulder residual and stiffness appeared\n: 2nd set improved\n: residual oddly shifted toward the L posterior shoulder side\nStatic Position\n: Adv. PL 6s / Adv. L-sit 6s\n: slight shoulder load during Adv. PL\n: no notable issue\nL Pull-up 5×1\n: normal\n: slight anterior-shoulder load sensation during hanging\n\nMN\nBAPL60 5.5 (5×5) [E2]\nS1\n: R anterior / side shoulder signal appeared\n: after the set, unusual load / signal sensation appeared around the axilla and inner-biceps / axilla-adjacent line\n: this felt closer to use-sensation than a bad signal\n: trajectory was OK\nS2\n: early rotation did not attach cleanly\n: ring hardware kept contacting the hand / bone area\n: ring hardware needed to be wound up / cleared before movement\n: rhythm did not collapse\n: movement remained close to the established pendulum-driven BAPL60 pattern\n: shoulder and other signals moved into the background\nS3\n: except for the early reps, rotation approached 80–90°\n: lever stability was included\n: speed was relatively fast\nS4\n: no notable issue\nS5\n: closed without notable issue\n: slight accumulation appeared\n: slight shoulder aching sensation remained\n: no time loss\nMN Notes\n: BAPL60 5.5 E2 was completed\n: BAPL60 remained a pendulum-driven forward-rotation pattern rather than a static-hold movement\n: the current BAPL60 rotation-type technique appears mostly established\n: S1 showed R anterior / side shoulder and axilla-inner-line use-sensation, but this did not become a limiting signal\n: from S2 onward, shoulder signals moved into the background\n: S2 issue was mainly ring hardware / hand-bone contact rather than movement-pattern failure\n: S3 confirmed near 80–90° rotation with lever stability and relatively fast rhythm\n: S4–S5 closed without rhythm collapse or time loss\n: BAPL means Bent Arm Planche Lean, an internal 77TR movement label rather than an official exercise name\n: BAPL30 / BAPL45 / BAPL60 function as Complex Push transition gates toward horizontal push / planche-side work\n: BAPL rotation sensation was not available for a long time during BAPL30–45, but the pendulum / rebound-assisted pattern was unlocked near the late BAPL45 phase\n: BAPL60 now appears likely to graduate through 7-level without unusual technical issues\n: after BAPL60 graduation, Complex Push is expected to transition toward degree push-up type movements\n\nCD\nHVR 10×1\n: normal\nWall Extension 10×1\n: normal\n: ROM slightly reduced\nBand Dislocate\n: dorsal 6×1 — quite aching\n: overgrip 6×1 — residual / aching remained\n: improved slightly while rotating\nPassive ROM 6\n: no notable issue\n\nNotes\n: session completed BAPL60 5.5 E2 in ~53m\n: WU did not attach strongly, with shallow HSPU, reduced Wall Extension ROM, and shoulder residual / stiffness during band work\n: main BAPL60 work still completed without rhythm collapse, time loss, or output failure\n: the clearest main-work value was reproduction of the established pendulum-driven BAPL60 pattern, including near 80–90° rotation and lever stability in S3\n: shoulder-side and axilla-inner-line sensations appeared as use-sensation rather than bad signals\n: cooldown showed stronger shoulder-side residual than recent sessions, especially in band dorsal and overgrip rotation\n: residual remained specific to band rotation and did not transfer into main BAPL60 work, output, ROM, HVR, or Passive ROM 6\n: this felt neural / trajectory-specific rather than tissue or structural injury\n: next Complex Push exposure can continue BAPL60 5.5 with pendulum rhythm and lever stability as the main criteria, while monitoring whether band-only residual carries into the next morning or future WU\n\n⸻"
     }
   ]
 }
