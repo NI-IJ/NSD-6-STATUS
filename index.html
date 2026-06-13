@@ -1342,13 +1342,13 @@ function currentMovement(meta){
 
 function staticPositionFor(lineKey){
   const map={
-    pushVertical:"Adv. PL 6s / Adv. L-sit 6s",
-    pushHorizontal:"Adv. PL 6s / Adv. L-sit 6s",
-    pullVertical:"Adv. FL 6s / Adv. L-sit 6s",
-    pullHorizontal:"Adv. FL 6s / Adv. L-sit 6s",
-    complexPush:"Adv. PL 6s / Adv. L-sit 6s",
-    complexPull:"Adv. FL 6s / Adv. L-sit 6s",
-    conditioning:"Adv. BL 6s / Adv. L-sit 6s"
+    pushVertical:"Adv. PL 6s / Str. L 6s",
+    pushHorizontal:"Adv. PL 6s / Str. L 6s",
+    pullVertical:"Str. FL 6s / Str. L 6s",
+    pullHorizontal:"Str. FL 6s / Str. L 6s",
+    complexPush:"Adv. PL 6s / Str. L 6s",
+    complexPull:"Str. FL 6s / Str. L 6s",
+    conditioning:"Str. BL 6s / Str. L 6s"
   };
   return map[lineKey] || "";
 }
