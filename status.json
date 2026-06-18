@@ -1,6 +1,6 @@
 {
-  "rotationIndex": 2,
-  "selectedSlotIndex": 2,
+  "rotationIndex": 3,
+  "selectedSlotIndex": 3,
   "rotation": [
     {
       "slot": "Push",
@@ -632,6 +632,17 @@
       "exercise": "BAPL60",
       "progress": "6.6 (6×6) [E1]",
       "logText": "6/17 Wed — Rest / Delay\n\nComplex Push / BAPL60 6.6 (6×6) [E1] delayed."
+    },
+    {
+      "id": "17817872330115ab8c1a4565d6",
+      "date": "2026-06-18",
+      "result": "Completed",
+      "slot": "Complex Push",
+      "lineKey": "complexPush",
+      "category": "Complex Push",
+      "exercise": "BAPL60",
+      "progress": "6.6 (6×6) [E1]",
+      "logText": "6/18 Thu — Complex Push\n\nSession time: ~57m\n\nWU\nFR full body\nHSPU ×5\n: performed as 5 continuous reps\n: middle ROM\n: attached well today\n: slight wrist load sensation appeared\nWall Extension 10×2\n: normal\nBand Dislocate 10×2\n: R posterior shoulder aching appeared\n: felt like ongoing adaptation\nStatic Position\n: Adv. PL 6s / Str. L 6s\n: normal\nL Pull-up 5×1\n: normal\n\nMN\nBAPL60 6.6 (6×6) [E1]\nS1\n: rotation was not a full 100%-level opening, but inertia-based rotation started\n: shoulder-side signal was not caught today\n: instead, anterior / upper shoulder load signal appeared\nS2\n: no notable issue\n: a slight signal moved from the shoulder toward the outer elbow line\nS3\n: similar rhythm\n: rotation angle felt close to 80–90° once rhythm attached\n: speed felt almost too fast\n: load sensation was low\n: closed with a fast pendulum rhythm\n: did not strongly feel like a main-work / exercise set\nS4\n: rotation was stable\n: intentionally slowed the return through the lowest horizontal point\n: lever maintenance had no issue\n: shoulder-side load / signal increased slightly when slowing the motion\nS5\n: no notable issue\n: R shoulder-side load and slight aching signal appeared\nS6\n: no notable issue\n: fully recovered and completed cleanly\n\nMN Notes\n: BAPL60 6.6 E1 was completed\n: this was the first 6-level-zone entry for BAPL60\n: volume expanded from 5×5 to 6×6 without rhythm collapse or time loss\n: BAPL60 remained a fast pendulum-driven forward-rotation pattern rather than a static-hold movement\n: rotation angle was already beyond the 60-title level and approached roughly 80–90° once rhythm attached\n: further inertia could likely enter a reverse angle past horizontal, but that range was judged unnecessary for the current BAPL60 standard\n: the current angle range appears close to the practical maximum needed for this title\n: S3 showed that the fast pendulum rhythm could close the set with low perceived load\n: this did not feel strongly like a heavy main-work set, suggesting the BAPL60 rhythm has become largely automated\n: control was judged to be clearly available because the pendulum rhythm had already been acquired during the late BAPL45 block\n: slowing the rotation is possible, but it increases shoulder-side load and output accumulation\n: S4 confirmed that slowing the lowest horizontal return point still allowed lever maintenance, but added shoulder-side load / signal\n: therefore, future BAPL60 work should keep the fast pendulum rhythm rather than intentionally slowing into a static-lean pattern\n: the R shoulder-side aching in S5 felt like a BAPL-specific shoulder use-signal\n: this signal does not appear in the same way during other movements\n: OAP may have a slightly related signal at times, but the sensation type feels different\n: the BAPL-specific signal did not limit rhythm, output, ROM, or full 6×6 recovery\n: BAPL60 is now judged to be past the angle-acquisition phase and into rhythm-volume stabilization\n\nCD\nHVR 10×1\n: normal\n: felt fully settled into a cooldown-stage movement now\nWall Extension 10×1\n: normal\nBand Dislocate\n: dorsal 6×1 — similar to WU, slight aching\n: overgrip 6×1 — similar to WU, slight aching\nPassive ROM 6\n: no notable issue\n\nNotes\n: session completed BAPL60 6.6 E1 in ~57m\n: WU attached better than expected after initial reluctance, with HSPU 5 continuous middle-ROM reps\n: slight wrist load appeared during WU but did not become a limiting signal\n: R posterior shoulder aching appeared during band work and felt like ongoing gate adaptation\n: main BAPL60 work completed 6×6 cleanly with fast pendulum rhythm and stable lever control\n: rotation angle was already beyond the BAPL60 title requirement, so further angle expansion was judged unnecessary\n: intentional slowing at the lowest horizontal return point confirmed control capacity but increased shoulder load / signal\n: future BAPL60 criteria should remain fast pendulum rhythm, lever stability, full-volume recovery, and no signal transfer\n: R shoulder-side use-signal appeared as a BAPL-specific load signal rather than a general shoulder residual\n: the signal did not transfer into HVR, Wall Extension, Band Dislocate beyond WU-level aching, or Passive ROM 6\n: CD was clean overall, with HVR and Wall Extension normal and Passive ROM 6 showing no notable issue\n: next Complex Push exposure can continue BAPL60 6.6 with rhythm preservation and shoulder-signal non-transfer as the main criteria\n\n⸻"
     }
   ]
 }
