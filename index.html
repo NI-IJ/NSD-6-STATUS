@@ -1302,6 +1302,7 @@ function next77Progress(progress,startZone="3.3:E1",endZone="7.7:E2"){
   const startIndex=Math.max(0,planZoneIndex(startZone));
   const configuredEnd=planZoneIndex(endZone);
   const endIndex=configuredEnd<startIndex ? startIndex : configuredEnd;
+  if(currentIndex>=endIndex) return null;
   const nextIndex=currentIndex<startIndex ? startIndex : Math.min(currentIndex+1,endIndex);
   return PLAN_ZONES[nextIndex].progress;
 }
@@ -1346,7 +1347,8 @@ function advancePlanItem(item){
   }
 
   const next=next77Progress(out.progress,config.startZone,config.endZone);
-  if(next) out.progress=next;
+  if(!next) return null;
+  out.progress=next;
 
   if(out.lineKey==="conditioning"){
     out.exercise=String(out.exercise||"").replace(/\s*\/\s*Burpee/g,"").trim() || "Negative + A. Pistol";
@@ -1355,13 +1357,6 @@ function advancePlanItem(item){
   out.exposure=exposureFromProgress(out.progress);
   out.mainTemplate=`${out.exercise} ${out.progress}
 :`;
-  if(out.lineKey==="conditioning"){
-    out.mainTemplate=`${out.exercise} ${out.progress}
-:
-
-Burpee 40x3
-:`;
-  }
   return out;
 }
 
@@ -1419,6 +1414,19 @@ function currentWheelEntry(){
 function nextMeta(){
   const entry=currentWheelEntry();
   const fallback=seedPlanFromLine(state.rotation[state.rotationIndex]?.lineKey);
+  if(entry && !entry.next){
+    return {
+      ...entry.rot,
+      lineKey:entry.lineKey,
+      category:state.lines[entry.lineKey]?.category||"",
+      exercise:"-",
+      progress:"",
+      exposure:"-",
+      mainTemplate:"-",
+      slotIndex:entry.slotIndex,
+      ended:true
+    };
+  }
   return entry?.next || fallback;
 }
 function previousLog(meta){
@@ -1476,15 +1484,8 @@ function displayMainTemplate(meta){
     return `${meta.exercise} ${displayProgress(meta)}
 :`;
   }
-  let main=meta.mainTemplate || `${meta.exercise} ${meta.progress}
+  return meta.mainTemplate || `${meta.exercise} ${meta.progress}
 :`;
-  if(meta && meta.lineKey==="conditioning" && !/Burpee\s*40x3/i.test(main)){
-    main=String(main).replace(/\s*$/,"") + `
-
-Burpee 40x3
-:`;
-  }
-  return main;
 }
 
 function currentMovement(meta){
@@ -1547,6 +1548,7 @@ function shortType(lineKey){
   return "SS";
 }
 function shortMoveName(item){
+  if(item?.lineKey==="conditioning") return "COND";
   const name=String(item?.exercise||"").trim();
   const map={
     "Str. PL PU":"SPLPU",
@@ -1652,6 +1654,7 @@ ${plan}
 
 function generatePrompt(){
   const meta=nextMeta();
+  if(meta.ended){toast("Plan ended · update config");return;}
   const prev=previousLogForPrompt(meta);
   const prompt=finalDividerPrompt(prev ? prev.logText : `[No previous ${formatMovement(meta)} log saved yet.]`, buildPlan(meta));
   document.getElementById("runtimePrompt").value=prompt;
@@ -1662,9 +1665,10 @@ function generatePrompt(){
   toast("Generate button works · prompt ready");
 }
 async function copyPrompt(){
+  const meta=nextMeta();
+  if(meta.ended){toast("Plan ended · update config");return;}
   let t=document.getElementById("runtimePrompt").value;
   if(!t.trim()){
-    const meta=nextMeta();
     const prev=previousLogForPrompt(meta);
     t=finalDividerPrompt(prev ? prev.logText : `[No previous ${formatMovement(meta)} log saved yet.]`, buildPlan(meta));
     document.getElementById("runtimePrompt").value=t;
