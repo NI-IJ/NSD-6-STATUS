@@ -912,6 +912,87 @@ select,
   top:calc(776px * var(--scale));
 }
 
+/* DATA plan editor */
+.planConfig{
+  margin-top:14px;
+  padding-top:14px;
+  border-top:1px solid rgba(255,0,0,.34);
+}
+.planConfigTitle{
+  margin:0 0 9px;
+  color:#ff0000;
+  font-size:12px;
+  letter-spacing:.14em;
+}
+.planSessionRows,
+.planStaticRows{
+  display:grid;
+  gap:8px;
+}
+.planSessionRow{
+  display:grid;
+  grid-template-columns:minmax(112px,.8fr) minmax(150px,1.35fr) minmax(92px,.7fr) minmax(92px,.7fr);
+  gap:7px;
+  align-items:end;
+}
+.planStaticRow{
+  display:grid;
+  grid-template-columns:minmax(112px,.8fr) minmax(220px,2.75fr);
+  gap:7px;
+  align-items:end;
+}
+.planField label,
+.planSessionLabel{
+  display:block;
+  margin:0 0 4px;
+  color:rgba(232,232,232,.58);
+  font-size:10px;
+  letter-spacing:.08em;
+}
+.planSessionLabel{
+  padding:0 0 10px;
+  color:#e8e8e8;
+}
+#settingsPanel .planConfig input,
+#settingsPanel .planConfig select{
+  width:100% !important;
+  min-height:34px !important;
+  box-sizing:border-box !important;
+  margin:0 !important;
+  padding:8px 9px !important;
+  border:1px solid rgba(255,255,255,.18) !important;
+  color:#e8e8e8 !important;
+  background:rgba(0,0,0,.40) !important;
+  font:12px var(--font-din) !important;
+}
+.planVariableGrid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:8px;
+  margin-bottom:10px;
+}
+.planStaticBlock{
+  margin-top:10px;
+}
+.planConfigActions{
+  margin-top:12px !important;
+}
+@media (max-width:700px){
+  .planSessionRow{
+    grid-template-columns:1fr 1fr;
+  }
+  .planSessionLabel{
+    grid-column:1 / -1;
+    padding:0;
+  }
+  .planStaticRow{
+    grid-template-columns:1fr;
+  }
+  .planVariableGrid{
+    grid-template-columns:1fr;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -1024,6 +1105,24 @@ select,
         <span id="statusAutoSyncText" class="syncAutoText">AUTO SYNC</span>
       </div>
     </div>
+    <div class="planConfig" id="planConfigEditor">
+      <h3 class="planConfigTitle">MAIN SESSION CONFIG</h3>
+      <div id="planSessionRows" class="planSessionRows"></div>
+
+      <h3 class="planConfigTitle" style="margin-top:16px">PROMPT VARIABLES</h3>
+      <div class="planVariableGrid">
+        <div class="planField"><label for="planHspu">HANDSTAND PUSH-UP</label><input id="planHspu" type="text" /></div>
+        <div class="planField"><label for="planLPull">L PULL-UP</label><input id="planLPull" type="text" /></div>
+        <div class="planField"><label for="planHvr">HVR</label><input id="planHvr" type="text" /></div>
+      </div>
+      <div class="planStaticBlock">
+        <h3 class="planConfigTitle">STATIC POSITION</h3>
+        <div id="planStaticRows" class="planStaticRows"></div>
+      </div>
+      <div class="actions planConfigActions">
+        <button class="redbtn" onclick="savePlanConfig()">APPLY PLAN</button>
+      </div>
+    </div>
   </div>
 </section>
 <div id="toast" class="toast">Saved</div>
@@ -1035,6 +1134,43 @@ const STORAGE_KEY="nsd6_v4151_seed_streak_fix";
 const LEGACY_KEYS = [];
 function clone(o){return JSON.parse(JSON.stringify(o))}
 function deepMerge(base, incoming){const out=clone(base); if(!incoming||typeof incoming!=="object") return out; Object.keys(incoming).forEach(k=>{if(incoming[k]&&typeof incoming[k]==="object"&&!Array.isArray(incoming[k])&&out[k]&&typeof out[k]==="object"&&!Array.isArray(out[k])) out[k]=deepMerge(out[k],incoming[k]); else out[k]=incoming[k];}); return out;}
+const PLAN_SESSION_KEYS=["pushVertical","pushHorizontal","pullVertical","pullHorizontal","complexPush","complexPull","conditioning"];
+const PLAN_ZONES=[
+  {id:"3.3:E1",label:"3.3 E1",progress:"3.3 (3×3) [E1]"},
+  {id:"3.5:E2",label:"3.5 E2",progress:"3.5 (3×5) [E2]"},
+  {id:"5.5:E1",label:"5.5 E1",progress:"5.5 (5×5) [E1]"},
+  {id:"5.5:E2",label:"5.5 E2",progress:"5.5 (5×5) [E2]"},
+  {id:"6.6:E1",label:"6.6 E1",progress:"6.6 (6×6) [E1]"},
+  {id:"6.6:E2",label:"6.6 E2",progress:"6.6 (6×6) [E2]"},
+  {id:"7.7:E1",label:"7.7 E1",progress:"7.7 (7×7) [E1]"},
+  {id:"7.7:E2",label:"7.7 E2",progress:"7.7 (7×7) [E2]"}
+];
+const DEFAULT_PLAN_CONFIG={
+  sessions:{
+    pushVertical:{exercise:"PHSPU",startZone:"3.3:E1",endZone:"7.7:E2"},
+    pushHorizontal:{exercise:"Str. PL PU",startZone:"3.3:E1",endZone:"7.7:E2"},
+    pullVertical:{exercise:"OAP Negative",startZone:"3.3:E1",endZone:"7.7:E2"},
+    pullHorizontal:{exercise:"FL Row",startZone:"3.3:E1",endZone:"7.7:E2"},
+    complexPush:{exercise:"BAPL60",startZone:"3.3:E1",endZone:"7.7:E2"},
+    complexPull:{exercise:"Str. 360 Pull",startZone:"3.3:E1",endZone:"7.7:E2"},
+    conditioning:{exercise:"Negative + A. Pistol",startZone:"3.3:E1",endZone:"7.7:E2"}
+  },
+  variables:{
+    hspu:"HSPU ×5",
+    lPull:"L Pull-up 5×1",
+    hvr:"HVR 10×1",
+    staticPositions:{
+      pushVertical:"Adv. PL 6s / Str. L 6s",
+      pushHorizontal:"Adv. PL 6s / Str. L 6s",
+      pullVertical:"Str. FL 6s / Str. L 6s",
+      pullHorizontal:"Str. FL 6s / Str. L 6s",
+      complexPush:"Adv. PL 6s / Str. L 6s",
+      complexPull:"Str. FL 6s / Str. L 6s",
+      conditioning:"Str. BL 6s / Str. L 6s"
+    }
+  }
+};
+DEFAULT.planConfig=clone(DEFAULT_PLAN_CONFIG);
 function applyDefaults(state){const out=deepMerge(DEFAULT,state||{}); out.rotation=clone(DEFAULT.rotation); Object.keys(DEFAULT.lines).forEach(key=>{out.lines[key]={...(out.lines[key]||{}),...DEFAULT.lines[key]}}); if(!Number.isInteger(out.rotationIndex)) out.rotationIndex=0; out.rotationIndex=((out.rotationIndex%out.rotation.length)+out.rotation.length)%out.rotation.length; if(!Number.isInteger(out.selectedSlotIndex)) out.selectedSlotIndex=out.rotationIndex; out.selectedSlotIndex=((out.selectedSlotIndex%out.rotation.length)+out.rotation.length)%out.rotation.length; return out;}
 function load(){try{const raw=localStorage.getItem(STORAGE_KEY)||LEGACY_KEYS.map(k=>localStorage.getItem(k)).find(Boolean); return raw?applyDefaults(JSON.parse(raw)):clone(DEFAULT)}catch(e){return clone(DEFAULT)}}
 let state = clone(DEFAULT);
@@ -1144,19 +1280,30 @@ function exposureFromProgress(s){
   const m=String(s||"").match(/\[(E\d)\]/);
   return m ? m[1] : "E";
 }
-function next77Progress(progress){
+function planSessionConfig(lineKey){
+  return deepMerge(DEFAULT_PLAN_CONFIG.sessions[lineKey]||{},state.planConfig?.sessions?.[lineKey]||{});
+}
+function planVariables(){
+  return deepMerge(DEFAULT_PLAN_CONFIG.variables,state.planConfig?.variables||{});
+}
+function planZoneIndex(zoneId){return PLAN_ZONES.findIndex(z=>z.id===zoneId);}
+function progressZoneIndex(progress){
   const p=parseProgressString(progress);
-  if(!p) return null;
-  const map={
-    "3.3:E1":"3.5 (3×5) [E2]",
-    "3.5:E2":"5.5 (5×5) [E1]",
-    "5.5:E1":"5.5 (5×5) [E2]",
-    "5.5:E2":"6.6 (6×6) [E1]",
-    "6.6:E1":"6.6 (6×6) [E2]",
-    "6.6:E2":"7.7 (7×7) [E1]",
-    "7.7:E1":"7.7 (7×7) [E2]"
-  };
-  return map[`${p.level}.${p.sets}:${p.exposure}`] || progress;
+  if(!p) return -1;
+  return PLAN_ZONES.findIndex(z=>z.id===`${p.level}.${p.sets}:${p.exposure}`);
+}
+function progressForZone(zoneId){
+  return PLAN_ZONES.find(z=>z.id===zoneId)?.progress || PLAN_ZONES[0].progress;
+}
+function sameMovement(a,b){return String(a||"").trim().toLowerCase()===String(b||"").trim().toLowerCase();}
+function next77Progress(progress,startZone="3.3:E1",endZone="7.7:E2"){
+  const currentIndex=progressZoneIndex(progress);
+  if(currentIndex<0) return null;
+  const startIndex=Math.max(0,planZoneIndex(startZone));
+  const configuredEnd=planZoneIndex(endZone);
+  const endIndex=configuredEnd<startIndex ? startIndex : configuredEnd;
+  const nextIndex=currentIndex<startIndex ? startIndex : Math.min(currentIndex+1,endIndex);
+  return PLAN_ZONES[nextIndex].progress;
 }
 function normalizeDisplayItem(item){
   if(!item) return null;
@@ -1189,6 +1336,8 @@ function advancePlanItem(item){
   const base=normalizeDisplayItem(item);
   if(!base) return null;
   const out={...base, logText:""};
+  const config=planSessionConfig(out.lineKey);
+  out.exercise=config.exercise || out.exercise;
 
   // Normalize OAP bilateral display progress back to standard internal progress before advancing.
   if(isOapLine(out)){
@@ -1196,7 +1345,7 @@ function advancePlanItem(item){
     if(normalized) out.progress=normalized;
   }
 
-  const next=next77Progress(out.progress);
+  const next=next77Progress(out.progress,config.startZone,config.endZone);
   if(next) out.progress=next;
 
   if(out.lineKey==="conditioning"){
@@ -1218,13 +1367,14 @@ Burpee 40x3
 
 function seedPlanFromLine(lineKey){
   const l=state.lines[lineKey] || {};
+  const config=planSessionConfig(lineKey);
   return normalizeDisplayItem({
     lineKey,
     slot:(state.rotation.find(r=>r.lineKey===lineKey)?.slot||""),
     category:l.category||"",
-    exercise:l.exercise||"",
-    progress:l.progress||"",
-    exposure:l.exposure||exposureFromProgress(l.progress||""),
+    exercise:config.exercise||l.exercise||"",
+    progress:progressForZone(config.startZone),
+    exposure:exposureFromProgress(progressForZone(config.startZone)),
     logText:""
   });
 }
@@ -1236,7 +1386,8 @@ function projectedWheelFrom(startIndex){
     const rot=state.rotation[slotIndex];
     const lineKey=rot.lineKey;
     const prev=cursor[lineKey] || null;
-    const next=prev ? advancePlanItem(prev) : seedPlanFromLine(lineKey);
+    const config=planSessionConfig(lineKey);
+    const next=prev && sameMovement(prev.exercise,config.exercise) ? advancePlanItem(prev) : seedPlanFromLine(lineKey);
     if(next){
       next.slot=rot.slot;
       next.category=state.lines[lineKey]?.category || next.category || "";
@@ -1341,37 +1492,29 @@ function currentMovement(meta){
 }
 
 function staticPositionFor(lineKey){
-  const map={
-    pushVertical:"Adv. PL 6s / Str. L 6s",
-    pushHorizontal:"Adv. PL 6s / Str. L 6s",
-    pullVertical:"Str. FL 6s / Str. L 6s",
-    pullHorizontal:"Str. FL 6s / Str. L 6s",
-    complexPush:"Adv. PL 6s / Str. L 6s",
-    complexPull:"Str. FL 6s / Str. L 6s",
-    conditioning:"Str. BL 6s / Str. L 6s"
-  };
-  return map[lineKey] || "";
+  return planVariables().staticPositions?.[lineKey] || "";
 }
 
 function buildPlan(meta,d=todayISO()){
+  const variables=planVariables();
   return `${titleDate(d)} — ${meta.slot}
 
 Session time: ~
 
 WU
 FR full body
-HSPU ×5
+${variables.hspu}
 Wall Extension 10×2
 Band Dislocate 10×2
 Static Position
 : ${staticPositionFor(meta.lineKey)}
-L Pull-up 5×1
+${variables.lPull}
 
 MN
 ${displayMainTemplate(meta)}
 
 CD
-HVR 10×1
+${variables.hvr}
 Wall Extension 10×1
 Band Dislocate
 : dorsal 6×1
@@ -1484,7 +1627,7 @@ function render(){
   text("ovStreak", streak);
   text("ovBuild", "V4.15.2");
   document.getElementById("logDate").value ||= todayISO();
-  fillFilters(); fillSettings(); fillRecordMonths(); renderHistory();
+  fillFilters(); fillSettings(); fillPlanConfigEditor(); fillRecordMonths(); renderHistory();
   renderIndicator();
 }
 function text(id,v){const el=document.getElementById(id); if(el) el.textContent=v}
@@ -1647,6 +1790,97 @@ ${buildPlan(nextMeta())}
   toast("Loaded");
 }
 function deleteLog(id){if(!confirm("Delete this log?")) return; state.logs=state.logs.filter(x=>x.id!==id); persist(); render(); toast("Deleted");}
+function planEditorField(labelText,control){
+  const field=document.createElement("div");
+  field.className="planField";
+  const label=document.createElement("label");
+  label.textContent=labelText;
+  field.append(label,control);
+  return field;
+}
+function planZoneSelect(value,lineKey,fieldName){
+  const select=document.createElement("select");
+  select.dataset.lineKey=lineKey;
+  select.dataset.planField=fieldName;
+  for(const zone of PLAN_ZONES) select.add(new Option(zone.label,zone.id));
+  select.value=value;
+  return select;
+}
+function fillPlanConfigEditor(){
+  const sessionRows=document.getElementById("planSessionRows");
+  const staticRows=document.getElementById("planStaticRows");
+  if(!sessionRows || !staticRows) return;
+  sessionRows.replaceChildren();
+  staticRows.replaceChildren();
+
+  for(const lineKey of PLAN_SESSION_KEYS){
+    const line=state.lines[lineKey]||{};
+    const config=planSessionConfig(lineKey);
+    const row=document.createElement("div");
+    row.className="planSessionRow";
+
+    const sessionLabel=document.createElement("div");
+    sessionLabel.className="planSessionLabel";
+    sessionLabel.textContent=(line.category||lineKey).toUpperCase();
+
+    const exercise=document.createElement("input");
+    exercise.type="text";
+    exercise.value=config.exercise||"";
+    exercise.dataset.lineKey=lineKey;
+    exercise.dataset.planField="exercise";
+
+    row.append(
+      sessionLabel,
+      planEditorField("MOVEMENT",exercise),
+      planEditorField("START",planZoneSelect(config.startZone,lineKey,"startZone")),
+      planEditorField("END",planZoneSelect(config.endZone,lineKey,"endZone"))
+    );
+    sessionRows.append(row);
+
+    const staticRow=document.createElement("div");
+    staticRow.className="planStaticRow";
+    const staticLabel=document.createElement("div");
+    staticLabel.className="planSessionLabel";
+    staticLabel.textContent=(line.category||lineKey).toUpperCase();
+    const staticInput=document.createElement("input");
+    staticInput.type="text";
+    staticInput.value=staticPositionFor(lineKey);
+    staticInput.dataset.staticLineKey=lineKey;
+    staticRow.append(staticLabel,planEditorField("COMBINATION",staticInput));
+    staticRows.append(staticRow);
+  }
+
+  const variables=planVariables();
+  document.getElementById("planHspu").value=variables.hspu||"";
+  document.getElementById("planLPull").value=variables.lPull||"";
+  document.getElementById("planHvr").value=variables.hvr||"";
+}
+function savePlanConfig(){
+  const next=clone(state.planConfig||DEFAULT_PLAN_CONFIG);
+  next.sessions=next.sessions||{};
+  next.variables=next.variables||{};
+  next.variables.staticPositions=next.variables.staticPositions||{};
+
+  for(const lineKey of PLAN_SESSION_KEYS){
+    const exercise=document.querySelector(`[data-line-key="${lineKey}"][data-plan-field="exercise"]`)?.value.trim();
+    const startZone=document.querySelector(`[data-line-key="${lineKey}"][data-plan-field="startZone"]`)?.value;
+    const endZone=document.querySelector(`[data-line-key="${lineKey}"][data-plan-field="endZone"]`)?.value;
+    if(!exercise){toast("Movement required");return;}
+    if(planZoneIndex(startZone)>planZoneIndex(endZone)){toast("Start zone exceeds end zone");return;}
+    next.sessions[lineKey]={exercise,startZone,endZone};
+    next.variables.staticPositions[lineKey]=document.querySelector(`[data-static-line-key="${lineKey}"]`)?.value.trim()||"";
+  }
+
+  next.variables.hspu=document.getElementById("planHspu").value.trim();
+  next.variables.lPull=document.getElementById("planLPull").value.trim();
+  next.variables.hvr=document.getElementById("planHvr").value.trim();
+  if(!next.variables.hspu || !next.variables.lPull || !next.variables.hvr){toast("Prompt variable required");return;}
+
+  state.planConfig=deepMerge(DEFAULT_PLAN_CONFIG,next);
+  persist();
+  render();
+  toast("Plan config saved");
+}
 function fillSettings(){
   const rotationIndex=document.getElementById("rotationIndex");
   const rotationJson=document.getElementById("rotationJson");
