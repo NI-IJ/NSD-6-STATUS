@@ -1,5 +1,5 @@
-const CACHE="nsd6-status-v4151-seed-streak-fix";
-const ASSETS = ["./","./index.html?v=4.10","./BASE.png","./manifest.webmanifest","./sw.js"];
+const CACHE="nsd6-status-v4152-plan-config-fix";
+const ASSETS = ["./","./index.html?v=4.15.2-plan-config-fix","./BASE.png","./manifest.webmanifest","./sw.js"];
 self.addEventListener("install", event => { self.skipWaiting(); event.waitUntil(caches.open(CACHE).then(cache => cache.addAll(ASSETS))); });
 self.addEventListener("activate", event => { event.waitUntil(caches.keys().then(keys => Promise.all(keys.filter(k => k !== CACHE).map(k => caches.delete(k)))).then(() => self.clients.claim())); });
-self.addEventListener("fetch", event => { if(event.request.method !== "GET") return; event.respondWith(fetch(event.request).then(response => { const clone = response.clone(); caches.open(CACHE).then(cache => cache.put(event.request, clone)); return response; }).catch(() => caches.match(event.request).then(cached => cached || caches.match("./index.html?v=4.10")))); });
+self.addEventListener("fetch", event => { if(event.request.method !== "GET") return; event.respondWith(fetch(event.request).then(response => { const clone = response.clone(); caches.open(CACHE).then(cache => cache.put(event.request, clone)); return response; }).catch(() => caches.match(event.request).then(cached => cached || caches.match("./index.html?v=4.15.2-plan-config-fix")))); });
