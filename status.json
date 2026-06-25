@@ -1,6 +1,6 @@
 {
-  "rotationIndex": 0,
-  "selectedSlotIndex": 0,
+  "rotationIndex": 1,
+  "selectedSlotIndex": 1,
   "rotation": [
     {
       "slot": "Push",
@@ -709,6 +709,17 @@
       "exercise": "Str. PL PU",
       "progress": "6.6 (6×6) [E1]",
       "logText": "6/24 Wed — Rest / Delay\n\nPush / Str. PL PU 6.6 (6×6) [E1] delayed."
+    },
+    {
+      "id": "17823940015898e81e0af6fdeb8",
+      "date": "2026-06-25",
+      "result": "Completed",
+      "slot": "Push",
+      "lineKey": "pushHorizontal",
+      "category": "Horizontal Push",
+      "exercise": "Str. PL PU",
+      "progress": "6.6 (6×6) [E1]",
+      "logText": "6/25 Thu — Push\n\nSession time: ~1h 01m\n\nWU\nFR full body\nHSPU ×5\n: completed as 5 continuous reps\n: ROM was weak / shallow\nWall Extension 10×2\n: normal\nBand Dislocate 10×2\n: normal overall\n: the sore / aching R shoulder area seemed to still be adapting\n: did not feel particularly hard\nStatic Position\n: Adv. PL 6s / Str. L 6s\n: Adv. PL had no notable issue\n: slight shoulder load / signal appeared after band work\n: Str. L was changed from today to a bent-knee position with the pelvis folded to match height\nL Pull-up 5×1\n: normal\n\nMN\nStr. PL PU 6.6 (6×6) [E1]\n\nS1\n: no notable issue\n: proceeded with a frog-type structure\n: slight shoulder load appeared early\n: considered checking a straddle hold coordinate in the next set\n\nS2\n: straddle hold coordinate check was performed\n: legs could be sent backward to some degree\n: pelvis did not seem able to fully open yet\n: the check created some load, making the following push slightly harder\n: trunk felt like it dropped slightly toward a straddle-L type position\n\nS3\n: output seemed slightly reduced\n: inner thigh repeatedly touched or leaned toward the forearm\n: early-set posture did not reappear\n: this felt like a support compensation pattern rather than the intended compact frog-type structure\n\nS4\n: more stable than S3\n: similar frog-type structure\n: worked to reduce / remove the inner-thigh-to-forearm leaning pattern as much as possible\n: stability recovered somewhat compared with S3\n\nS5\n: inner thigh intermittently touched or slightly leaned on the forearm\n: during rest, a right shoulder side-line usage sensation / signal appeared\n: compensation pattern remained partially present\n\nS6\n: full volume was recovered\n: shoulder load was moderate / acceptable\n\nMN Notes\n: Str. PL PU 6.6 E1 was completed\n: full 6×6 volume was recovered\n: compact frog-type remained the usable base\n: S2 included a straddle hold coordinate check\n: straddle direction existed to some degree, but pelvis opening was not yet main-ready\n: the straddle check created noticeable cost and affected the following push sets\n: from S3 onward, inner thigh-to-forearm touching / leaning appeared as a compensation pattern\n: S4 focused on reducing this compensation and was more stable than S3\n: S5 still showed intermittent thigh-to-forearm contact / slight leaning\n: right shoulder side-line usage sensation appeared during rest after S5, but did not become a limiting signal\n: S6 recovered full volume with moderate shoulder load\n: next Str. PL PU exposure should avoid additional straddle hold checks and prioritize compact frog-type support, minimizing thigh-to-forearm leaning, pelvis lift, and push trajectory\n\nCD\nHVR 10×1\n: normal\nWall Extension 10×1\n: ROM slightly reduced\nBand Dislocate\n: dorsal 6×1 — normal\n: overgrip 6×1 — normal\nPassive ROM 6\n: no notable issue\n\nNotes\n: session completed Str. PL PU 6.6 E1 in ~1h 01m\n: WU HSPU was completed as 5 continuous reps with weak / shallow ROM\n: Wall Extension was normal in WU\n: Band Dislocate was normal overall, with the R shoulder aching area still seeming to adapt\n: Adv. PL static had no notable issue\n: Str. L was changed to a bent-knee, pelvis-folded height-matched type from today\n: Str. PL PU 6.6 E1 was completed successfully\n: S2 straddle hold coordinate check confirmed that the legs can move backward to some degree, but pelvis opening is not yet available enough for main use\n: the straddle check added load and likely contributed to reduced output / compensation from S3 onward\n: inner thigh-to-forearm touching / leaning appeared in S3–S5 and was treated as a compensation pattern to minimize\n: S4 was more stable after attempting to remove the compensation pattern\n: S6 completed full volume with acceptable shoulder load\n: CD showed no major transfer; Wall ROM was slightly reduced, dorsal / overgrip were normal, and Passive ROM 6 closed cleanly\n: next Push exposure can continue Str. PL PU 6.6 stabilization without straddle hold checking, focusing on compact frog-type support, pelvis lift, trunk-horizontal control, and minimizing thigh-to-forearm leaning\n\n⸻"
     }
   ],
   "planConfig": {
