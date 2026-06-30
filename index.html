@@ -931,7 +931,7 @@ select,
 }
 .planSessionRow{
   display:grid;
-  grid-template-columns:minmax(112px,.8fr) minmax(150px,1.35fr) minmax(92px,.7fr) minmax(92px,.7fr);
+  grid-template-columns:minmax(112px,.8fr) minmax(150px,1.35fr) minmax(92px,.7fr) minmax(92px,.7fr) minmax(72px,.5fr);
   gap:7px;
   align-items:end;
 }
@@ -964,6 +964,11 @@ select,
   color:#e8e8e8 !important;
   background:rgba(0,0,0,.40) !important;
   font:12px var(--font-din) !important;
+}
+#settingsPanel .planConfig input[type="checkbox"]{
+  width:34px !important;
+  min-height:34px !important;
+  accent-color:#ff0000;
 }
 .planVariableGrid{
   display:grid;
@@ -1296,6 +1301,16 @@ function progressForZone(zoneId){
   return PLAN_ZONES.find(z=>z.id===zoneId)?.progress || PLAN_ZONES[0].progress;
 }
 function sameMovement(a,b){return String(a||"").trim().toLowerCase()===String(b||"").trim().toLowerCase();}
+function dateValue(date){
+  const t=Date.parse(date);
+  return Number.isFinite(t) ? t : 0;
+}
+function samePlanCycle(prev,config){
+  if(!prev || !sameMovement(prev.exercise,config.exercise)) return false;
+  if(prev.projectedPlan) return true;
+  const reentryAt=Date.parse(config.reentryAt||"");
+  return !Number.isFinite(reentryAt) || dateValue(prev.date)>=reentryAt;
+}
 function next77Progress(progress,startZone="3.3:E1",endZone="7.7:E2"){
   const currentIndex=progressZoneIndex(progress);
   if(currentIndex<0) return null;
@@ -1382,7 +1397,7 @@ function projectedWheelFrom(startIndex){
     const lineKey=rot.lineKey;
     const prev=cursor[lineKey] || null;
     const config=planSessionConfig(lineKey);
-    const next=prev && sameMovement(prev.exercise,config.exercise) ? advancePlanItem(prev) : seedPlanFromLine(lineKey);
+    const next=samePlanCycle(prev,config) ? advancePlanItem(prev) : seedPlanFromLine(lineKey);
     if(next){
       next.slot=rot.slot;
       next.category=state.lines[lineKey]?.category || next.category || "";
@@ -1390,6 +1405,7 @@ function projectedWheelFrom(startIndex){
       next.slotIndex=slotIndex;
       next.wheelPosition=i+1;
       next.exposure=exposureFromProgress(next.progress);
+      next.projectedPlan=true;
     }
     wheel.push({rot,lineKey,prev,next,slotIndex,wheelPosition:i+1});
     if(next) cursor[lineKey]=next;
@@ -1832,12 +1848,19 @@ function fillPlanConfigEditor(){
     exercise.value=config.exercise||"";
     exercise.dataset.lineKey=lineKey;
     exercise.dataset.planField="exercise";
+    const reentry=document.createElement("input");
+    reentry.type="checkbox";
+    reentry.checked=!!config.reentryAt;
+    reentry.dataset.lineKey=lineKey;
+    reentry.dataset.planField="reentry";
+    reentry.dataset.reentryAt=config.reentryAt||"";
 
     row.append(
       sessionLabel,
       planEditorField("MOVEMENT",exercise),
       planEditorField("START",planZoneSelect(config.startZone,lineKey,"startZone")),
-      planEditorField("END",planZoneSelect(config.endZone,lineKey,"endZone"))
+      planEditorField("END",planZoneSelect(config.endZone,lineKey,"endZone")),
+      planEditorField("RE-ENTRY",reentry)
     );
     sessionRows.append(row);
 
@@ -1869,9 +1892,11 @@ function savePlanConfig(){
     const exercise=document.querySelector(`[data-line-key="${lineKey}"][data-plan-field="exercise"]`)?.value.trim();
     const startZone=document.querySelector(`[data-line-key="${lineKey}"][data-plan-field="startZone"]`)?.value;
     const endZone=document.querySelector(`[data-line-key="${lineKey}"][data-plan-field="endZone"]`)?.value;
+    const reentry=document.querySelector(`[data-line-key="${lineKey}"][data-plan-field="reentry"]`);
     if(!exercise){toast("Movement required");return;}
     if(planZoneIndex(startZone)>planZoneIndex(endZone)){toast("Start zone exceeds end zone");return;}
     next.sessions[lineKey]={exercise,startZone,endZone};
+    if(reentry?.checked) next.sessions[lineKey].reentryAt=reentry.dataset.reentryAt || new Date().toISOString();
     next.variables.staticPositions[lineKey]=document.querySelector(`[data-static-line-key="${lineKey}"]`)?.value.trim()||"";
   }
 
