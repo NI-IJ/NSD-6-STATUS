@@ -965,10 +965,20 @@ select,
   background:rgba(0,0,0,.40) !important;
   font:12px var(--font-din) !important;
 }
-#settingsPanel .planConfig input[type="checkbox"]{
-  width:34px !important;
+#settingsPanel .planConfig .planRestartBtn{
+  width:100% !important;
   min-height:34px !important;
-  accent-color:#ff0000;
+  margin:0 !important;
+  padding:0 6px !important;
+  border:1px solid rgba(25,255,0,.72) !important;
+  color:rgb(25,255,0) !important;
+  background:#000 !important;
+  font:10px var(--font-din) !important;
+  letter-spacing:.08em;
+  cursor:pointer;
+}
+#settingsPanel .planConfig .planRestartBtn.active{
+  background:rgba(25,255,0,.14) !important;
 }
 .planVariableGrid{
   display:grid;
@@ -1826,6 +1836,12 @@ function planZoneSelect(value,lineKey,fieldName){
   select.value=value;
   return select;
 }
+function markPlanRestart(button){
+  button.dataset.restartAt=new Date().toISOString();
+  button.classList.add("active");
+  button.textContent="SET";
+  toast("Restart marked");
+}
 function fillPlanConfigEditor(){
   const sessionRows=document.getElementById("planSessionRows");
   const staticRows=document.getElementById("planStaticRows");
@@ -1848,19 +1864,21 @@ function fillPlanConfigEditor(){
     exercise.value=config.exercise||"";
     exercise.dataset.lineKey=lineKey;
     exercise.dataset.planField="exercise";
-    const reentry=document.createElement("input");
-    reentry.type="checkbox";
-    reentry.checked=!!config.reentryAt;
-    reentry.dataset.lineKey=lineKey;
-    reentry.dataset.planField="reentry";
-    reentry.dataset.reentryAt=config.reentryAt||"";
+    const restart=document.createElement("button");
+    restart.type="button";
+    restart.className="planRestartBtn";
+    restart.textContent="RESTART";
+    restart.dataset.lineKey=lineKey;
+    restart.dataset.planField="restart";
+    restart.dataset.reentryAt=config.reentryAt||"";
+    restart.onclick=()=>markPlanRestart(restart);
 
     row.append(
       sessionLabel,
       planEditorField("MOVEMENT",exercise),
       planEditorField("START",planZoneSelect(config.startZone,lineKey,"startZone")),
       planEditorField("END",planZoneSelect(config.endZone,lineKey,"endZone")),
-      planEditorField("RE-ENTRY",reentry)
+      planEditorField("RESET",restart)
     );
     sessionRows.append(row);
 
@@ -1892,11 +1910,13 @@ function savePlanConfig(){
     const exercise=document.querySelector(`[data-line-key="${lineKey}"][data-plan-field="exercise"]`)?.value.trim();
     const startZone=document.querySelector(`[data-line-key="${lineKey}"][data-plan-field="startZone"]`)?.value;
     const endZone=document.querySelector(`[data-line-key="${lineKey}"][data-plan-field="endZone"]`)?.value;
-    const reentry=document.querySelector(`[data-line-key="${lineKey}"][data-plan-field="reentry"]`);
+    const restart=document.querySelector(`[data-line-key="${lineKey}"][data-plan-field="restart"]`);
+    const current=planSessionConfig(lineKey);
     if(!exercise){toast("Movement required");return;}
     if(planZoneIndex(startZone)>planZoneIndex(endZone)){toast("Start zone exceeds end zone");return;}
     next.sessions[lineKey]={exercise,startZone,endZone};
-    if(reentry?.checked) next.sessions[lineKey].reentryAt=reentry.dataset.reentryAt || new Date().toISOString();
+    const reentryAt=restart?.dataset.restartAt || current.reentryAt;
+    if(reentryAt) next.sessions[lineKey].reentryAt=reentryAt;
     next.variables.staticPositions[lineKey]=document.querySelector(`[data-static-line-key="${lineKey}"]`)?.value.trim()||"";
   }
 
