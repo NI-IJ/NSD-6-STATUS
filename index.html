@@ -931,7 +931,7 @@ select,
 }
 .planSessionRow{
   display:grid;
-  grid-template-columns:minmax(112px,.8fr) minmax(150px,1.35fr) minmax(92px,.7fr) minmax(92px,.7fr) minmax(72px,.5fr);
+  grid-template-columns:minmax(112px,.8fr) minmax(150px,1.35fr) minmax(125px,1fr) minmax(92px,.7fr) minmax(92px,.7fr) minmax(72px,.5fr);
   gap:7px;
   align-items:end;
 }
@@ -1162,13 +1162,13 @@ const PLAN_ZONES=[
 ];
 const DEFAULT_PLAN_CONFIG={
   sessions:{
-    pushVertical:{exercise:"PHSPU",startZone:"3.3:E1",endZone:"7.7:E2"},
-    pushHorizontal:{exercise:"Str. PL PU",startZone:"3.3:E1",endZone:"7.7:E2"},
-    pullVertical:{exercise:"OAP Negative",startZone:"3.3:E1",endZone:"7.7:E2"},
-    pullHorizontal:{exercise:"FL Row",startZone:"3.3:E1",endZone:"7.7:E2"},
-    complexPush:{exercise:"BAPL60",startZone:"3.3:E1",endZone:"7.7:E2"},
-    complexPull:{exercise:"Str. 360 Pull",startZone:"3.3:E1",endZone:"7.7:E2"},
-    conditioning:{exercise:"Negative + A. Pistol",startZone:"3.3:E1",endZone:"7.7:E2"}
+    pushVertical:{exercise:"PHSPU",slotTitle:"PHSPU",startZone:"3.3:E1",endZone:"7.7:E2"},
+    pushHorizontal:{exercise:"Str. PL PU",slotTitle:"SPLPU",startZone:"3.3:E1",endZone:"7.7:E2"},
+    pullVertical:{exercise:"OAP Negative",slotTitle:"OAPN",startZone:"3.3:E1",endZone:"7.7:E2"},
+    pullHorizontal:{exercise:"FL Row",slotTitle:"FLROW",startZone:"3.3:E1",endZone:"7.7:E2"},
+    complexPush:{exercise:"BAPL60",slotTitle:"BAPL60",startZone:"3.3:E1",endZone:"7.7:E2"},
+    complexPull:{exercise:"Str. 360 Pull",slotTitle:"360PULL",startZone:"3.3:E1",endZone:"7.7:E2"},
+    conditioning:{exercise:"Negative + A. Pistol",slotTitle:"COND",startZone:"3.3:E1",endZone:"7.7:E2"}
   },
   variables:{
     hspu:"HSPU ×5",
@@ -1574,6 +1574,8 @@ function shortType(lineKey){
   return "SS";
 }
 function shortMoveName(item){
+  const slotTitle=item?.lineKey ? String(planSessionConfig(item.lineKey).slotTitle||"").trim() : "";
+  if(slotTitle) return slotTitle;
   if(item?.lineKey==="conditioning") return "COND";
   const name=String(item?.exercise||"").trim();
   const map={
@@ -1864,6 +1866,11 @@ function fillPlanConfigEditor(){
     exercise.value=config.exercise||"";
     exercise.dataset.lineKey=lineKey;
     exercise.dataset.planField="exercise";
+    const slotTitle=document.createElement("input");
+    slotTitle.type="text";
+    slotTitle.value=config.slotTitle||"";
+    slotTitle.dataset.lineKey=lineKey;
+    slotTitle.dataset.planField="slotTitle";
     const restart=document.createElement("button");
     restart.type="button";
     restart.className="planRestartBtn";
@@ -1875,7 +1882,8 @@ function fillPlanConfigEditor(){
 
     row.append(
       sessionLabel,
-      planEditorField("MOVEMENT",exercise),
+      planEditorField("MAIN TITLE",exercise),
+      planEditorField("8 SLOT TITLE",slotTitle),
       planEditorField("START",planZoneSelect(config.startZone,lineKey,"startZone")),
       planEditorField("END",planZoneSelect(config.endZone,lineKey,"endZone")),
       planEditorField("RESET",restart)
@@ -1908,13 +1916,15 @@ function savePlanConfig(){
 
   for(const lineKey of PLAN_SESSION_KEYS){
     const exercise=document.querySelector(`[data-line-key="${lineKey}"][data-plan-field="exercise"]`)?.value.trim();
+    const slotTitle=document.querySelector(`[data-line-key="${lineKey}"][data-plan-field="slotTitle"]`)?.value.trim();
     const startZone=document.querySelector(`[data-line-key="${lineKey}"][data-plan-field="startZone"]`)?.value;
     const endZone=document.querySelector(`[data-line-key="${lineKey}"][data-plan-field="endZone"]`)?.value;
     const restart=document.querySelector(`[data-line-key="${lineKey}"][data-plan-field="restart"]`);
     const current=planSessionConfig(lineKey);
     if(!exercise){toast("Movement required");return;}
+    if(!slotTitle){toast("8 Slot title required");return;}
     if(planZoneIndex(startZone)>planZoneIndex(endZone)){toast("Start zone exceeds end zone");return;}
-    next.sessions[lineKey]={exercise,startZone,endZone};
+    next.sessions[lineKey]={exercise,slotTitle,startZone,endZone};
     const reentryAt=restart?.dataset.restartAt || current.reentryAt;
     if(reentryAt) next.sessions[lineKey].reentryAt=reentryAt;
     next.variables.staticPositions[lineKey]=document.querySelector(`[data-static-line-key="${lineKey}"]`)?.value.trim()||"";
