@@ -1,6 +1,6 @@
 {
-  "rotationIndex": 7,
-  "selectedSlotIndex": 7,
+  "rotationIndex": 0,
+  "selectedSlotIndex": 0,
   "rotation": [
     {
       "slot": "Push",
@@ -907,42 +907,60 @@
       "exercise": "Str. 360 Pull",
       "progress": "7.7 (7×7) [E2]",
       "logText": "7/11 Sat — Complex Pull\nSession time: ~1h 08m\n\nWU\nFR full body\nHSPU ×5\n: performed as 2 / 2 / 1 split\n: did not feel well-attached\nWall Extension 10×2\n: normal\nBand Dislocate 10×2\n: normal\nStatic Position\n: Str. FL 6s / Str. L 6s\n: no notable issue\nL Pull-up 5×1\n: normal\nWU Notes\n: warm-up completed in ~22m\n: HSPU was split and did not feel well-attached\n: Wall Extension, Band Dislocate, Static Position, and L Pull-up were all normal enough for entry\n: main entry was treated as recovery-based GO rather than output-expansion GO\n\nMN\nStr. 360 Pull 7.7 (7×7) [E2]\nS1\n: performed with the pelvis somewhat folded from the first set\n: volume was completed in a pass-through pattern\n: no notable forearm or back issue\n\nS2\n: similar to S1\n: slightly breathless\n: body temperature felt higher\n\nS3\n: lever fixation began to appear\n: entered a faster-tempo rotation pattern\n: rep time shortened\n: accumulated output, including forearm load, was not yet strongly felt\n\nS4\n: late-set forearm load began to appear slightly\n: load was not strong\n: tempo stayed similar to the previous sets\n\nS5\n: forearm load became stronger\n: ring straps swung somewhat forward / backward\n\nS6\n: similar to S5\n: late-set forearm load remained\n: full 7-set completion still did not seem to present a major issue\n\nS7\n: recovered in a similar pattern\n: full volume completed\n\nMN Notes\n: Str. 360 Pull 7.7 E2 was completed\n: full 7×7 volume was recovered\n: this completes the second successful 7-level exposure and closes Str. 360 Pull 7.7 as a graduation session\n: today was not a strict-line expansion session\n: pelvis folding was allowed from the first set\n: endpoint holding was avoided\n: fast pass-through rhythm remained the main operating pattern\n: S1 opened with an intentionally folded-pelvis pass-through pattern\n: S2 remained similar, with only mild breathlessness and heat\n: S3 showed improved economy, with lever fixation beginning to appear, faster rotation tempo, and shorter rep time\n: S4 introduced slight late-set forearm load, but tempo remained stable\n: S5 showed stronger forearm load and some forward / backward ring-strap swing\n: S6 remained similar to S5, but completion still looked secure\n: S7 closed with the same recovery pattern\n: no shoulder pain, lock, or limiting back signal was reported during the main work\n: the main value was confirming that Str. 360 Pull can recover 7×7 volume twice through automatic pass-through rhythm, folded-pelvis adjustment, and manageable forearm load\n: Str. 360 Pull 7-level is now graduated\n: next Complex Pull exposure can transition to 360 Pull 3-level E1\n\nCD\nHVR 10×1\n: normal\nWall Extension 10×1\n: normal\nBand Dislocate\n: dorsal 6×1 — normal\n: overgrip 6×1 — normal\nPassive ROM 6\n: no notable issue\n\nNotes\n: session completed Str. 360 Pull 7.7 E2 in ~1h 08m\n: WU took ~22m\n: HSPU was performed as 2 / 2 / 1 split and did not feel well-attached\n: Wall Extension, Band Dislocate, Static Position, and L Pull-up were normal\n: main work recovered full 7×7 volume\n: today’s main work used folded-pelvis pass-through recovery rather than strict lever-line expansion\n: early sets were clean, with no notable forearm or back issue\n: S2 showed mild breathlessness and heat\n: S3 improved into faster-tempo rotation with shorter rep time and low accumulated output\n: S4 introduced slight late-set forearm load without tempo loss\n: S5 showed stronger forearm load and some forward / backward ring-strap swing\n: S6 remained similar, but full-volume completion still looked secure\n: S7 closed with the same recovery pattern\n: CD closed cleanly\n: HVR and Wall Extension were normal\n: dorsal / overgrip were normal\n: Passive ROM 6 showed no notable issue\n: no main signal clearly transferred into HVR, Wall Extension, strap work, or Passive ROM 6\n: today completes Str. 360 Pull 7.7 E2 and graduates the Str. 360 Pull 7-level line\n: next Complex Pull exposure can move into 360 Pull 3-level E1 transition\n⸻"
+    },
+    {
+      "id": "1783861403047f2089e4145de58",
+      "date": "2026-07-12",
+      "result": "Completed",
+      "slot": "Conditioning",
+      "lineKey": "conditioning",
+      "category": "Conditioning",
+      "exercise": "Negative Pistol",
+      "progress": "5.5 (5×5) [E1]",
+      "logText": "7/12 Sun — Conditioning\nSession time: ~54m\n\nWU\nFR full body\n: very slight posterior-chain DOMS\nHSPU ×5\n: performed as 4 / 1 split\nWall Extension 10×2\n: normal\nBand Dislocate 10×2\n: normal\n: slight aching during S2\nStatic Position\n: Str. BL 6s / Str. L 6s\n: no notable issue\nL Pull-up 5×1\n: normal\nWU Notes\n: warm-up completed in ~16m15s\n: slight posterior-chain DOMS was present but did not interfere with entry\n: HSPU was performed as 4 / 1 split\n: Wall Extension was normal\n: Band Dislocate was normal overall, with slight aching during S2\n: Static Position showed no notable issue\n: L Pull-up was normal\n: entry quality was sufficient for Negative Pistol 5.5 E1\n\nMN\nNegative Pistol 5.5 (5×5) [E1]\nS1\n: R side remained a slow controlled descent\n: no clear hold appeared\n: L side showed 4 holds\nS2\n: R side remained similar to S1\n: L side showed around 3 holds\nS3\n: R side remained similar\n: L side descended faster and showed 5 holds\nS4\n: R side achieved approximately 3s and 2s holds on the final two reps\n: L side remained similar and showed 4 holds\nS5\n: R side produced 1–2 brief holds under 1s\n: remaining R reps finished with slow controlled glute contact\n: L side showed 3 holds\nMN Notes\n: Negative Pistol 5.5 E1 was completed\n: full 5×5 volume was recovered\n: Burpee remained excluded\n: no ascent work was introduced\n: R side remained the primary observation side\n: L side continued as the comparison side\n: early sets prioritized controlled braking rather than hold hunting\n: S1–S3 maintained consistent slow eccentric control on the R side\n: S4 became the key set of the session, with R reproducing clear ~3s and ~2s holds\n: S5 retained 1–2 brief holds under 1s while the remaining reps maintained slow controlled glute contact\n: L side maintained stable hold capacity throughout the session\n: today confirmed that the bottom-entry hold pattern established at 3.5 remained reproducible after transitioning to 5.5 volume\n: no knee, ankle, or hip alignment issue was reported\n: this was not a new Pistol progression line, but a lower-rep higher-concentration rotation within the full-negative standard\n: next Conditioning exposure can continue Negative Pistol 5.5 stabilization while checking R-side hold reproducibility, braking consistency, and clean alignment\n\nCD\nHVR 10×1\n: normal\nWall Extension 10×1\n: ROM slightly reduced\nBand Dislocate\n: dorsal 6×1 — relatively smooth\n: overgrip 6×1 — relatively smooth\nPassive ROM 6\n: no notable issue\n\nNotes\n: session completed Negative Pistol 5.5 E1 in ~54m\n: WU took ~16m15s\n: slight posterior-chain DOMS did not interfere with entry\n: HSPU was performed as 4 / 1 split\n: Wall Extension was normal during WU\n: Band Dislocate was normal overall, with slight aching during S2\n: Static Position showed no notable issue\n: L Pull-up was normal\n: Negative Pistol 5.5 E1 recovered full 5×5 volume\n: R side maintained controlled eccentric braking through S1–S3\n: S4 reproduced clear ~3s and ~2s holds\n: S5 retained 1–2 brief holds under 1s while controlled contact remained intact\n: L side maintained stable hold capacity across all sets\n: no ascent work was introduced\n: Burpee remained excluded\n: CD closed cleanly\n: HVR was normal\n: Wall Extension showed slightly reduced ROM\n: dorsal / overgrip were relatively smooth\n: Passive ROM 6 showed no notable issue\n: no main signal clearly transferred into HVR, Wall Extension, strap work, or Passive ROM 6\n: today confirms that R-side full-negative control remained available after moving from the 3.5 concentration block into 5.5 volume\n: next Conditioning exposure can continue 5.5 stabilization without changing the current full-negative focus\n⸻"
     }
   ],
   "planConfig": {
     "sessions": {
       "pushVertical": {
         "exercise": "PHSPU",
+        "slotTitle": "PHSPU",
         "startZone": "3.3:E1",
         "endZone": "7.7:E2"
       },
       "pushHorizontal": {
         "exercise": "Str. PL PU",
+        "slotTitle": "SPLPU",
         "startZone": "3.3:E1",
         "endZone": "7.7:E2"
       },
       "pullVertical": {
         "exercise": "OAP Negative",
+        "slotTitle": "OAPN",
         "startZone": "3.3:E1",
         "endZone": "7.7:E2"
       },
       "pullHorizontal": {
         "exercise": "FL Row",
+        "slotTitle": "FLROW",
         "startZone": "3.3:E1",
         "endZone": "7.7:E2"
       },
       "complexPush": {
         "exercise": "BAPL60",
+        "slotTitle": "BAPL60",
         "startZone": "3.3:E1",
         "endZone": "7.7:E2"
       },
       "complexPull": {
         "exercise": "360 Pull",
+        "slotTitle": "360PULL",
         "startZone": "3.3:E1",
         "endZone": "7.7:E2"
       },
       "conditioning": {
         "exercise": "Negative Pistol",
+        "slotTitle": "COND",
         "startZone": "3.3:E1",
         "endZone": "7.7:E2",
         "reentryAt": "2026-06-30T13:22:55.596Z"
