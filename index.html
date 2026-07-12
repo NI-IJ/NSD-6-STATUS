@@ -1075,10 +1075,9 @@ select,
       <div><label>Result</label><select id="result"><option>Completed</option><option>Rest / Delay</option><option>Monthly Summary</option></select></div>
     </div>
     <label>Final log text</label>
-    <textarea id="finalLog" placeholder="Paste Kai final log here"></textarea>
-    <div class="actions">
-      <button class="redbtn" onclick="saveFinalLog()">SAVE SESSION</button>
-      <button onclick="document.getElementById('finalLog').value=''">CLEAR</button>
+    <textarea id="finalLog"></textarea>
+    <div class="actions" style="grid-template-columns:repeat(2,1fr)">
+      <button id="saveLogButton" class="redbtn" onclick="saveFinalLog()">SAVE SESSION</button>
       <button onclick="closePanels()">CLOSE</button>
     </div>
   </div>
@@ -1088,7 +1087,7 @@ select,
     <div class="panel-headline"><h2 class="panel-title">HISTORY</h2><button class="mini-close" onclick="closePanels()">CLOSE</button></div>
     <div class="formgrid">
       <div><label>Line filter</label><select id="filter" onchange="renderHistory()"><option value="all">All</option></select></div>
-      <div><label>Search</label><input id="search" oninput="renderHistory()" placeholder="FL Row, Burpee, 5/25" /></div>
+      <div><label>Search</label><input id="search" oninput="renderHistory()" /></div>
     </div>
     <div class="list" id="historyList"></div>
     <div class="actions">
@@ -1189,6 +1188,7 @@ DEFAULT.planConfig=clone(DEFAULT_PLAN_CONFIG);
 function applyDefaults(state){const out=deepMerge(DEFAULT,state||{}); out.rotation=clone(DEFAULT.rotation); Object.keys(DEFAULT.lines).forEach(key=>{out.lines[key]={...(out.lines[key]||{}),...DEFAULT.lines[key]}}); if(!Number.isInteger(out.rotationIndex)) out.rotationIndex=0; out.rotationIndex=((out.rotationIndex%out.rotation.length)+out.rotation.length)%out.rotation.length; if(!Number.isInteger(out.selectedSlotIndex)) out.selectedSlotIndex=out.rotationIndex; out.selectedSlotIndex=((out.selectedSlotIndex%out.rotation.length)+out.rotation.length)%out.rotation.length; return out;}
 function load(){try{const raw=localStorage.getItem(STORAGE_KEY)||LEGACY_KEYS.map(k=>localStorage.getItem(k)).find(Boolean); return raw?applyDefaults(JSON.parse(raw)):clone(DEFAULT)}catch(e){return clone(DEFAULT)}}
 let state = clone(DEFAULT);
+let editingLogId=null;
 function applyOneTimeLogFixes(){
   let changed=false;
   if(Array.isArray(state.logs)){
@@ -1707,11 +1707,23 @@ async function copyPrompt(){
   toast("Prompt copied");
 }
 function saveFinalLog(){
-  const meta=nextMeta();
   const txt=document.getElementById("finalLog").value.trim();
   const result=document.getElementById("result").value;
   if(!txt && result!=="Rest / Delay"){toast("Paste final log first"); return;}
   const date=document.getElementById("logDate").value || todayISO();
+  const editingLog=editingLogId ? state.logs.find(l=>l.id===editingLogId) : null;
+  if(editingLog){
+    editingLog.date=date;
+    editingLog.result=result;
+    editingLog.logText=txt;
+    resetLogEditor();
+    persist();
+    render();
+    closePanels();
+    toast("Log updated");
+    return;
+  }
+  const meta=nextMeta();
   const isMonthly=result==="Monthly Summary";
   state.logs.push({
     id:String(Date.now())+Math.random().toString(16).slice(2),
@@ -1763,8 +1775,19 @@ function markRest(){
   toast("Rest / Delay saved");
 }
 function openPanel(id){document.querySelectorAll(".panel").forEach(p=>p.classList.remove("active")); document.getElementById(id).classList.add("active");}
-function closePanels(){document.querySelectorAll(".panel").forEach(p=>p.classList.remove("active"));}
-function fillFilters(){const f=document.getElementById("filter"); if(!f) return; const old=f.value||"all"; f.innerHTML='<option value="all">All</option>'+Object.entries(state.lines).map(([k,v])=>`<option value="${k}">${v.category} — ${v.exercise}</option>`).join(""); f.value=old;}
+function resetLogEditor(){
+  editingLogId=null;
+  document.getElementById("finalLog").value="";
+  document.getElementById("logDate").value=todayISO();
+  document.getElementById("result").value="Completed";
+  document.querySelector("#savePanel .panel-title").textContent="SAVE FINAL LOG";
+  document.getElementById("saveLogButton").textContent="SAVE SESSION";
+}
+function closePanels(){
+  document.querySelectorAll(".panel").forEach(p=>p.classList.remove("active"));
+  if(editingLogId) resetLogEditor();
+}
+function fillFilters(){const f=document.getElementById("filter"); if(!f) return; const old=f.value||"all"; f.innerHTML='<option value="all">All</option>'+PLAN_SESSION_KEYS.map(k=>`<option value="${k}">${state.lines[k]?.category||k}</option>`).join(""); f.value=PLAN_SESSION_KEYS.includes(old)||old==="all" ? old : "all";}
 function formatLogHtml(raw){
   const nl=String.fromCharCode(10);
   const lines=String(raw||"").split(nl);
@@ -1800,26 +1823,21 @@ function renderHistory(){
   logs.slice(0,120).forEach(l=>{
     const div=document.createElement("div");
     div.className="logitem";
-    div.innerHTML=`<h3>${esc(l.date)} · ${esc(l.exercise)} · ${esc(l.result)}</h3><div class="muted">${esc(l.category||"")} · ${esc(l.progress||"")}</div><div class="logbody">${formatLogHtml(l.logText)}</div><div class="actions"><button onclick="copyLog('${l.id}')">COPY</button><button onclick="deleteLog('${l.id}')">DELETE</button><button onclick="reuseLog('${l.id}')">USE AS PREV</button></div>`;
+    div.innerHTML=`<h3>${esc(l.date)} · ${esc(l.exercise)} · ${esc(l.result)}</h3><div class="muted">${esc(l.category||"")} · ${esc(l.progress||"")}</div><div class="logbody">${formatLogHtml(l.logText)}</div><div class="actions"><button onclick="copyLog('${l.id}')">COPY</button><button onclick="deleteLog('${l.id}')">DELETE</button><button onclick="editLog('${l.id}')">EDIT</button></div>`;
     list.appendChild(div);
   });
 }
 async function copyLog(id){const l=state.logs.find(x=>x.id===id); if(!l) return; await navigator.clipboard.writeText(l.logText); toast("Log copied");}
-function reuseLog(id){
+function editLog(id){
   const l=state.logs.find(x=>x.id===id);
   if(!l) return;
-  const t=`${l.logText}
-
-⸻
-
-${buildPlan(nextMeta())}
-
-⸻`;
-  document.getElementById("runtimePrompt").value=t;
-  const view=document.getElementById("runtimePromptView");
-  if(view) view.innerHTML=formatLogHtml(t);
-  openPanel("planPanel");
-  toast("Loaded");
+  editingLogId=id;
+  document.getElementById("logDate").value=l.date||todayISO();
+  document.getElementById("result").value=l.result||"Completed";
+  document.getElementById("finalLog").value=l.logText||"";
+  document.querySelector("#savePanel .panel-title").textContent="EDIT LOG";
+  document.getElementById("saveLogButton").textContent="UPDATE LOG";
+  openPanel("savePanel");
 }
 function deleteLog(id){if(!confirm("Delete this log?")) return; state.logs=state.logs.filter(x=>x.id!==id); persist(); render(); toast("Deleted");}
 function planEditorField(labelText,control){
