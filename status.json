@@ -1,6 +1,6 @@
 {
-  "rotationIndex": 2,
-  "selectedSlotIndex": 2,
+  "rotationIndex": 3,
+  "selectedSlotIndex": 3,
   "rotation": [
     {
       "slot": "Push",
@@ -973,6 +973,17 @@
       "exercise": "BAPL60",
       "progress": "7.7 (7×7) [E2]",
       "logText": "7/17 Fri — Rest / Delay\n\nComplex Push / BAPL60 7.7 (7×7) [E2] delayed."
+    },
+    {
+      "id": "1784377927809cc166e4ab0cc78",
+      "date": "2026-07-18",
+      "result": "Completed",
+      "slot": "Complex Push",
+      "lineKey": "complexPush",
+      "category": "Complex Push",
+      "exercise": "BAPL60",
+      "progress": "7.7 (7×7) [E2]",
+      "logText": "7/18 Sat — Complex Push\n\nSession time: ~1h 04m\n\nWU\nFR full body\n: slight posterior-chain / lat DOMS remained\nHSPU ×5\n: partial ROM\nWall Extension 10×2\n: normal\nBand Dislocate 10×2\n: slight stiffness / aching on the 1st set\n: improved on the 2nd set\nStatic Position\n: Adv. PL 6s / Str. L 6s\n: Adv. PL produced slight shoulder load while fixing the lever\n: Str. L showed a very small amount of active knee extension\nL Pull-up 5×1\n: normal\n\nMN\nBAPL60 7.7 (7×7) [E2]\n\nS1\n: tempo was ordinary\n: slight anterior / lateral shoulder load appeared\n: rotation rhythm had not attached yet\n\nS2\n: slight forward-back strap swing appeared\n: pendulum-type rotation rhythm started attaching\n\nS3\n: shoulder load moved into the background\n: lever rhythm attached more clearly\n\nS4\n: rotation and tempo were both good\n: movement entered a stable operating zone\n\nS5\n: same stable pattern as S4\n: no notable issue\n\nS6\n: same pattern continued\n: stamina remained available\n\nS7\n: closed without notable issue\n\nMN Notes\n: BAPL60 7.7 E2 was completed\n: the session entered with slight shoulder-centered load and incomplete rhythm attachment\n: from S2–S3, the movement shifted into a pendulum-driven rotation pattern\n: shoulder load receded as the lever and rotation rhythm attached\n: from S4 onward, rotation, tempo, and trajectory remained stable through S7\n: no late-session rhythm collapse, tempo loss, or shoulder-signal rebound appeared\n: stamina remained available near the end\n: this confirmed reproducible full-volume operation rather than a one-set peak\n: BAPL60 completed the progression line that began from BAPL30 and continued through BAPL45\n: BAPL60 7.7 E2 graduated\n\nCD\nHVR 10×1\n: normal\n: slight shoulder-side hold load remained\nWall Extension 10×1\n: ROM slightly reduced\nBand Dislocate\n: dorsal 6×1 — slightly stiff\n: overgrip 6×1 — relatively smooth\nPassive ROM 6\n: no notable issue\n\nNotes\n: session completed BAPL60 7.7 E2 in ~1h 04m\n: WU showed only mild residual stiffness and slight shoulder loading\n: main work transitioned from early shoulder-centered control into stable pendulum-driven rotation\n: S4–S7 reproduced the same operating pattern without meaningful deviation\n: cooldown showed only slight residual shoulder load and mildly reduced Wall Extension ROM\n: dorsal rotation remained slightly stiff, while overgrip was relatively smoother\n: Passive ROM 6 closed without notable issue\n: BAPL60 7.7 E2 graduated cleanly"
     }
   ],
   "planConfig": {
