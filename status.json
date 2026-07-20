@@ -1000,8 +1000,8 @@
   "planConfig": {
     "sessions": {
       "pushVertical": {
-        "exercise": "RHSPU",
-        "slotTitle": "RHSPU",
+        "exercise": "PHSPU",
+        "slotTitle": "PHSPU",
         "startZone": "3.3:E1",
         "endZone": "7.7:E2"
       },
