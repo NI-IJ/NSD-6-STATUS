@@ -1061,8 +1061,8 @@
         "endZone": "7.7:E2"
       },
       "pushHorizontal": {
-        "exercise": "Str. PL PU",
-        "slotTitle": "SPLPU",
+        "exercise": "PL PU",
+        "slotTitle": "PLPU",
         "startZone": "3.3:E1",
         "endZone": "7.7:E2"
       },
