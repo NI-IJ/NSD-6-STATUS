@@ -1139,8 +1139,8 @@
         "endZone": "7.7:E2"
       },
       "pullHorizontal": {
-        "exercise": "FL Row",
-        "slotTitle": "FLROW",
+        "exercise": "RFLROW",
+        "slotTitle": "RFLROW",
         "startZone": "3.3:E1",
         "endZone": "7.7:E2"
       },
