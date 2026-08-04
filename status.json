@@ -1160,6 +1160,17 @@
       "exercise": "Negative Pistol",
       "progress": "7.7 (7×7) [E1]",
       "logText": "8/2 Sun — Rest / Delay\n\nConditioning / Negative Pistol 7.7 (7×7) [E1] delayed."
+    },
+    {
+      "id": "1785834175487c6907c88f1a67",
+      "date": "2026-08-03",
+      "result": "Rest / Delay",
+      "slot": "Conditioning",
+      "lineKey": "conditioning",
+      "category": "Conditioning",
+      "exercise": "Negative Pistol",
+      "progress": "7.7 (7×7) [E1]",
+      "logText": "8/3 Mon — Rest / Delay\n\nConditioning / Negative Pistol 7.7 (7×7) [E1] delayed."
     }
   ],
   "planConfig": {
