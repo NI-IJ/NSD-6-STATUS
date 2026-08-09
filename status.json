@@ -1,6 +1,6 @@
 {
-  "rotationIndex": 2,
-  "selectedSlotIndex": 2,
+  "rotationIndex": 3,
+  "selectedSlotIndex": 3,
   "rotation": [
     {
       "slot": "Push",
@@ -1226,6 +1226,17 @@
       "exercise": "45deg PU",
       "progress": "3.5 (3×5) [E2]",
       "logText": "8/8 Sat — Rest / Delay\n\nComplex Push / 45deg PU 3.5 (3×5) [E2] delayed."
+    },
+    {
+      "id": "17862797385791af8eb6c45e918",
+      "date": "2026-08-09",
+      "result": "Completed",
+      "slot": "Complex Push",
+      "lineKey": "complexPush",
+      "category": "Complex Push",
+      "exercise": "45deg PU",
+      "progress": "3.5 (3×5) [E2]",
+      "logText": "8/9 Sun — Complex Push\n\nSession time: ~59m\n\nWU\nFR full body\nHSPU ×5\n: 3 / 1 / 1 split.\n: Mid ROM.\n: Slight forward hand-walk around Rep4 to recover center.\nWall Extension 10×2\n: ROM slightly reduced.\n: Mild shoulder load sensation.\nBand Dislocate 10×2\n: Mild shoulder load sensation.\nStatic Position\n: Adv. PL 6s / Str. L 6s.\n: No notable issue.\n: Str. L maintained without thigh-to-arm contact; knees moderately bent.\n: Slight outer-pelvis pulling sensation appeared with a longer hold.\nL Pull-up 5×1\n: Output normal.\n: Slight left biceps load sensation.\n\nWU Notes\n: ~14m 10s.\n: No limiting signal throughout WU.\n: Mild shoulder load remained within acceptable range for MN entry.\n\nMN\n45deg PU 3.5 (3×5) [E2]\n\nS1\n: 3 reps completed continuously.\n: Body lever began rotating forward/downward immediately with the start of descent.\n: Brief pause around mid-to-lower ROM on Rep2 to control center.\n: Press-out remained smooth with no clear output insufficiency after descent.\n: ROM was substantial and not shallow.\n: Overall connection markedly tighter than E1.\n\nS2\n: 3 reps completed continuously.\n: Slight forward hand-walk after Rep1 to recover center.\n: ROM was microscopically reduced from S1 but remained above mid-range.\n: Rotation angle satisfactory.\n: Continuity preserved despite center adjustment.\n\nS3\n: Required 3 kick-up attempts for initial entry.\n: Slight forward hand-walk after Rep1 to recover center.\n: Rep2 descent was reversed early into ascent when balance approached the drop boundary.\n: During Rep3 descent, lower body opened slightly toward a Straddle-type position to maintain center.\n: Finished with ascent into drop.\n: Limitation appeared more related to balance / lever retention than press output.\n\nS4\n: Tight connection restored; 3 reps completed continuously.\n: ROM above mid-range.\n: After the initial kick-up, handstand was stabilized for ~3–5s as if fixing the lever before beginning.\n: Descent/rotation started from a clearly stabilized vertical axis.\n: Performance quality recovered after S3.\n\nS5\n: Tight connection maintained; 3 reps completed.\n: ROM returned close to the early sets.\n: Slight forward hand-walk after Rep2, followed by center control and re-descent.\n: Final rep reached ROM comparable to, or slightly deeper than, the early sets.\n: During descent, the lever felt rigidly fixed while descent and forward rotation operated as one coupled action.\n: During ascent, push and reverse rotation coupled together to return toward vertical.\n: Ground contact remained consistently tight and connected.\n: Wrist load had been noticeable during the middle sets but was not a significant issue by the final set.\n\nMN Notes\n: Full 3×5 volume completed.\n: Compared with the split / re-entry pattern of E1, continuity was clearly improved throughout E2.\n: S1–S2 established continuous execution; S3 showed temporary center instability; S4–S5 recovered to early-set quality.\n: Current movement pattern is vertical hold → descent with horizontalization / forward rotation → press with reverse rotation toward verticalization.\n: The movement progressed from the segmented exploration seen in E1 toward two integrated phases: descent + rotation, and push + reverse rotation.\n: Set quality appeared to be governed more by lever retention / center control / rotational continuity than by pure press output.\n: Wrist worked noticeably as a forward support and rotational axis, but no progressive aggravation or residual issue appeared.\n: 45deg PU E2 completed successfully.\n\nCD\nHVR 10×1\n: Normal.\nWall Extension 10×1\n: Slightly smoother than during WU.\nBand Dislocate\n: dorsal 6×1\n: Normal.\n: overgrip 6×1\n: Normal.\nPassive ROM 6\n: No notable issue.\n\nNotes\n: Mild shoulder load noted during WU did not worsen or carry over through MN/CD.\n: A clear pattern of maintaining a fixed lever while continuously redirecting push output through rotation was reproduced.\n: This remains consistent with the previously observed anterior-chain fixation / rotational-transition tendency seen during BAPL.\n\n⸻"
     }
   ],
   "planConfig": {
