@@ -1278,7 +1278,8 @@
         "exercise": "RHSPU",
         "slotTitle": "RHSPU",
         "startZone": "3.3:E1",
-        "endZone": "7.7:E2"
+        "endZone": "7.7:E2",
+        "reentryAt": "2026-08-12T13:49:06.612Z"
       },
       "pushHorizontal": {
         "exercise": "PL PU",
