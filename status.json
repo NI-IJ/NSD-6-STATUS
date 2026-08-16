@@ -1,6 +1,6 @@
 {
-  "rotationIndex": 5,
-  "selectedSlotIndex": 5,
+  "rotationIndex": 6,
+  "selectedSlotIndex": 6,
   "rotation": [
     {
       "slot": "Push",
@@ -1303,6 +1303,17 @@
       "exercise": "RFLROW",
       "progress": "3.3 (3×3) [E1]",
       "logText": "8/15 Sat — Rest / Delay\n\nPull / RFLROW 3.3 (3×3) [E1] delayed."
+    },
+    {
+      "id": "17868816932430d3a3fe2d5dab",
+      "date": "2026-08-16",
+      "result": "Completed",
+      "slot": "Pull",
+      "lineKey": "pullHorizontal",
+      "category": "Horizontal Pull",
+      "exercise": "RFLROW",
+      "progress": "3.3 (3×3) [E1]",
+      "logText": "8/16 Sun — Pull\n\nSession time: ~39m\n\nWU\nFR full body\n: No notable issues.\n\nHSPU ×5\n: Completed 5 consecutive reps.\n: ROM remained above mid-range.\n: Later reps felt slightly demanding in output, while overall completion remained solid.\n\nWall Extension 10×2\n: Mild loading around the shoulders / upper back.\n\nBand Dislocate 10×2\n: Rotation remained smooth.\n: Mild shoulder loading was present.\n: The second set felt slightly improved.\n\nStatic Position\n: Str. FL 6s / Str. L 6s.\n: No notable issues.\n\nL Pull-up 5×1\n: Approximately normal.\n\nWU Notes\n: WU completed in ~12m.\n: Movement between exercises felt compact in the new environment, contributing to a shorter warm-up time.\n\nMN\nRFLROW 3.3 (3×3) [E1]\n\nS1\n: Initial ring-transfer and lever-angle test completed.\n: A true row from the full-lever position did not appear available.\n: Knee bend was completely removed, with the legs maintained extended.\n: A weak pulling trajectory appeared with the pelvis / body remaining around a forward diagonal angle of approximately 45°, with some additional extension attempted from that position.\n: A separate full-lever hold was tested after the 3 reps.\n: The full-lever position could be maintained to some degree.\n: Mild lower-lat loading became noticeable after finishing the set and hold test.\n\nS2\n: Repeated approximately the same straight-leg diagonal-lever condition used in S1.\n: Completed 3 reps without an additional full-lever hold test.\n: Rep time remained relatively short.\n\nS3\n: Maintained a similar diagonal lever throughout the set.\n: The clearest row trajectory of the session appeared.\n: ROM was no longer notably shallow while retaining the longer straight-leg lever condition.\n\nMN Notes\n: RFLROW 3.3 E1 completed successfully.\n: This was the first Ring FL Row exposure following FL Row 7.7 graduation.\n: The movement pattern itself remained the same as the previous FL Row block, with the primary change being transfer from the bar to independent rings.\n: Knee bend was fully removed throughout the main working position.\n: A more folded ~90° pelvic angle would likely have allowed a larger trajectory, but this was intentionally avoided to preserve a clear leverage progression from the previous block.\n: Full-lever static support was partially available, while concentric rowing from the full-lever position was not yet available.\n: The initial working reference was therefore set around a straight-leg diagonal lever.\n: S1 established the current concentric boundary, S2 reproduced it, and S3 produced the clearest trajectory and strongest ROM without shortening the lever substantially.\n: Mild lower-lat loading appeared after the sets, but the total 3×3 volume was low enough that the session did not produce a strong overall main-exercise fatigue sensation.\n\nCD\nHVR 10×1\n: Normal.\n\nWall Extension 10×1\n: Normal.\n\nBand Dislocate\n: dorsal 6×1\n: Mild shoulder loading.\n: overgrip 6×1\n: Mild shoulder loading.\n\nPassive ROM 6\n: No notable issues.\n\nNotes\n: Session completed in ~39m, among the most compact full-session times recorded.\n: CD exercise order became mixed compared with the usual sequence, likely due to returning after several consecutive Rest days.\n: Coffee was unintentionally omitted before the session; the session was completed with water only.\n: The high doorway bar still requires a jump for grip entry.\n: Jump grip was performed with slight caution following the recent right middle / ring finger incident, with no notable issue or recurrent finger discomfort.\n: Ring installation on the high bar still requires maximal tiptoe reach while placing the carabiner overhead and remains somewhat awkward; further familiarity with the setup is expected to improve the process.\n: New-home session flow remained notably compact, with reduced transition time between exercises.\n\n⸻"
     }
   ],
   "planConfig": {
