@@ -1533,11 +1533,11 @@
       "lPull": "L Pull-up 5×1",
       "hvr": "HVR 10×1",
       "staticPositions": {
-        "pushVertical": "Adv. PL 6s / Str. L 6s",
-        "pushHorizontal": "Adv. PL 6s / Str. L 6s",
+        "pushVertical": "Str. PL 6s / Str. L 6s",
+        "pushHorizontal": "Str. PL 6s / Str. L 6s",
         "pullVertical": "Str. FL 6s / Str. L 6s",
         "pullHorizontal": "Str. FL 6s / Str. L 6s",
-        "complexPush": "Adv. PL 6s / Str. L 6s",
+        "complexPush": "Str. PL 6s / Str. L 6s",
         "complexPull": "Str. FL 6s / Str. L 6s",
         "conditioning": "Str. BL 6s / Str. L 6s"
       }
