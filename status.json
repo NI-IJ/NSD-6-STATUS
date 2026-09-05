@@ -1523,6 +1523,17 @@
       "exercise": "45deg PU",
       "progress": "5.5 (5×5) [E2]",
       "logText": "9/3 Thu — Rest / Delay\n\nComplex Push / 45deg PU 5.5 (5×5) [E2] delayed."
+    },
+    {
+      "id": "178862077763187051a6e1dafa",
+      "date": "2026-09-04",
+      "result": "Rest / Delay",
+      "slot": "Complex Push",
+      "lineKey": "complexPush",
+      "category": "Complex Push",
+      "exercise": "45deg PU",
+      "progress": "5.5 (5×5) [E2]",
+      "logText": "9/4 Fri — Rest / Delay\n\nComplex Push / 45deg PU 5.5 (5×5) [E2] delayed."
     }
   ],
   "planConfig": {
