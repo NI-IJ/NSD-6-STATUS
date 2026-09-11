@@ -1656,11 +1656,11 @@
       "staticPositions": {
         "pushVertical": "Str. PL 6s / Str. L 6s",
         "pushHorizontal": "Str. PL 6s / Str. L 6s",
-        "pullVertical": "Str. FL 6s / Str. L 6s",
-        "pullHorizontal": "Str. FL 6s / Str. L 6s",
+        "pullVertical": "FL 6s / Str. L 6s",
+        "pullHorizontal": "FL 6s / Str. L 6s",
         "complexPush": "Str. PL 6s / Str. L 6s",
-        "complexPull": "Str. FL 6s / Str. L 6s",
-        "conditioning": "Str. BL 6s / Str. L 6s"
+        "complexPull": "FL 6s / Str. L 6s",
+        "conditioning": "BL 6s / Str. L 6s"
       }
     }
   }
