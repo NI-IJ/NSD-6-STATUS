@@ -1611,6 +1611,17 @@
       "exercise": "360 Pull",
       "progress": "6.6 (6×6) [E1]",
       "logText": "9/11 Fri — Rest / Delay\n\nComplex Pull / 360 Pull 6.6 (6×6) [E1] delayed."
+    },
+    {
+      "id": "17892943273668b6b67d5defc18",
+      "date": "2026-09-12",
+      "result": "Rest / Delay",
+      "slot": "Complex Pull",
+      "lineKey": "complexPull",
+      "category": "Complex Pull",
+      "exercise": "360 Pull",
+      "progress": "6.6 (6×6) [E1]",
+      "logText": "9/12 Sat — Rest / Delay\n\nComplex Pull / 360 Pull 6.6 (6×6) [E1] delayed."
     }
   ],
   "planConfig": {
