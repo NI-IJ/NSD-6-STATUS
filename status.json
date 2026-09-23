@@ -1,6 +1,6 @@
 {
-  "rotationIndex": 3,
-  "selectedSlotIndex": 3,
+  "rotationIndex": 4,
+  "selectedSlotIndex": 4,
   "rotation": [
     {
       "slot": "Push",
@@ -1732,6 +1732,17 @@
       "exercise": "Negative Pistol",
       "progress": "6.6 (6×6) [E2]",
       "logText": "9/22 Tue — Rest / Delay\n\nConditioning / Negative Pistol 6.6 (6×6) [E2] delayed."
+    },
+    {
+      "id": "17901610368360faba9d9d03d9",
+      "date": "2026-09-23",
+      "result": "Completed",
+      "slot": "Conditioning",
+      "lineKey": "conditioning",
+      "category": "Conditioning",
+      "exercise": "Negative Pistol",
+      "progress": "6.6 (6×6) [E2]",
+      "logText": "9/23 Wed — Conditioning\n\nSession time: ~53m\n\nWU\n\nFR — Full Body\n\nHSPU ×5\n: 3/2 split\n: Dropped during the press on rep 3\n: ROM mixed between small partial and mid-range\n\nWall Extension 10×2\n: Approximately normal\n: ROM slightly reduced\n\nBand Dislocate 10×2\n: Approximately normal\n: Loading around the shoulders\n\nStatic Position\n: Full BL 6s — relatively difficult / loaded, not completely horizontal\n: Str. L 6s\n\nL Pull-up 5×1\n: Pulling output relatively good\n\nWU Notes\n: WU ~14m\n: Overall body felt slightly locked after 2 consecutive Rest days\n: Coordinate access felt mildly reduced across several WU movements\n\nMN\n\nNegative Pistol 6.6 (6×6) [E2]\n\nS1\n: R — ~1s under ×1\n: L — clear ×4\n: Mild lower-body loading\n\nRest ~1m20s\n\nS2\n: R — controlled slow descent, but no solid bottom hold\n: Very brief ~1s under ×1 candidate\n: L — clear ×3–4\n\nS3\n: R — ~1s under ×3\n: L — clear ×4\n\nRest ~2m\n\nS4\n: R — ~1s under ×4\n: L — clear ×3\n\nS5\n: R — under ×0\n: Bottom control reduced by accumulated load\n: L — clear ×3\n\nS6\n: R — under ×0\n: Similar to S5\n: L — clear ×4\n\nMN Notes\n: 72 total descents completed\n: Rest intervals generally shorter than standard; mild breathlessness during the main\n: R bottom access — definite ~1s under ×8/36 + very brief borderline candidate ×1\n: R clear/full — 0/36\n: L clear — 21–22/36\n: R bottom access improved through S3–S4 after a low-attachment start, then dropped in S5–S6 as lower-body fatigue accumulated\n: Compared with E1, bottom-hold attachment was lower on both sides\n: Post-main thigh loading and general fatigue fairly strong\n: High-density 6.6 volume completed despite reduced coordinate readiness after 2 consecutive Rest days\n\nCD\n\nHanging\n: Normal\n: Abdominal load\n\nWall\n: Normal\n\nDorsal / Overgrip\n: Relatively smooth\n\nPassive ROM 6\n: No notable issues\n\nNotes\n: Session functioned mainly as an inertia-clearing session after 2 consecutive Rest days\n: Initial whole-body stiffness gradually reduced through continued movement, while accumulated lower-body fatigue became the main limiter late in MN\n: Coordinate performance was below E1, but full 6.6 volume was completed at relatively high density\n: CD remained clean with no notable mobility issues\n\n⸻"
     }
   ],
   "planConfig": {
