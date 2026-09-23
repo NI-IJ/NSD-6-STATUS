@@ -1721,6 +1721,17 @@
       "exercise": "Negative Pistol",
       "progress": "6.6 (6×6) [E2]",
       "logText": "9/21 Mon — Rest / Delay\n\nConditioning / Negative Pistol 6.6 (6×6) [E2] delayed."
+    },
+    {
+      "id": "17901564959613567d8633eddf8",
+      "date": "2026-09-22",
+      "result": "Rest / Delay",
+      "slot": "Conditioning",
+      "lineKey": "conditioning",
+      "category": "Conditioning",
+      "exercise": "Negative Pistol",
+      "progress": "6.6 (6×6) [E2]",
+      "logText": "9/22 Tue — Rest / Delay\n\nConditioning / Negative Pistol 6.6 (6×6) [E2] delayed."
     }
   ],
   "planConfig": {
