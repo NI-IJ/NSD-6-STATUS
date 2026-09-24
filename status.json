@@ -1761,9 +1761,9 @@
       "pushVertical": {
         "exercise": "RHSCP",
         "slotTitle": "RHSCP",
-        "startZone": "3.3:E1",
+        "startZone": "3.5:E2",
         "endZone": "7.7:E2",
-        "reentryAt": "2026-09-24T09:29:12.823Z"
+        "reentryAt": "2026-09-24T10:53:49.824Z"
       },
       "pushHorizontal": {
         "exercise": "PL PU",
