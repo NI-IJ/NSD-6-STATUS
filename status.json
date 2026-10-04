@@ -1884,9 +1884,9 @@
       "pullVertical": {
         "exercise": "ROAP NEGATIVE",
         "slotTitle": "ROAPN",
-        "startZone": "5.5:E1",
+        "startZone": "6.6:E2",
         "endZone": "7.7:E2",
-        "reentryAt": "2026-10-04T09:06:08.048Z"
+        "reentryAt": "2026-10-04T09:08:15.449Z"
       },
       "pullHorizontal": {
         "exercise": "RFLROW",
