@@ -2073,6 +2073,17 @@
       "exercise": "RFLROW",
       "progress": "6.6 (6×6) [E2]",
       "logText": "10/22 Thu — Rest / Delay\n\nPull / RFLROW 6.6 (6×6) [E2] delayed."
+    },
+    {
+      "id": "179280612569652e4a74b76b128",
+      "date": "2026-10-23",
+      "result": "Rest / Delay",
+      "slot": "Pull",
+      "lineKey": "pullHorizontal",
+      "category": "Horizontal Pull",
+      "exercise": "RFLROW",
+      "progress": "6.6 (6×6) [E2]",
+      "logText": "10/23 Fri — Rest / Delay\n\nPull / RFLROW 6.6 (6×6) [E2] delayed."
     }
   ],
   "planConfig": {
