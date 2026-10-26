@@ -2152,9 +2152,9 @@
       "conditioning": {
         "exercise": "Negative Pistol",
         "slotTitle": "COND",
-        "startZone": "7.7:E2",
-        "endZone": "7.7:E2",
-        "reentryAt": "2026-10-09T11:46:21.156Z"
+        "startZone": "3.3:E1",
+        "endZone": "3.3:E1",
+        "reentryAt": "2026-10-26T11:49:18.783Z"
       }
     },
     "variables": {
