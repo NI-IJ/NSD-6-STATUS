@@ -2150,6 +2150,17 @@
       "exercise": "PL PU",
       "progress": "7.7 (7×7) [E1]",
       "logText": "10/29 Thu — Rest / Delay\n\nPush / PL PU 7.7 (7×7) [E1] delayed."
+    },
+    {
+      "id": "1793449094183b9f4b0096e8c",
+      "date": "2026-10-30",
+      "result": "Rest / Delay",
+      "slot": "Push",
+      "lineKey": "pushHorizontal",
+      "category": "Horizontal Push",
+      "exercise": "PL PU",
+      "progress": "7.7 (7×7) [E1]",
+      "logText": "10/30 Fri — Rest / Delay\n\nPush / PL PU 7.7 (7×7) [E1] delayed."
     }
   ],
   "planConfig": {
