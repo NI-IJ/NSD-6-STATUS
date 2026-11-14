@@ -2326,6 +2326,17 @@
       "exercise": "ROAP NEGATIVE",
       "progress": "7.7 (7×7) [E2]",
       "logText": "11/14 Sat — Rest / Delay\n\nPull / ROAP NEGATIVE 7.7 (R7 / L7) ×4 [E2] delayed."
+    },
+    {
+      "id": "1794650441209d1295a52108d3",
+      "date": "2026-11-13",
+      "result": "Rest / Delay",
+      "slot": "Pull",
+      "lineKey": "pullVertical",
+      "category": "Vertical Pull",
+      "exercise": "ROAP NEGATIVE",
+      "progress": "7.7 (7×7) [E2]",
+      "logText": "11/13 Fri — Rest / Delay\n\nPull / ROAP NEGATIVE 7.7 (R7 / L7) ×4 [E2] delayed."
     }
   ],
   "planConfig": {
