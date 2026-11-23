@@ -2468,11 +2468,11 @@
         "endZone": "7.7:E2"
       },
       "complexPush": {
-        "exercise": "45deg PU",
-        "slotTitle": "45dPU",
-        "startZone": "7.7:E2",
+        "exercise": "60deg PU",
+        "slotTitle": "60dPU",
+        "startZone": "3.3:E1",
         "endZone": "7.7:E2",
-        "reentryAt": "2026-11-02T13:22:07.777Z"
+        "reentryAt": "2026-11-23T11:45:40.492Z"
       },
       "complexPull": {
         "exercise": "360 Pull",
